@@ -1,0 +1,18 @@
+
+header
+  h1 class='logo' = App.name
+  h3 class='aux'  = t(:earn_from_your_selfies)
+  nav
+    ul
+      li = t(:signup)
+      li = t(:how_it_works)
+
+section class='gallery'
+  = render :partial => "photos/list"
+
+section class='sidebar'
+  div class='tagline' = t(:tagline)
+  nav
+    ul
+      li = t(:winners)
+      li = t(:rules)
