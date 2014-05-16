@@ -75,8 +75,10 @@ h1, h2, h3, h4, h5 {
   h1.logo {
     float:left;
     margin:0px 10px 0px 0px;
-    width:70px;
-    height:70px;
+    width:200px;
+    height:53px;
+    background:image-url('logo.png');
+    text-indent:-4000px;
   }
 
   .tagline {
@@ -226,4 +228,12 @@ img.flag {
 
 .how_it_works_container {
   padding:30px 0px;
+}
+
+.thumbnail:hover{
+  border-color:#999;
+  border-right:4px solid #999;
+  border-bottom:4px solid #999;
+  margin-right:1px;
+  margin-bottom:1px;
 }
