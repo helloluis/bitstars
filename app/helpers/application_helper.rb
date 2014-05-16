@@ -1,6 +1,6 @@
 module ApplicationHelper
   def page_title
-    "#{App.name} || #{@page_title}"
+    "#{App.name} || #{@page_title || App.tagline}"
   end
 
   def already_entered?(photo, provider='instagram')
