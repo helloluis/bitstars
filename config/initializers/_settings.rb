@@ -1,34 +1,37 @@
 App = Hashie::Mash.new
 
-App.name = "Viviem Pearls"
-App.slug = "pearls"
-App.business_name = "Viviem Pearls, Inc."
-App.address = "Sydney, Australia"
-App.phone = "+61 2 8001 1900"
-
-App.url = Rails.env.development? ? "localhost:3000" : "pearlsau.herokuapp.com"
+App.name = "Bitstars"
+App.slug = "bitstars"
+App.business_name = "Satoshi Citadel, Inc."
+App.address = "Renaissance Center, 215 Salcedo St., Makati City, Philippines"
+App.phone = "+63 2 843-3841"
+App.tagline = "Be a star with your selfies"
+App.secondary_tagline = "Make money from your selfies every single day" 
+App.description = ""
+App.url = Rails.env.development? ? "bitstars.xxx" : "bitstars.ph"
+App.email_url = "bitstars.ph"
 # email domains also need to be set up in production.rb
 
-App.analytics = {
-  gaecommerce: true,
-  mixpanel:    false,
-  crazyegg:    false,
-  upsellit:    false,
-  trada:       false,
-  adroll:      false,
-  linkshare:   false
+App.wallet = "1AoZJzq5FqdJygZyG7KYkmpYZx7vMxn4cw" # John's wallet
+
+App.currency = "USD"
+
+App.emails = {
+  admin:      "admin@#{App.email_url}",
+  sales:      "sales@#{App.email_url}",
+  support:    "support@#{App.email_url}",
+  accounting: "accounts@#{App.email_url}",
+  noreply:    "no-reply@#{App.email_url}"
 }
 
-App.allow_guest_purchases = true
-
 App.services = {
-  :s3 => {
-    access_key:         "AKIAJG3EHF3WWQKTXUBA",
-    secret_access_key:  "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"    
-  },
   :ses => {
     access_key:         "",
     secret_access_key:  ""
+  },
+  :instagram => {
+    client_id:      "825e0611bba34fa38931a071e9e9072e",
+    client_secret: "0459374440b04064a32f645dbc3594d4"
   },
   :mailchimp => {
     access_key: "",
@@ -51,20 +54,5 @@ App.services = {
     username: "",
     app_id:   "",
     secret:   ""
-  },
-  :stripe => {}
-}
-
-if Rails.env.production?
-  App.services.s3.bucket = "lmk-#{App.slug}-production"
-else
-  App.services.s3.bucket = "lmk-#{App.slug}-development"
-end
-
-App.emails = {
-  admin:      "admin@#{App.url}",
-  sales:      "sales@#{App.url}",
-  support:    "support@#{App.url}",
-  accounting: "accounts@#{App.url}",
-  noreply:    "no-reply@#{App.url}"
+  }
 }

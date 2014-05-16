@@ -22,6 +22,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+gem 'instagram'
 
 # gem 'rails_admin'
 gem 'activeadmin', github: 'gregbell/active_admin'
@@ -30,10 +31,6 @@ gem 'kaminari'
 gem 'pry'
 
 gem 'aws-ses', require: 'aws/ses'
-
-gem "carrierwave"
-gem "mini_magick"
-gem "fog"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
