@@ -1,0 +1,51 @@
+- content_for :body_top do 
+  div id="fb-root"
+  javascript:
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=251797171690773&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+
+ul.social
+  
+  li.facebook
+    div class="fb-like" data-href="http://#{App.url}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"
+  
+  li.twitter
+    a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-hashtags="bitcoin" Tweet
+    javascript:
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  
+  li.google
+    script type="text/javascript" src="https://apis.google.com/js/plusone.js"
+    | <g:plusone></g:plusone>
+  
+  li.mailchimp
+
+    | <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+    | <div id="mc_embed_signup">
+    | <form action="http://bitmarket.us3.list-manage.com/subscribe/post?u=96d5a32718f37ac88ff497090&amp;id=5022275db9" method="post" id="mc-embedded-| subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    |  <h2>Subscribe to our mailing list</h2>
+    | <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+    | <div class="mc-field-group">
+    |  <label for="mce-EMAIL">Email Address <span class="asterisk">*</span>
+    | </label>
+    |  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+    | </div>
+    | <div class="mc-field-group">
+    |  <label for="mce-NAME">Name <span class="asterisk">*</span>
+    | </label>
+    |  <input type="text" value="" name="NAME" class="required" id="mce-NAME">
+    | </div>
+    |  <div id="mce-responses" class="clear">
+    |  <div class="response" id="mce-error-response" style="display:none"></div>
+    |  <div class="response" id="mce-success-response" style="display:none"></div>
+    |  </div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    |  <div style="position: absolute; left: -5000px;"><input type="text" name="b_96d5a32718f37ac88ff497090_5022275db9" tabindex="-1" value=""></div>
+    |  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    | </form>
+    | </div>

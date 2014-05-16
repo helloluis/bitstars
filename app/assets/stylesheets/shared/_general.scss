@@ -1,0 +1,229 @@
+html, body {
+  font-size:$main-font-size;
+  font-weight:200;
+  background: #FFF;
+  @include background-size(contain);
+  @include fontstack('body');
+  color:#666;
+
+  &.page-static_pages  {
+    background-image:none;
+    background-color:#fff;  
+    header#branding {
+      //background: image-url('background.jpg') no-repeat top center;
+      background-size:cover;
+    }
+  }
+
+  //  FOR MOBILE
+  @media (max-device-width:$screen-sm-max)  {
+    font-size:40px;
+    font-weight:500;
+  }
+  //  FOR MOBILE
+}
+
+h1,h2,h3,h4,h5,h6 {
+  @include fontstack('primary',300);
+}
+
+p {
+  padding-bottom:rem-calc(16px);
+}
+
+a {
+  color:$link-color;
+  @include fontstack('secondary');
+}
+
+h1, h2, h3, h4, h5 {
+  @include fontstack(primary);
+}
+
+.page-header {
+  border:0 none;
+}
+
+// HEADER
+#branding {
+  padding:rem-calc(10px) 0;
+
+  .navbar-brand {
+    margin: 0;
+    padding:15px 0px 0px 0px;
+    height:auto;
+    width:50%;
+    font-size: rem-calc(28px);
+  }
+
+  .navbar-header {
+    width:50%;
+  }
+
+  .navbar-info {
+    overflow:hidden;
+    margin-top:20px;
+    ul {
+      list-style-type:none;
+      li {
+        float:left;
+        margin-right:10px;
+      }
+    }
+  }
+
+  h1.logo {
+    float:left;
+    margin:0px 10px 0px 0px;
+    width:70px;
+    height:70px;
+  }
+
+  .tagline {
+    margin-top:0;
+    width:70%;
+    font-size: rem-calc(17px);
+  }
+}
+
+.navbar {
+  margin-bottom:0px;
+}
+
+.modal-dialog {
+  background:#fff;
+  @include border-radius(5px);
+}
+
+.qr_code {
+  border:1px solid #ccc;
+  padding:20px;
+  margin: 0 auto;
+  text-align:center;
+  img {
+    margin: 0 auto 10px;
+    border:1px solid $primary-color;
+  }
+}
+
+label {
+  font-weight:normal;
+}
+
+.panel {
+  h1,h2,h3,h4 {
+    margin:10px 0px 0px 0px;
+    &.panel-heading {
+      padding-bottom:5px;
+    }
+  }
+  table.table {
+    th {
+      padding:10px 10px 10px 15px;
+      font-weight:normal;
+    } 
+    td { 
+      padding:10px; 
+      font-weight:bold;
+    }
+  }
+}
+
+table.table.invoice {
+  margin-bottom:0px;
+  .label_recipient_name, .label_service_fee, .label_total {
+    font-weight:normal;
+    font-size:14px;
+    width:25%;
+  }
+  .label_service_fee {
+    padding-top:15px;
+  }
+  .confirm_recipient_amount, .confirm_service_fee, .total_amount {
+    font-size:24px;
+  }
+  th {
+    text-align: right;
+    &.label_service_fee, &.label_total {
+      padding-top:15px;
+    }
+  }
+}
+
+.panel.rates {
+  padding:0px 20px;
+  h3 {
+    padding-left:0px;
+    margin-bottom:0px;
+  }
+  small {
+    margin-bottom:20px;
+    display:block;
+  }
+  table.table {
+    border-top:1px solid #ccc;
+    margin-bottom:10px;
+    th, td {
+      font-size:14px;
+      padding:5px 5px 5px 15px;
+    }
+    th {
+      text-align:right;
+    }
+  }
+}
+
+dl {
+  dt {
+    font-weight:normal;
+    color:#999;
+  }
+  dd {
+    font-weight:bold;
+  }
+}
+
+footer {
+  background-color:#ddd;
+  font-size:13px;
+  padding-top:20px;
+  ul{
+    list-style-type:none;
+    overflow:hidden;
+    margin:0px;
+    padding:0px;
+    li {
+      float:left;
+      margin-right:10px;
+    } 
+  } 
+}
+
+.logo-sci {
+  width: 103px;
+  height: 45px;
+  background: image-url('sci-logo-color.png');
+  text-indent: -9999px;
+  border-radius: 3px;
+  margin-top: 0px;
+  &:hover {
+    background-position: -103px 0;
+  }
+}
+
+img.flag {
+  margin-right:10px;
+}
+
+.social {
+  list-style-type:none;
+  margin:0px 10px;
+  padding:0px;
+  li {
+    margin-bottom:20px;
+  }
+}
+
+.how_it_works_container {
+  padding:30px 0px;
+}

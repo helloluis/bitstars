@@ -1,0 +1,57 @@
+- content_for :page_top do
+  div id="fb-root"
+  javascript:
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=#{App.services.facebook.app_id}&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+- content_for :page_scripts do
+  javascript:
+    $(function(){
+      Heart.initialize();
+    });
+
+div class='container standalone-image'
+  div class='row'
+    div class='col-md-8'
+      div class='thumbnail'
+        = image_tag @photo.images[:standard], class: 'img-responsive'
+
+    div class='col-md-4'
+      div class='panel'
+        
+        div class='pull-left heart-container'
+          a class='heart' data-id=@photo.id title="#{liked?(@photo) ? "You liked this" : ""}"
+            span class='glyphicon glyphicon-heart #{liked?(@photo)}'
+
+        div class='pull-left'
+          p
+            span class='like_count' = @photo.num_likes
+            |  likes
+            br
+            span class='view_count' = pluralize(@photo.num_views,'view')
+
+        div class='clearfix'
+        - if @photo.position_today
+          p class='position' 
+            | Currently #{@photo.position_today.ordinalize} most popular selfie today!
+
+        p class='submitted' 
+          | Submitted by 
+          = link_to @photo.user.username, user_path(@photo.user.username)
+          br
+          small
+            = link_to "Follow #{@photo.user.username} on #{@photo.user.provider.titleize}", @photo.user.provider_link
+
+      div class='panel'
+        p Like this selfie? Show #{@photo.user.username} your appreciation with a small tip!
+        div class='thumbnail'
+          img id='qr_code' src='https://chart.googleapis.com/chart?chld=Q&chs=300x300&cht=qr&chl=#{@photo.user.tip_address}' 
+
+      div class='panel'
+        h3 Comments
+        div class="fb-comments" data-href="http://example.com/comments" data-width="300" data-numposts="5" data-colorscheme="light"

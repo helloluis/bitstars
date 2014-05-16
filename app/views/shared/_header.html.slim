@@ -1,0 +1,16 @@
+header id="branding" class="navbar navbar-default"
+  div class="container"
+    div class="pull-left navbar-header"
+      h1 class='logo'
+      h1 class="navbar-brand" = link_to App.name, '/'
+      h2 class="tagline small" = App.tagline
+    div class='pull-right'
+      nav class='navbar-info'
+        ul
+          li
+            a href='/how-it-works' 
+              = t(:how_it_works)
+          li
+            | &middot;
+          li
+            a href="http://sci.ventures" = t(:about_us)

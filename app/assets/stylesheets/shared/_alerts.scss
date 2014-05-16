@@ -1,0 +1,30 @@
+//  FLASHER - flasher.js
+/**
+  * @name Alert
+  * @description Style for the alert class
+  * @state .fixed - fixed state
+  * @markup
+  *   <div class="alert">markup</div>
+  */
+
+.alert {
+  @extend .lato_bold_fontstack;
+
+  &.fixed {
+	  top:80px;
+	  position:fixed;
+	  z-index: 10000;
+    left: 15%;
+    right: 15%;
+	}
+}
+
+/**
+  * @name Loading
+  * @description Style for the loading class
+  * @markup
+  *   <div class="loading">markup</div>
+  */
+.loading {
+  text-align: center;
+}

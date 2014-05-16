@@ -1,0 +1,56 @@
+// .btn {
+//   color:#FFF;
+//   background:$primary-color;
+//   border-color:darken($primary-color, 10%);
+//   text-transform:uppercase;
+//   @include fontstack(primary, '400');
+//   padding-left: rem-calc(30px);
+//   padding-right: rem-calc(30px);
+
+//   &:hover {
+//     color:#FFF;
+//     @include background(linear-gradient(lighten($primary-color,5%), $primary-color));
+//     @include text-shadow(1px 1px darken($primary-color, 40%));
+//     border-color:$primary-color;
+//   }
+
+//   &:active,
+//   &:focus {
+//     @include background(linear-gradient(darken($primary-color,20%), $primary-color));
+//   }
+// }
+
+
+.input-lg {
+  height:rem-calc(46px);
+  font-size:rem-calc(18px);
+}
+
+.social_network_logins .btn {
+  color: #FFF;
+  @include text-shadow(0 0 transparent);
+}
+
+.btn-facebook {
+  background-color: #3b5998;
+  border-color: #3b5998;
+  &:hover {
+    background-color: #30487b;
+  }
+}
+
+.btn-twitter {
+  background-color: #55acee;
+  border-color:#55acee;
+  &:hover {
+    background-color: #309aea;
+  }
+}
+
+.btn-google_oauth2 {
+  background-color: #ca3523;
+  border-color:#ca3523;
+  &:hover {
+    background-color: #ca3523;
+  }  
+}

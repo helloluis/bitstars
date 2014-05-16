@@ -1,0 +1,29 @@
+//give input forms inner shadow, rounded corners
+input,
+.text {
+  width: 100%;
+  border:1px solid #CCC;
+  padding:rem-calc(2px);
+  font-size: rem-calc(18px);
+  line-height: 1.6;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width:rem-calc(14px);
+  height:rem-calc(14px);
+  margin-top:rem-calc(7px);
+  margin-right:rem-calc(5px);
+}
+
+select {
+  @include appearance(none);
+  @include border-radius(3px);
+  @extend .text;
+  cursor:pointer;
+  // background: ;
+  @include background-size(rem-calc(15px) auto);
+  @include background(image-url('forms/arrow-down.png') no-repeat 100% 50%, linear-gradient(#FFF, #CCC));
+  text-shadow: 1px 1px #FFF;
+  padding-left:rem-calc(15px);
+}

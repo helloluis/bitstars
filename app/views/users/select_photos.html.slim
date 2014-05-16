@@ -1,0 +1,28 @@
+- @page_title = t(:select_your_photos)
+
+- content_for :page_scripts do
+  javascript:
+    $(function(){
+      Selector.initialize();
+    });
+
+form action=batch_create_photos_path method='post' class='select_photos'
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  = hidden_field_tag :provider, current_user.provider
+  header
+    h1 = t(:select_your_photos)
+    p 
+      = t(:select_selfies_to_submit)
+      | &nbsp;
+      span class='selected_photos_count' = current_user.photos.today.length
+      | /3 selected
+    p
+      input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-large'
+
+  div class='container'
+    div class='row'
+        - @photos.each do |photo|
+          div class='photo col-xs-6 col-md-3'
+            a href='#!' class='thumbnail select_photo #{already_entered?(photo)}'
+              span class='glyphicon glyphicon-ok'
+              = image_tag photo.images.low_resolution.url, "data-id".to_sym => photo.id, "data-text".to_sym => photo.caption.text, "data-standard".to_sym => photo.images.standard_resolution.url, "data-low".to_sym => photo.images.low_resolution.url, "data-thumbnail".to_sym => photo.images.thumbnail.url, :alt => photo.caption.text

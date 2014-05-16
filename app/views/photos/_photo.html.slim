@@ -1,3 +1,8 @@
 li class='photo'
-  img src=photo.attachment_url
-  a href=user_photo_path(user, photo) = user.name
+  div class='thumbnail'
+    a href=photo_path(photo) title=photo.images[:text]
+      img src=photo.images[:low] data-standard=photo.images[:standard] data-thumbnail=photo.images[:thumbnail]
+    div class='caption'
+      p = link_to photo.user.username, user_path(photo.user.username)
+      span class='glyphicon glyphicon-heart' 
+      = photo.num_likes

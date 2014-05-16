@@ -5,7 +5,7 @@ App.slug = "bitstars"
 App.business_name = "Satoshi Citadel, Inc."
 App.address = "Renaissance Center, 215 Salcedo St., Makati City, Philippines"
 App.phone = "+63 2 843-3841"
-App.tagline = "Be a star with your selfies"
+App.tagline = "May the best selfie win"
 App.secondary_tagline = "Make money from your selfies every single day" 
 App.description = ""
 App.url = Rails.env.development? ? "bitstars.xxx" : "bitstars.ph"
@@ -24,6 +24,16 @@ App.emails = {
   noreply:    "no-reply@#{App.email_url}"
 }
 
+App.timezone = "GMT+8"
+
+App.max_submissions_per_day = 3
+
+App.winner_lockout = 1.week
+
+App.minimum_tip = 0.0001
+
+App.transaction_fee_percentage = 0.01
+
 App.services = {
   :ses => {
     access_key:         "",
@@ -39,8 +49,8 @@ App.services = {
   },
   :facebook => {
     username: "",
-    app_id:   "",
-    secret:   ""
+    app_id:   "836953916333257",
+    secret:   "e367a62ee7d6ff94c3121ab4d7b044cd"
   },
   :twitter => {
     username: "",
@@ -56,3 +66,24 @@ App.services = {
     secret:   ""
   }
 }
+
+
+# johnbailon
+# yo_leroy
+# tonyotonio
+# calspec
+# sabinalopez
+# hashgarcia
+# milk_n_lipstick
+# clockworkchico
+# oscarbicadaiii
+# kassypajarillo
+
+# username: thecourtjester001
+# password: igram123@
+
+# username: theredqueen0001
+# password: igram123@
+
+# username: thewhitequeen001
+# password: igram123@

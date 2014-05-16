@@ -1,0 +1,19 @@
+footer
+  div class="container"
+    div class="pull-left"
+      ul class="nav-list"
+        li
+          a href="/about" = t(:about)
+        li class="divider" &middot;
+        li
+          a href="/team" = t(:team)
+        li class="divider" &middot;
+        li
+          a href="/privacy" = t(:privacy)
+        li class="divider" &middot;
+        li
+          a href="/contact" = t(:contact)
+      p
+        | &copy; #{App.url} 2014
+    a class="logo-sci pull-right" href="https://www.facebook.com/satoshicitadel"
+      = t(:sci)

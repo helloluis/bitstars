@@ -1,0 +1,8 @@
+header
+  h1 
+    = @user.username
+    small = @user.full_name
+
+div class='container'
+  div class='row'
+    = render :partial => "photos/list"

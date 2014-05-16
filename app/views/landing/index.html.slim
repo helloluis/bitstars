@@ -1,18 +1,23 @@
+div class="container"
+  div class="row"
+    div class="main col-md-8"
+      = render :partial => "photos/list"
 
-header
-  h1 class='logo' = App.name
-  h3 class='aux'  = t(:earn_from_your_selfies)
-  nav
-    ul
-      li = t(:signup)
-      li = t(:how_it_works)
+    aside class="sidebar col-md-4"
+      div class='tagline' = App.tagline
 
-section class='gallery'
-  = render :partial => "photos/list"
+      - if user_signed_in?
+        = link_to image_tag(current_user.avatar, class: 'avatar'), current_user.provider_link
+        p 
+          | Signed in as #{link_to current_user.username, current_user.provider_link}.
+        a href='/select_your_entries' class='btn btn-success btn-large btn-block' = t(:submit_your_selfies)
+        small = link_to 'Logout', destroy_user_session_path, :method => :delete
 
-section class='sidebar'
-  div class='tagline' = t(:tagline)
-  nav
-    ul
-      li = t(:winners)
-      li = t(:rules)
+      - else
+
+        a href=user_omniauth_authorize_path(:instagram) class='btn btn-primary btn-large btn-block' = t(:sign_in_with_your_instagram)
+
+      nav
+        ul
+          li = t(:winners)
+          li = t(:rules)
