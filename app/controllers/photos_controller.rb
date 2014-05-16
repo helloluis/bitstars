@@ -45,6 +45,6 @@ class PhotosController < ApplicationController
   protected
 
     def get_photo
-      @photo = Photo.where("disqualified=false AND id=?", params[:id])
+      @photo = Photo.where("disqualified=false AND id=?", params[:id]).first
     end
 end
