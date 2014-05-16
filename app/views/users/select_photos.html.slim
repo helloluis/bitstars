@@ -6,20 +6,22 @@
       Selector.initialize();
     });
 
-form action=batch_create_photos_path method='post' class='select_photos'
-  = hidden_field_tag :authenticity_token, form_authenticity_token
-  = hidden_field_tag :provider, current_user.provider
-  header
-    h1 = t(:select_your_photos)
-    p 
-      = t(:select_selfies_to_submit)
-      | &nbsp;
-      span class='selected_photos_count' = current_user.photos.today.length
-      | /3 selected
-    p
-      input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-large'
+div class='container'
 
-  div class='container'
+  form action=batch_create_photos_path method='post' class='select_photos'
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    = hidden_field_tag :provider, current_user.provider
+    header
+      h1 = t(:select_your_photos)
+      p 
+        = t(:select_selfies_to_submit)
+        | &nbsp;
+        span class='selected_photos_count' = current_user.photos.today.length
+        | /3 selected
+      p
+        input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-large'
+
+  
     div class='row'
         - @photos.each do |photo|
           div class='photo col-xs-6 col-md-3'

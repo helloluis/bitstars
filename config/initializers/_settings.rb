@@ -32,6 +32,8 @@ App.winner_lockout = 1.week
 
 App.minimum_tip = 0.0001
 
+App.daily_prize_in_php = 500
+
 App.transaction_fee_percentage = 0.01
 
 App.services = {
@@ -66,6 +68,11 @@ App.services = {
     secret:   ""
   }
 }
+
+if Rails.env.production?
+  App.services.instagram.client_id="be255cfa336445be9a38c2c04fbe9285"
+  App.services.instagram.client_secret="254e4a2eaa744139b18255836e39f82c"
+end
 
 
 # johnbailon

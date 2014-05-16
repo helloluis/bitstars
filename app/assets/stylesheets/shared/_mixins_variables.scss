@@ -13,14 +13,14 @@ $secondary-color: #0a88c8;
 $screen-sm-max:768px;
 //FONT SELECTIONS
 .primary_fontstack {
-  font-family:'Open Sans', Verdana, Tahoma, sans-serif;
+  font-family:'Source Sans Pro', Verdana, Tahoma, sans-serif;
   font-weight: 300;
 }
 .secondary_fontstack {
   @extend .primary_fontstack;
 }
 .body_fontstack {
-  font-family:'Open Sans', Arial, sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
 @mixin fontstack($value, $weight:true) {

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  
+
   root 'landing#index'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/winners" => "users#index"
+  get "/rules"   => "static#rules"
   get "/select_your_entries" => "users#select_photos"
   get "/your_entries"  => "users#photos"
   

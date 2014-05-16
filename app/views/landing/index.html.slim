@@ -4,20 +4,26 @@ div class="container"
       = render :partial => "photos/list"
 
     aside class="sidebar col-md-4"
-      div class='tagline' = App.tagline
+      div class='panel'
+        
+        div class='panel-heading'
+          h3 class='intro'
+            | Submit your selfies and win up to 
+            strong == number_to_currency(App.daily_prize_in_php,unit:"&#8369;".html_safe)
+            | every single day!
 
-      - if user_signed_in?
-        = link_to image_tag(current_user.avatar, class: 'avatar'), current_user.provider_link
-        p 
-          | Signed in as #{link_to current_user.username, current_user.provider_link}.
-        a href='/select_your_entries' class='btn btn-success btn-large btn-block' = t(:submit_your_selfies)
-        small = link_to 'Logout', destroy_user_session_path, :method => :delete
+        div class='panel-body'
+          - if user_signed_in?
+            = link_to image_tag(current_user.avatar, class: 'avatar'), current_user.provider_link
+            p 
+              | Signed in as #{link_to current_user.username, current_user.provider_link}.
+            a href='/select_your_entries' class='btn btn-success btn-large btn-block' = t(:submit_your_selfies)
+            small = link_to 'Logout', destroy_user_session_path, :method => :delete
 
-      - else
+          - else
 
-        a href=user_omniauth_authorize_path(:instagram) class='btn btn-primary btn-large btn-block' = t(:sign_in_with_your_instagram)
+            a href=user_omniauth_authorize_path(:instagram) class='btn btn-primary btn-large btn-block' = t(:sign_in_with_your_instagram)
 
-      nav
-        ul
-          li = t(:winners)
-          li = t(:rules)
+          ul class='nav nav-pills nav-stacked'
+            li = link_to t(:winners), "/winners"
+            li = link_to t(:rules), "/rules"
