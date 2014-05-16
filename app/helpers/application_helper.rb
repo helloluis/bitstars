@@ -4,10 +4,10 @@ module ApplicationHelper
   end
 
   def already_entered?(photo, provider='instagram')
-    "already_entered" if Photo.already_entered?(current_user.id, provider, photo.id)
+    "already_entered" if user_signed_in? && Photo.already_entered?(current_user.id, provider, photo.id)
   end
 
   def liked?(photo)
-    "liked" if photo.liked_by?(current_user)
+    "liked" if user_signed_in? && photo.liked_by?(current_user)
   end
 end
