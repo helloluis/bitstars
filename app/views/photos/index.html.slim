@@ -1,18 +1,29 @@
+nav class='navbar navbar-default navbar-responsive navbar-standalone-image'
+  div class='container'
+    form action="/photos" class='navbar-form'
+      div class='form-group'
+        label
+          | Only show me selfies with
+      div class='form-group'
+        label
+          | <input type='checkbox' name='view_count' value='10' #{params[:view_count] ? "checked='checked'" : ''}/>
+          | More than 10 views
+      div class='form-group'
+        label
+          | <input type='checkbox' name='like_count' value='10' #{params[:like_count] ? "checked='checked'" : ''} />
+          | More than 10 likes
+      div class='form-group'
+        label
+          <input type='checkbox' name='today' value='true' #{params[:today] ? "checked='checked'" : ''} />
+          | From Today
+      div class='form-group'
+        input type='submit' class='btn navbar-btn btn-large btn-primary' value='Next!'
+
 div class='container standalone-image'
   div class='row'
-    div class='navbar navbar-responsive'
-      form action="/photos" class='navbar-form'
-        / span
-        /   | Only show me selfies with
-        / label class='form-control'
-        /   input type='checkbox' name='view_count' value='>10'
-        /   | More than 10 views
-        / label class='form-control'
-        /   input type='checkbox' name='like_count' value='>10'
-        /   | More than 10 likes
-        /div class='form-control'
-        input type='submit' class='btn btn-large btn-primary' value='Next!'
-
-  div class='row'
     div class='random'
-      = render :partial => "photos/standalone"
+      - if @photo
+        = render :partial => "photos/standalone"
+      - else
+        p 
+          | Oops! Couldn't finding any selfies matching that criteria.

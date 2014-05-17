@@ -20,8 +20,16 @@ class Photo < ActiveRecord::Base
     limit(limit)
   end
 
-  def self.random
-    self.where("disqualified=false").order("RANDOM()").first
+  def self.random(like_count=0, view_count=0, today=false)
+    sql = ["disqualified=false"]
+    sql[0] += " AND num_likes>=#{like_count.to_i}" if like_count && like_count.to_i>0
+    sql[0] += " AND num_views>=#{view_count.to_i}" if view_count && view_count.to_i>0
+    if today
+      sql[0] += " AND created_at>=?"
+      sql << Time.now.beginning_of_day
+    end
+
+    self.where(sql).order("RANDOM()").first
   end
 
   def position_today

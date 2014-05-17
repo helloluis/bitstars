@@ -9,8 +9,9 @@ div class="container"
       div.clearfix
       
       - if @photos_yesterday
-        h1
-          | Yesterday's Top 10 Selfies
+        h2
+          | Yesterday's Top 10 Selfies 
+          small = Time.now.yesterday.strftime("%d %B %Y")
         = render :partial => "photos/list", locals: { photos: @photos_yesterday }
 
     aside class="sidebar col-md-4"

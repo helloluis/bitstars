@@ -1,3 +1,8 @@
 ul class='photos #{with_position?}'
   - photos.each_with_index do |photo,i|
     = render :partial => "photos/photo", locals: { photo: photo, position: (i+1) }
+  - if @with_position
+    li class='photo'
+      div class='thumbnail more_selfies'
+        a href=photos_path
+          | More selfies ...

@@ -13,10 +13,6 @@
     float:left;
     width:32%;
     margin-right:1%;
-    .likes {
-
-    }
-
     img {
       width:100%;
       height:auto;
@@ -58,6 +54,15 @@
     }
     .thumbnail {
       margin-bottom:5px;
+      &.more_selfies{
+        a { 
+          @extend .primary_fontstack;
+          font-size:30px;
+          display:block;
+          padding:50% 20px;
+          text-align:center;
+        }
+      }
     }
     .thumbnail:hover{
       border-color:#999;
@@ -101,6 +106,18 @@
         color:#fff;
       }
     }
+  }
+}
+
+.navbar-standalone-image {
+  .navbar-btn {
+    float:left;
+    padding-left:40px;
+    padding-right:40px;
+    font-size:18px;
+  }
+  .form-group {
+    margin-right:15px;
   }
 }
 
