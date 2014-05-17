@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :tips
+  resources :winnings
+
   resources :photos do
     member do 
       get :heart

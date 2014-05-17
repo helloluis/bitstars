@@ -7,8 +7,8 @@ class Photo < ActiveRecord::Base
 
   serialize :images
 
-  validate :check_already_entered
-  validate :check_max_submission
+  validate :check_already_entered, on: :create
+  validate :check_max_submission, on: :create
 
   def self.today
     where(["disqualified=false AND created_at>=?",Time.now.beginning_of_day]).
@@ -51,7 +51,7 @@ class Photo < ActiveRecord::Base
     if user.has_won_recently?
       errors.add(:base, "This user has won already within the last #{App.winner_lockout} and can't be awarded again.") 
     else
-      update_attributes(winner: true)
+      self.update_attributes(winner: true)
       user.update_attributes(last_won_on: Time.now, has_won: true)
       UserMailer.notify_winner(self).deliver
     end

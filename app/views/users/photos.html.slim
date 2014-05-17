@@ -1,22 +1,31 @@
+
+header class='nav navbar-default user-nav'
+  div class='container'
+    
+    div class='navbar-left'
+      h1 = t(:your_photos)
+    ul class='nav navbar-nav navbar-right'
+      li = link_to "#{t(:tips)} (#{number_to_currency(current_user.total_tips,unit:'&#3647;'.html_safe)})".html_safe, tips_path, class: 'default_font'
+      li = link_to "#{t(:winnings)} (#{number_to_currency(current_user.total_winnings,unit:'&#3647;'.html_safe)})".html_safe, winnings_path, class: 'default_font'
+      li
+        p.navbar-text 
+          span = t(:total_earnings)
+          | &nbsp;
+          strong class='default_font' = number_to_currency(current_user.total_earnings,unit:"&#3647;".html_safe)
+
 div class='container'
-  header
-    h1 = t(:your_photos)
-    p 
+  - if @photos && @photos.values.any?
+    - @photos.each do |date, photos|
+      h3 = date.strftime("%d %B %Y")
+      = render :partial => "photos/list", locals: { photos: photos }
+  - else
+    p class='text-center'
+      | Oops! We couldn't find any selfies.
 
-  div class='row'
-
-    - if @photos && @photos.values.any?
-      - @photos.each do |date, photos|
-        h3 = date.strftime("%d %B %Y")
-        = render :partial => "photos/list", locals: { photos: photos }
-    - else
-      p class='text-center'
-        | Oops! We couldn't find any selfies.
-
-    ul class='pager'
-      li class="previous #{@page==1 ? 'disabled' : ''}"
-        a href="?page=#{[@page-1,1].max}"
-          | &larr; Previous
-      li class='next'
-        a href="?page=#{@page+1}" 
-          | Next &rarr;
+  ul class='pager'
+    li class="previous #{@page==1 ? 'disabled' : ''}"
+      a href="?page=#{[@page-1,1].max}"
+        | &larr; Previous
+    li class='next'
+      a href="?page=#{@page+1}" 
+        | Next &rarr;

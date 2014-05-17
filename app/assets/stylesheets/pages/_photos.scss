@@ -72,6 +72,15 @@
   }
 }
 
+.thumbnail.thumbnail-winner {
+  border:1px solid #f60;
+  &:hover {
+    border-color:#f60;
+    border-right:4px solid #f60;
+    border-bottom:4px solid #f60;
+  }
+}
+
 .standalone-image {
   margin-top:20px;
   .likes_and_views p {
@@ -110,6 +119,16 @@
     font-size:28px;
     line-height:42px;
     font-weight:normal;
+  }
+  .winner {
+    line-height:60px;
+    img {
+      margin-right:5px;
+    }
+    strong {
+      font-size:28px;
+      color:#c30;
+    }
   }
 }
 

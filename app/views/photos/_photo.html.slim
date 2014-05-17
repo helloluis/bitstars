@@ -1,5 +1,5 @@
 li class='photo'
-  div class='thumbnail'
+  div class='thumbnail #{photo.winner? ? 'thumbnail-winner' : ''}'
     a href=photo_path(photo) title=photo.images[:text]
       img src=photo.images[:low] data-standard=photo.images[:standard] data-thumbnail=photo.images[:thumbnail]
     div class='caption'
