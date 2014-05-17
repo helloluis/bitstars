@@ -89,3 +89,36 @@ section {
     border:1px solid #CCC;
   }
 }//.sidebar
+
+.intro {
+  .intro-1, .intro-2, .intro-3, .intro-4, .intro-5 {
+    display:block;
+    line-height:1;
+  }
+  // .intro-1 {
+  //   font-size:40px;
+  //   text-transform:uppercase;
+  //   .intro-1a {
+  //     color:$primary-color;
+  //   }
+  // }
+  // .intro-2 {
+  //   font-size:40px;
+  //   text-transform:uppercase;
+  //   //letter-spacing:8px;
+
+  // }
+  // .intro-3 {
+  //   font-size:84px;
+  //   color:$secondary-color;
+  //   //letter-spacing:2px;
+  // }
+  // .intro-4 {
+  //   font-size:30px;
+  //   //letter-spacing:2px;
+  //   color:#666;
+  // }
+  // .intro-5 {
+  //   font-size:40px;
+  // }
+}

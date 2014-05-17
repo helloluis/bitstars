@@ -1,16 +1,20 @@
 header id="branding" class="navbar navbar-default"
   div class="container"
-    div class="pull-left navbar-header"
+    div class="navbar-left"
       a href="/"
         h1 class='logo' = App.name
-      h2 class="tagline small" = App.tagline
-    div class='pull-right'
-      nav class='navbar-info'
-        ul
+      small class="tagline" = App.tagline
+    
+    nav class='navbar-info navbar-right'
+      ul
+        li
+          a href='/rules' 
+            = t(:rules)
+        li
+          | &middot;
+        - if user_signed_in?
           li
-            a href='/rules' 
-              = t(:how_it_works)
+            a href="/your_entries" = "Your Stuff"
+        - else
           li
-            | &middot;
-          li
-            a href="http://sci.ventures" = t(:about_us)
+            a href=user_omniauth_authorize_path(:instagram) = t(:join)

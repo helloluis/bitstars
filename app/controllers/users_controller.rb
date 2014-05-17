@@ -12,8 +12,7 @@ class UsersController < ApplicationController
 
   def select_photos
     if client = Instagram.client(:access_token => current_user.access_token)
-      @photos = client.user_recent_media(count: 20)
-      logger.info "!! #{@photos.inspect} !!"
+      @photos = client.user_recent_media(count: 30)
     else
       flash[:alert] = "Please login to Instagram again."
       sign_out_and_redirect current_user, root_path
@@ -21,7 +20,8 @@ class UsersController < ApplicationController
   end
 
   def photos
-    @photos = current_user.photos.page(params[:page]).per('20')
+    @page = (params[:page] || 1).to_i
+    @photos = current_user.photos.order("created_at DESC").page(params[:page]).per('30').group_by{|p| p.created_at.beginning_of_day}
   end
 
   def show

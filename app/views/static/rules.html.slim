@@ -1,2 +1,63 @@
-div class='container'
-  h1 Rules
+- content_for :page_scripts do
+  javascript:
+    $(function(){
+      $("#questions dt").each(function(){
+        var el = $(this);
+        $("<li><a href='#" + this.id + "'>" + el.html() + "</a></li>").appendTo("#nav_questions");
+      });
+    });
+
+div class='container standalone-container'
+  div class='row'
+    div class='col-md-8'
+      div class='jumbotron'
+        h1 #{App.name} Contest Rules
+        p Please read through this page before joining our daily contest.
+      
+      dl id="questions"
+        dt id='join'
+          h4 How Do I Join #{App.name}?
+        dd
+          p 
+            | To join #{App.name}, all you need is an Instagram account that contains photos of yourself (those are called "selfies," but we're sure you already knew that!). Just login using your Instagram account and you'll be able to pick out recent photos from your feed to enter into the daily contest.
+          p
+            | Please note that the selfies you upload must be of you! If we discover that you are using someone else's images without their consent or permission, we may revoke your winnings (if any) and ban you from future contests.
+
+        dt id='win'
+          h4 How Do I Win the Daily Contest?
+        dd
+          p
+            | Once you've submitted your selfies, it's time to start getting votes! Invite your friends to sign up and vote for your photo. The selfie with the most votes at the end of each 24-hour period will be awarded the prize money for that day.
+
+        dt id='receive_winnings'
+          h4 How Do I Receive My Winnings?
+        dd
+          p
+            | After winning one of our daily contests, your prize money will be reflected in your user profile page. This prize money is in <a href="https://bitcoin.org/en/">Bitcoin</a>, a new Internet currency that allows us to send money to you without incurring heavy transfer fees. You can either create a personal Bitcoin wallet (<a href="http://coinjar.com">Coinjar.com</a> is a good place) where we can send you the money, or you can choose to have the money remitted to your personal bank account. (If you choose the latter option, we will need to deduct a transfer fee from your winnings.)
+
+        dt id='receive_tips'
+          h4 How Do I Receive Tips?
+        dd
+          p
+            | One other way of earning money from your selfies is to receive tips from fans. Each selfie page on #{App.name} has a QR code at the bottom right, which people with Bitcoin wallets can take a photo of and send you some money. We'll notify you whenever you receive a tip from another user. You'll be able to withdraw your tip money once it has reached at least 0.025 Bitcoin in value (that's roughly PhP500.00 or $20.00).
+          p
+            | Please also note that #{App.name} charges a small service fee of #{App.transaction_fee_percentage*100}% for each tip received.
+
+        dt id='giving_tips'
+          h4 How Do I Give Tips?
+        dd
+          p
+            | If you're a Bitcoin user, you probably already know the answer to this, but here's the basic process anyway. Once you've found a selfie image that you like, all you need to do is take a shot of the QR code on the bottom right of the page, enter the amount you want to tip, and confirm the payment. We'll manage the rest of the process and communicate with the owner of the selfie about how they want to receive the money.
+
+        dt id='about'
+          h4 Who Came Up With This Awesome Idea?
+        dd
+          p
+            | #{App.name} is a product of <a href="http://sci.ventures">Satoshi Citadel Ventures</a>, a startup based in Makati City, Philippines dedicated to bringing Bitcoin into the mainstream in this region.
+
+    aside class='col-md-4'
+      div class='panel rules-nav' data-spy="affix" data-offset-top="100"
+        div class='panel-heading'
+          h3.panel-title Jump to:
+        div class='panel-body'
+          ul#nav_questions

@@ -7,6 +7,7 @@ class Photo < ActiveRecord::Base
 
   serialize :images
 
+  validate :check_already_entered
   validate :check_max_submission
 
   def self.today
@@ -81,11 +82,15 @@ class Photo < ActiveRecord::Base
   end
 
   def self.already_entered?(user_id, provider, photo_id)
-    where(["user_id=? AND provider=? AND original_id=? AND entered_at>=?",user_id,provider,photo_id,Time.now.beginning_of_day]).exists?
+    where(["user_id=? AND provider=? AND original_id=? AND created_at>=?",user_id,provider,photo_id,Time.now.beginning_of_day]).exists?
   end
 
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
+  end
+
+  def check_already_entered
+    errors.add(:base, "You've already entered that selfie into today's competition.") if Photo.already_entered?(user, user.provider, original_id)
   end
 
 end

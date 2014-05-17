@@ -13,6 +13,9 @@ footer
         li class="divider" &middot;
         li
           a href="/contact" = t(:contact)
+        - if user_signed_in?
+          li class="divider" &middot;
+          li = link_to 'Logout', destroy_user_session_path, :method => :delete
       p
         | &copy; #{App.url} 2014
     a class="logo-sci pull-right" href="https://www.facebook.com/satoshicitadel"

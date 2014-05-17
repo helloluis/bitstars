@@ -60,7 +60,11 @@ div class='col-md-4'
 
   div class='panel'
     div class='panel-heading'
-      h3.panel-title Like this selfie? Show #{@photo.user.username} some love with a small tip!
+      h3.panel-title 
+        | Like this selfie? Show #{@photo.user.username} some love with a small tip! 
+        | (
+        a href="/rules#tips" How?
+        | )
     div class='panel-body'
       div class='thumbnail'
         img id='qr_code' src='https://chart.googleapis.com/chart?chld=Q&chs=300x300&cht=qr&chl=#{@photo.user.tip_address}' 

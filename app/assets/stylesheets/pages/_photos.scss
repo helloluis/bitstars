@@ -133,7 +133,7 @@
     background-color:#9c6;
     @include border-radius(3px);
   }
-  &.selected {
+  &.selected, &.already_entered {
     .glyphicon {
       display:block;
     }

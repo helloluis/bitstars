@@ -4,4 +4,19 @@ div class='container'
     p 
 
   div class='row'
-    = render :partial => "photos/list", locals: { photos: @photos }
+
+    - if @photos && @photos.values.any?
+      - @photos.each do |date, photos|
+        h3 = date.strftime("%d %B %Y")
+        = render :partial => "photos/list", locals: { photos: photos }
+    - else
+      p class='text-center'
+        | Oops! We couldn't find any selfies.
+
+    ul class='pager'
+      li class="previous #{@page==1 ? 'disabled' : ''}"
+        a href="?page=#{[@page-1,1].max}"
+          | &larr; Previous
+      li class='next'
+        a href="?page=#{@page+1}" 
+          | Next &rarr;
