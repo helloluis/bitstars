@@ -1,6 +1,9 @@
 div class="container"
   div class="row"
     div class="main col-md-8"
+      h1 
+        | Today's Top Selfies 
+        small = Time.now.beginning_of_day.strftime("%d %B %Y")
       = render :partial => "photos/list"
 
     aside class="sidebar col-md-4"
