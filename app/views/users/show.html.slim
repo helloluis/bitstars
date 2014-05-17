@@ -2,7 +2,10 @@ div class='container'
   header
     h1 
       = @user.username
+      | &nbsp;
       small = @user.full_name
+    p 
+      = link_to "Follow #{@user.username} on #{@user.provider}", @user.provider_link
       
   div class='row'
     = render :partial => "photos/list", locals: { photos: @photos }
