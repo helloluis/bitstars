@@ -1,3 +1,2 @@
-- if user_signed_in?
-  javascript:
-    CURRENT_USER = #{current_user.to_json.html_safe};
+javascript:
+  CURRENT_USER = #{user_signed_in? ? current_user.to_json.html_safe : 'false'};

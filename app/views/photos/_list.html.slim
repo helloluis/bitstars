@@ -1,3 +1,3 @@
-ul class='photos'
-  - @photos.each do |photo|
-    = render :partial => "photos/photo", locals: { photo: photo }
+ul class='photos #{with_position?}'
+  - @photos.each_with_index do |photo,i|
+    = render :partial => "photos/photo", locals: { photo: photo, position: (i+1) }

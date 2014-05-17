@@ -3,6 +3,13 @@ li class='photo'
     a href=photo_path(photo) title=photo.images[:text]
       img src=photo.images[:low] data-standard=photo.images[:standard] data-thumbnail=photo.images[:thumbnail]
     div class='caption'
-      p = link_to photo.user.username, user_path(photo.user.username)
-      span class='glyphicon glyphicon-heart' 
-      = photo.num_likes
+      p class='author pull-left' 
+        = link_to photo.user.username, user_path(photo.user.username)
+        br
+        span class='likes'
+          span class='glyphicon glyphicon-heart' 
+          = photo.num_likes
+      p class='position #{position_class(position)} pull-right'
+        | #
+        = position
+      span.clearfix

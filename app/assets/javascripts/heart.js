@@ -26,6 +26,8 @@ var Heart = {
       type: "GET",
       success : function(data){
         el.find(".glyphicon").removeClass("liked");
+        el.find(".heart-label").text( el.find(".heart-label").attr('data-liked') );
+        el.removeClass('btn-danger').addClass('btn-default');
         $(".like_count").text(data.count);
       }
     });
@@ -37,6 +39,8 @@ var Heart = {
       type: "GET",
       success : function(data){
         el.find(".glyphicon").addClass("liked");
+        el.find(".heart-label").text( el.find(".heart-label").attr('data-unlike') );
+        el.removeClass('btn-default').addClass('btn-danger');
         $(".like_count").text(data.count);
       }
     });
