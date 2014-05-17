@@ -23,7 +23,7 @@ div class='container'
 
   
     div class='row'
-      - if @photos  
+      - if @photos && @photos.any?
         - @photos.each do |photo|
           div class='photo col-xs-6 col-md-3'
             a href='#!' class='thumbnail select_photo #{already_entered?(photo)}'
