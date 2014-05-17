@@ -260,8 +260,12 @@ img.flag {
   padding:0px;
   li {
     margin-bottom:10px;
+    .btn-lg {
+      font-size:18px;
+    }
   }
 }
+
 
 .container.standalone-container {
   margin-top:20px;
