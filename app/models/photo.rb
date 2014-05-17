@@ -13,12 +13,15 @@ class Photo < ActiveRecord::Base
     where(["created_at>=?",Time.now.beginning_of_day]).order("num_likes DESC, num_views DESC")
   end
 
+  def self.random
+    self.where("disqualified=false").order("RANDOM()").first
+  end
+
   def position_today
     if num_likes > 0 && created_at>=Time.now.beginning_of_day
       if photos_today = Photo.where(["disqualified=false AND created_at>=?",Time.now.beginning_of_day]).order("num_likes DESC, num_views DESC").select(:id).limit(20)
         photo_ids = photos_today.map(&:id)
         hash = Hash[photo_ids.map.with_index.to_a]
-        logger.info "!! #{hash.inspect} !!"
         hash.keys.include?(id) ? (hash[id]+1) : false
       end
     end

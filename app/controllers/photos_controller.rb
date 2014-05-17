@@ -4,7 +4,9 @@ class PhotosController < ApplicationController
 
   before_filter :get_photo, :except => [ :index, :batch_create ]
 
-  def index;end
+  def index
+    @photo = Photo.random
+  end
 
   def show
     @photo.view!
