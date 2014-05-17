@@ -93,4 +93,12 @@ class Photo < ActiveRecord::Base
     errors.add(:base, "You've already entered that selfie into today's competition.") if Photo.already_entered?(user, user.provider, original_id)
   end
 
+  def next_photo
+    self.class.unscoped.where("disqualified=false AND id>?", id).order("created_at ASC").first
+  end
+
+  def prev_photo
+    self.class.unscoped.where("disqualified=false AND id<?", id).order("created_at ASC").first
+  end
+
 end

@@ -46,6 +46,12 @@ div class='col-md-4'
           br
           small class='created_at' = @photo.created_at.strftime("%d %B %Y")
 
+      - if @next_photo
+        div class='pull-right'
+          p
+            a href=photo_path(@next_photo) class='btn btn-large btn-info next-photo'
+              | Next &rarr;
+
       div class='clearfix'
       - if @photo.position_today
         p class='position' 

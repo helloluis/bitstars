@@ -75,7 +75,6 @@
 .standalone-image {
   margin-top:20px;
   .likes_and_views p {
-    padding-top:5px;
     font-size:20px;
     line-height:1;
     .created_at {
@@ -106,6 +105,11 @@
         color:#fff;
       }
     }
+  }
+  .next-photo {
+    font-size:28px;
+    line-height:42px;
+    font-weight:normal;
   }
 }
 

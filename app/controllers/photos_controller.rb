@@ -10,6 +10,7 @@ class PhotosController < ApplicationController
 
   def show
     @photo.view!
+    @next_photo = @photo.next_photo
   end
 
   def batch_create
