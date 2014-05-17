@@ -1,7 +1,7 @@
-header
-  h1 = t(:your_photos)
-  p 
-
 div class='container'
+  header
+    h1 = t(:your_photos)
+    p 
+
   div class='row'
-    = render :partial => "photos/list"
+    = render :partial => "photos/list", locals: { photos: @photos }

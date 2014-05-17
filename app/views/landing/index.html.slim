@@ -4,7 +4,14 @@ div class="container"
       h1 
         | Today's Top Selfies 
         small = Time.now.beginning_of_day.strftime("%d %B %Y")
-      = render :partial => "photos/list"
+      = render :partial => "photos/list", locals: { photos: @photos }
+
+      div.clearfix
+      
+      - if @photos_yesterday
+        h1
+          | Yesterday's Top 10 Selfies
+        = render :partial => "photos/list", locals: { photos: @photos_yesterday }
 
     aside class="sidebar col-md-4"
       div class='panel'

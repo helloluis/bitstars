@@ -1,8 +1,8 @@
-header
-  h1 
-    = @user.username
-    small = @user.full_name
-
 div class='container'
+  header
+    h1 
+      = @user.username
+      small = @user.full_name
+      
   div class='row'
-    = render :partial => "photos/list"
+    = render :partial => "photos/list", locals: { photos: @photos }

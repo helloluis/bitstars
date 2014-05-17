@@ -10,7 +10,14 @@ class Photo < ActiveRecord::Base
   validate :check_max_submission
 
   def self.today
-    where(["created_at>=?",Time.now.beginning_of_day]).order("num_likes DESC, num_views DESC")
+    where(["disqualified=false AND created_at>=?",Time.now.beginning_of_day]).
+    order("num_likes DESC, num_views DESC")
+  end
+
+  def self.yesterday(limit=10)
+    where(["disqualified=false AND created_at>=? AND created_at<?",Time.now.yesterday.beginning_of_day,Time.now.beginning_of_day]).
+    order("num_likes DESC, num_views DESC").
+    limit(limit)
   end
 
   def self.random
