@@ -3,6 +3,7 @@ dl {
     h4 {
       font-size:32px;
       font-weight:bold;
+      color:$primary-color;
     }
   }
   dd {
@@ -20,4 +21,13 @@ dl {
   list-style-type:none;
   padding-left:0px;
   margin-left:0px;
+}
+
+.jumbotron-selfies {
+  background:image-url('bg.jpg');
+  h1, p { 
+    color:#222; 
+    text-shadow: 2px 2px 1px #fff;
+  }
+  p { font-weight:bold; }
 }

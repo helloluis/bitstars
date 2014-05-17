@@ -3,16 +3,19 @@
     $(function(){
       $("#questions dt").each(function(){
         var el = $(this);
-        $("<li><a href='#" + this.id + "'>" + el.html() + "</a></li>").appendTo("#nav_questions");
+        $("<li><a href='#" + this.id + "'>" + el.find("h4").text() + "</a></li>").appendTo("#nav_questions");
       });
     });
 
 div class='container standalone-container'
   div class='row'
     div class='col-md-8'
-      div class='jumbotron'
+      div class='jumbotron jumbotron-selfies'
         h1 #{App.name} Contest Rules
-        p Greetings from the Selfie Capital of the World! Please read through this page before joining our daily contest.
+        p 
+          | Greetings from the Selfie Capital of the World!
+          br
+          | Please read through this page before joining our daily contest.
       
       dl id="questions"
         dt id='join'
