@@ -23,8 +23,12 @@ div class='container'
 
   
     div class='row'
+      - if @photos  
         - @photos.each do |photo|
           div class='photo col-xs-6 col-md-3'
             a href='#!' class='thumbnail select_photo #{already_entered?(photo)}'
               span class='glyphicon glyphicon-ok'
               = image_tag photo.images.low_resolution.url, "data-id".to_sym => photo.id, "data-text".to_sym => photo.caption.text, "data-standard".to_sym => photo.images.standard_resolution.url, "data-low".to_sym => photo.images.low_resolution.url, "data-thumbnail".to_sym => photo.images.thumbnail.url, :alt => photo.caption.text
+      - else
+        p 
+          | Oops. Something went wrong, we couldn't access your photos. Please try again by <a href="/select_your_entries">reloading this page</a>.
