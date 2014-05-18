@@ -1,0 +1,13 @@
+li class='tip'
+  dl
+    dt From
+    dd = link_to tip.recipient.full_name, tip.recipient.provider_link
+
+    dt Amount
+    dd = tip.actual_amount_in_btc
+
+    dt Message
+    dd = tip.message
+
+    dt Date
+    dd = tip.created_at.strftime("%d %B %Y")

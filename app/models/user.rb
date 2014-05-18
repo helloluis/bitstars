@@ -19,9 +19,17 @@ class User < ActiveRecord::Base
     end
   end
 
-  has_many :received_tips, class_name: "Tip", foreign_key: "recipient_id"
+  has_many :received_tips, class_name: "Tip", foreign_key: "recipient_id" do 
+    def confirmed
+      where(status: 1)
+    end
+  end
 
-  has_many :sent_tips, class_name: "Tip", foreign_key: "sender_id"
+  has_many :sent_tips, class_name: "Tip", foreign_key: "sender_id" do 
+    def confirmed
+      where(status: 1)
+    end
+  end
   
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable,
