@@ -5,6 +5,8 @@ var Heart = {
     this.photos = photos;
     if (this.user) {
       this.initialize_hearts();
+    } else {
+      this.initialize_register_instructions();
     }
   },
 
@@ -12,6 +14,7 @@ var Heart = {
     var that = this;
     $(".heart").click(function(){
       var h = $(this);
+      h.button("loading");
       if (h.find(".glyphicon").hasClass('liked')) {
         that.unheart( h, h.attr('data-id') );
       } else {
@@ -26,7 +29,7 @@ var Heart = {
       type: "GET",
       success : function(data){
         el.find(".glyphicon").removeClass("liked");
-        el.find(".heart-label").text( el.find(".heart-label").attr('data-liked') );
+        el.find(".heart-label").text( el.find(".heart-label").attr('data-liked') ).button('reset');
         el.removeClass('btn-danger').addClass('btn-default');
         $(".like_count").text(data.count);
       }
@@ -39,11 +42,19 @@ var Heart = {
       type: "GET",
       success : function(data){
         el.find(".glyphicon").addClass("liked");
-        el.find(".heart-label").text( el.find(".heart-label").attr('data-unlike') );
+        el.find(".heart-label").text( el.find(".heart-label").attr('data-unlike') ).button('reset');
         el.removeClass('btn-default').addClass('btn-danger');
         $(".like_count").text(data.count);
       }
     });
+  },
+
+  initialize_register_instructions : function(){
+    
+    $(".heart").click(function(){
+      Flasher.show("warning", "You need to login <a href='/users/auth/instagram'>via Instagram</a> or <a href='/users/auth/facebook'>Facebook</a> in order to like something.");
+    });
+
   }
 
 };
