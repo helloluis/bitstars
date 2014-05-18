@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tips
+  resources :tips do 
+    member do 
+      get :callback_for_blockchain
+    end
+  end
   resources :winnings
 
   resources :photos do
@@ -31,6 +35,7 @@ Rails.application.routes.draw do
   get "/rules"   => "static#rules"
   get "/select_your_entries" => "users#select_photos"
   get "/your_entries"  => "users#photos"
+  get "/edit_profile"  => "users#edit"
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

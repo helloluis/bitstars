@@ -3,7 +3,11 @@ var Selector = {
   max_entries : 3,
 
   initialize : function(){
+    
+    this.initialize_masonry();
+
     var counter = $(".selected_photos_count");
+
     $(".select_photo").not(".already_entered").click(function(){
       var bttn = $(this);
       if ($(".select_photo.selected").length<Selector.max_entries && !bttn.hasClass('selected')) {
@@ -56,6 +60,14 @@ var Selector = {
       }
 
       return false;
+    });
+
+  },
+
+  initialize_masonry : function(){
+    var c = $("#selectable_photos");
+    c.imagesLoaded( function() {
+     c.masonry({ itemSelector: '.photo' });
     });
   }
 

@@ -7,16 +7,17 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.update_attributes(params[:user])
+    @user = current_user
+    if @user.update_attributes(params[:user].permit!)
+      flash[:notice] = "Great! You've completed your profile and can now receive tips and contest winnings." if @user.has_completed_profile?
+      return redirect_to "/your_entries"
+    else
+      render :action => :edit
+    end
   end
 
   def select_photos
-    if client = Instagram.client(:access_token => current_user.access_token)
-      @photos = client.user_recent_media(count: 30)
-    else
-      flash[:alert] = "Please login to Instagram again."
-      sign_out_and_redirect current_user, root_path
-    end
+    @retrieved_photos = current_user.retrieve_photos
   end
 
   def photos
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_username(params[:id])
+    @user = User.friendly.find(params[:id]) #find_by_username(params[:id])
     @photos = @user.photos.page(params[:page]).per('20')
   end
 

@@ -13,6 +13,7 @@
   javascript:
     $(function(){
       Heart.initialize();
+      Tipper.initialize();
       $(".caption > p").tweetLinkify({ hashtagTarget: 'blank', hyperlinkClass: 'instagram-url' });
     });
 
@@ -26,7 +27,7 @@ div class='col-md-8'
     div class='panel-heading'
       h3.panel-title Comments
     div class='panel-body'
-      div class="fb-comments" data-width="720" data-numposts="10" data-colorscheme="light"
+      div class="fb-comments" href=photo_url(@photo) data-width="720" data-numposts="10" data-colorscheme="light"
 
 div class='col-md-4'
   div class='panel'
@@ -63,18 +64,24 @@ div class='col-md-4'
 
       p class='submitted' 
         | Submitted by 
-        = link_to @photo.user.username, user_path(@photo.user.username)
+        = link_to @photo.user.username, user_path(@photo.user)
         br
         small
           = link_to "Follow #{@photo.user.username} on #{@photo.user.provider.titleize}", @photo.user.provider_link
 
   div class='panel'
     div class='panel-heading'
-      h3.panel-title 
-        | Like this selfie? Show #{@photo.user.username} some love with a small tip! 
-        | (
-        a href="/rules#tips" How?
-        | )
+      h2.panel-title Like this selfie?
+      p 
+        | Show #{@photo.user.username} some love with a small tip using Bitcoin! 
+        small 
+          | (
+          a href="/rules#giving_tips" How Does This Work?
+          | )
     div class='panel-body'
-      div class='thumbnail'
-        img id='qr_code' src='https://chart.googleapis.com/chart?chld=Q&chs=300x300&cht=qr&chl=#{@photo.user.tip_address}' 
+      - unless @photo.user.has_completed_profile?
+        p 
+          | Sorry, this user needs to complete their profile information before they can receive tips or winnings.
+      - else
+        = render :partial => "photos/tip_form"
+      

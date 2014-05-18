@@ -4,6 +4,11 @@ include ERB::Util
 
 class User < ActiveRecord::Base
 
+  include SocialNetworks
+
+  extend FriendlyId
+  friendly_id :username, use: [:slugged, :finders]
+
   has_many :photos do 
     def today
       where(["entered_at>=? AND disqualified=false", Time.now.beginning_of_day])
@@ -49,36 +54,27 @@ class User < ActiveRecord::Base
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
-      begin 
-        dob = auth.extra.raw_info.birthday.split('/').map {|x| x.to_i}
-        bday = DateTime.new(dob[2],dob[0],dob[1])
-      rescue
-        bday = ""
-      end
-      user = User.new(  first_name: auth.extra.raw_info.first_name, 
+
+      user = User.new(  access_token: auth.credentials.token,
+                        first_name: auth.extra.raw_info.first_name, 
                         last_name:  auth.extra.raw_info.last_name, 
+                        full_name:  auth.extra.raw_info.name,
+                        username:   auth.extra.raw_info.uid,
                         email:      auth.info.email,
-                        birthday:   bday,
                         gender:     auth.extra.raw_info.gender,
                         provider:   auth.provider,
                         uid:        auth.uid,
                         password:   Devise.friendly_token[0,20]
                       )
-      # user.remote_avatar_url = auth.info.image
-      url = URI.parse(auth.info.image)
-      h = Net::HTTP.new url.host, url.port
-      h.use_ssl = url.scheme == 'https'
 
-      head = h.start do |u|
-        u.head url.path
-      end
-      # new_url = head['location']
-
-      user.remote_avatar_url = head['location']
-      user.skip_confirmation!
+      user.avatar = auth.info.image
       user.save
     end
     user
+  end
+
+  def has_completed_profile?
+    !email.blank? && !phone.blank? && !address.blank? && !city.blank?
   end
 
   def has_won_recently?
@@ -111,4 +107,9 @@ class User < ActiveRecord::Base
     tip_address
   end
 
+  # Friendly_Id code to only update the url for new records
+  # User.all.each{|u| u.slug=nil; u.save }
+  # def should_generate_new_friendly_id?
+  #   new_record? || slug.blank?
+  # end
 end

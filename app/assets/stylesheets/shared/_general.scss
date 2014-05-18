@@ -36,8 +36,8 @@ p {
   padding-bottom:rem-calc(16px);
 }
 
-.default_font {
-  font-family: "Helvetica", "sans-serif";
+.default-font {
+  font-family: "Helvetica", "sans-serif" !important;
 }
 
 // a {
@@ -287,5 +287,14 @@ img.flag {
   .navbar-right {
     margin-top:15px;
     margin-bottom:0px;
+  }
+}
+
+.landing-panel {
+  .or {
+    font-size:24px;
+    font-weight:bold;
+    margin:0px;
+    padding:0px;
   }
 }

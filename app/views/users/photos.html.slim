@@ -1,3 +1,10 @@
+- content_for :page_scripts do 
+  javascript:
+    $(function(){
+      $(".photos").imagesLoaded(function(){
+        $(".photos").masonry({ itemSelector: ".photo" });
+      });
+    });
 
 header class='nav navbar-default user-nav'
   div class='container'
@@ -5,15 +12,22 @@ header class='nav navbar-default user-nav'
     div class='navbar-left'
       h1 = t(:your_photos)
     ul class='nav navbar-nav navbar-right'
-      li = link_to "#{t(:tips)} (#{number_to_currency(current_user.total_tips,unit:'&#3647;'.html_safe)})".html_safe, tips_path, class: 'default_font'
-      li = link_to "#{t(:winnings)} (#{number_to_currency(current_user.total_winnings,unit:'&#3647;'.html_safe)})".html_safe, winnings_path, class: 'default_font'
+      li = link_to "#{t(:tips)} (#{number_to_currency(current_user.total_tips,unit:'&#3647;'.html_safe)})".html_safe, tips_path, class: 'default-font'
+      li = link_to "#{t(:winnings)} (#{number_to_currency(current_user.total_winnings,unit:'&#3647;'.html_safe)})".html_safe, winnings_path, class: 'default-font'
       li
         p.navbar-text 
           span = t(:total_earnings)
           | &nbsp;
-          strong class='default_font' = number_to_currency(current_user.total_earnings,unit:"&#3647;".html_safe)
+          strong class='default-font' = number_to_currency(current_user.total_earnings,unit:"&#3647;".html_safe)
 
 div class='container'
+  - unless current_user.has_completed_profile?
+    div class='alert alert-warning'
+      strong 
+        | You haven't completed your profile yet. 
+      | You'll need to provide us with some more information before you'll be eligible to win contests or receive tips. 
+      a href="/edit_profile" Edit your profile here ...
+
   - if @photos && @photos.values.any?
     - @photos.each do |date, photos|
       h3 = date.strftime("%d %B %Y")

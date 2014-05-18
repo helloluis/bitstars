@@ -17,13 +17,23 @@ input[type="radio"] {
 }
 
 select {
-  @include appearance(none);
-  @include border-radius(3px);
+  // @include appearance(none);
+  // @include border-radius(3px);
   @extend .text;
   cursor:pointer;
-  // background: ;
-  @include background-size(rem-calc(15px) auto);
-  @include background(image-url('forms/arrow-down.png') no-repeat 100% 50%, linear-gradient(#FFF, #CCC));
+  //@include background-size(rem-calc(15px) auto);
+  //@include background(image-url('forms/arrow-down.png') no-repeat 100% 50%, linear-gradient(#FFF, #CCC));
   text-shadow: 1px 1px #FFF;
   padding-left:rem-calc(15px);
+}
+
+.tip-form {
+  margin-top:20px;
+  .form-control {
+    margin-right:2px;
+  }
+  .btn {
+    padding:16px 25px 25px 25px;
+    font-size:24px;
+  }
 }

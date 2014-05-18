@@ -4,7 +4,7 @@ li class='photo'
       img src=photo.images[:low] data-standard=photo.images[:standard] data-thumbnail=photo.images[:thumbnail]
     div class='caption'
       p class='author pull-left' 
-        = link_to photo.user.username, user_path(photo.user.username)
+        = link_to photo.user.username, user_path(photo.user)
         br
         span class='likes'
           span class='glyphicon glyphicon-heart' 

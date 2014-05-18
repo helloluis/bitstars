@@ -4,6 +4,8 @@ class PhotosController < ApplicationController
 
   before_filter :get_photo, :except => [ :index, :batch_create ]
 
+  before_filter :get_rates, :only => [ :show ]
+
   def index
     @photo = Photo.random(params[:view_count], params[:like_count], params[:today])
   end
@@ -49,5 +51,10 @@ class PhotosController < ApplicationController
 
     def get_photo
       @photo = Photo.where("disqualified=false AND id=?", params[:id]).first
+    end
+
+    def get_rates
+      @rates = CurrencyExchangeRates.refresh!(false,true)
+      @rates_updated = CurrencyExchangeRates.last.updated_at
     end
 end

@@ -1,0 +1,19 @@
+div class='container standalone-container'
+
+  div class='jumbotron'
+    h1 
+      | Edit Your Profile 
+      small
+        | or 
+        a href="/your_entries" go back to Your Stuff ...
+    p Fill in all the fields below in order to be eligible for contest winnings and tips 
+
+  = simple_form_for @user do |f|
+    = f.input :email
+    = f.input :phone
+    = f.input :address
+    = f.input :city
+    = f.input :country
+    = f.input :postal_code
+    = f.submit
+

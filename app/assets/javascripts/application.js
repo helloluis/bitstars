@@ -15,3 +15,5 @@
 //= require_tree .
 //= require jquery.linkify
 //= require jquery.justify
+//= require masonry
+//= require imagesloaded

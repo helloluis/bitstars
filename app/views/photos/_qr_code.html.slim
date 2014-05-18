@@ -1,0 +1,18 @@
+div id='invoice' class='modal fade' role='dialog'
+  div class="modal-dialog modal-lg"
+    div class="modal-content"
+    div class='modal-header'
+      button type="button" class="close" data-dismiss="modal" aria-hidden="true" 
+        | &times;
+      h1 = t(:tip)
+      p = t(:tip_instructions)
+      
+    div class='modal-body'
+      img id='qr_code' data-src='https://chart.googleapis.com/chart?chld=Q&chs=300x300&cht=qr&chl=' width='300' height='300'
+      br
+      label = t(:tip_address)
+      input type='text' id='invoice_address' value='0'
+
+
+    div class="modal-footer"
+      button type='button' class='close' data-dismiss='modal' = t(:close_this_dialog)

@@ -6,13 +6,21 @@
       Selector.initialize();
     });
 
-div class='container'
 
-  form action=batch_create_photos_path method='post' class='select_photos'
-    = hidden_field_tag :authenticity_token, form_authenticity_token
-    = hidden_field_tag :provider, current_user.provider
-    header
-      h1 = t(:select_your_photos)
+form action=batch_create_photos_path method='post' class='select_photos'
+  
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  = hidden_field_tag :provider, current_user.provider
+
+    
+  header data-spy="affix" data-offset-top="100" class='select_photos_header'
+    div class='container'
+      h1 
+        = t(:select_your_photos)
+        | &nbsp;
+        small 
+          | or 
+          = link_to "go back to Your Stuff", "/your_entries"
       p 
         = t(:select_selfies_to_submit)
         | &nbsp;
@@ -21,14 +29,21 @@ div class='container'
       p
         input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-large'
 
-  
-    div class='row'
-      - if @photos && @photos.any?
-        - @photos.each do |photo|
+  div class='container'  
+    div id='selectable_photos' class='row'
+      - if @retrieved_photos && @retrieved_photos.any?
+        - @retrieved_photos.each do |photo|
           div class='photo col-xs-6 col-md-3'
             a href='#!' class='thumbnail select_photo #{already_entered?(photo)}'
               span class='glyphicon glyphicon-ok'
-              = image_tag photo.images.low_resolution.url, "data-id".to_sym => photo.id, "data-text".to_sym => (photo.caption ? photo.caption.text : ""), "data-standard".to_sym => photo.images.standard_resolution.url, "data-low".to_sym => photo.images.low_resolution.url, "data-thumbnail".to_sym => photo.images.thumbnail.url, :alt => (photo.caption ? photo.caption.text : "")
+              img[  src       = photo[:low] 
+                    data-id   = photo[:id]
+                    data-text = photo[:text]
+                    data-standard = photo[:standard]
+                    data-low  = photo[:low]
+                    data-thumbnail = photo[:thumbnail]
+                    alt       = photo[:text]
+              ]
       - else
         p 
           | Oops. Something went wrong, we couldn't access your photos. Please try again by <a href="/select_your_entries">reloading this page</a>.

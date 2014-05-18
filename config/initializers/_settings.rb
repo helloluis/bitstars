@@ -14,7 +14,7 @@ App.email_url = "bitstars.ph"
 
 App.wallet = "1AoZJzq5FqdJygZyG7KYkmpYZx7vMxn4cw" # John's wallet
 
-App.currency = "USD"
+App.currency = "BTC"
 
 App.emails = {
   admin:      "admin@#{App.email_url}",
@@ -37,6 +37,9 @@ App.daily_prize_in_php = 500
 App.transaction_fee_percentage = 0.01
 
 App.services = {
+  :open_exchange => {
+    app_id: "1ba3c1a8bab6490daf5dcc7dbc3149ec"
+  },
   :ses => {
     access_key:         "",
     secret_access_key:  ""
@@ -74,6 +77,18 @@ if Rails.env.production?
   App.services.instagram.client_secret="254e4a2eaa744139b18255836e39f82c"
 end
 
+App.currencies = [
+  { symbol: "&#3647;", slug: "BTC", name: "Bitcoin" },
+  { symbol: "&#8369;", slug: "PHP", name: "Philippine Peso" },
+  { symbol: "US$",       slug: "USD", name: "US Dollar" },
+  { symbol: "CA$",       slug: "CAD", name: "Canadian Dollar" },
+  { symbol: "&#165;",  slug: "JPY", name: "Japanese Yen" },
+  { symbol: "AU$",       slug: "AUD", name: "Australian Dollar" },
+  { symbol: "&pound;", slug: "GBP", name: "Pound Sterling" },
+  { symbol: "RM",      slug: "MYR", name: "Malaysian Ringgit" },
+  { symbol: "SG$",      slug: "SGD", name: "Singaporean Dollar" },
+  { symbol: "HK$",     slug: "HKD", name: "Hong Kong Dollar" }
+]
 
 # johnbailon
 # yo_leroy
@@ -85,6 +100,7 @@ end
 # clockworkchico
 # oscarbicadaiii
 # kassypajarillo
+# bunsovercarrots
 
 # username: thecourtjester001
 # password: igram123@

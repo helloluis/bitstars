@@ -2,6 +2,9 @@
   javascript:
     $(function(){
       $(".intro").find(".intro-1, .intro-2, .intro-3, .intro-4, .intro-5").lineJustify();
+      $(".photos").imagesLoaded(function(){
+        $(".photos").masonry({ itemSelector: ".photo" });
+      });
     });
 
 div class="container"
@@ -21,7 +24,7 @@ div class="container"
         = render :partial => "photos/list", locals: { photos: @photos_yesterday }
 
     aside class="sidebar col-md-4"
-      div class='panel'
+      div class='panel landing-panel'
         
         div class='panel-heading'
           h2 class='intro'
@@ -45,25 +48,29 @@ div class="container"
                   br
                   small 
                     | Tips 
-                    span class='default_font'
+                    span class='default-font'
                       strong = number_to_currency(current_user.total_tips,unit:"&#3647;".html_safe)
                   br
                   small 
                     | Total Earnings 
-                    span class='default_font'
+                    span class='default-font'
                       strong = number_to_currency(current_user.total_earnings,unit:"&#3647;".html_safe)
             div.clearfix
             a href='/select_your_entries' class='btn btn-success btn-large btn-huge btn-block' = t(:submit_your_selfies)
             
           - else
 
-            a href=user_omniauth_authorize_path(:instagram) class='btn btn-primary btn-large btn-huge btn-block' = t(:sign_in_with_your_instagram)
+            a href=user_omniauth_authorize_path(:instagram) class='btn btn-success btn-large btn-huge btn-block' = t(:sign_in_with_instagram)
+            
+            p.text-center.or or
+            
+            a href=user_omniauth_authorize_path(:facebook) class='btn btn-success btn-large btn-huge btn-block' = t(:sign_in_with_facebook)
 
           div.clearfix
 
           ul class='panel-nav'
             li 
-              = link_to t(:browse), "/photos", class: "btn btn-primary btn-lg btn-block"
+              = link_to t(:browse_the_gallery), "/photos", class: "btn btn-primary btn-lg btn-block"
             li 
               = link_to t(:winners), "/winners", class: "btn btn-info btn-lg btn-block"
             li 

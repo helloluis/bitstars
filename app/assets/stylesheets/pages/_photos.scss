@@ -168,3 +168,18 @@
 .thumbnail > a {
   display:block;
 }
+
+.select_photos_header.affix {
+  background:#fff;
+  z-index:2;
+  width:100%;
+  top:0px;
+}
+
+.panel-heading p {
+  margin-bottom:0px;
+  padding-bottom:0px;
+}
+.panel-title {
+  font-size:24px;
+}

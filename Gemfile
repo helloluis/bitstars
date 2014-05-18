@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 
 gem 'slim'
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 gem 'pg'
@@ -24,11 +24,15 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-instagram'
 gem 'instagram'
+gem "koala", "~> 1.8.0rc1"
 
 gem 'rails_admin'
 gem 'ckeditor'
 gem 'kaminari'
 gem 'pry'
+
+gem 'simple_form'
+gem 'country_select'
 
 gem 'aws-ses', require: 'aws/ses'
 gem 'yajl-ruby'
