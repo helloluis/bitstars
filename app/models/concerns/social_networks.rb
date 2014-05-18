@@ -34,7 +34,7 @@ module SocialNetworks
           text: [ (photo['message'] || nil),
                   (photo['from']  ? "From #{photo['from']['name']}" : nil), 
                   (photo['place'] ? "At #{photo['place']['name']}"  : nil) ].
-                  compact.join("<br />"),
+                  compact.join("\n"),
           low:            photo['images'][1] ? photo['images'][1]['source'] : photo['images'][0]['source'],
           standard:       photo['images'][0]['source'],
           thumbnail:      photo['images'][2] ? photo['images'][2]['source'] : photo['images'][0]['source'],
