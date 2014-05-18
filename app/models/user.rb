@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
                         first_name: auth.extra.raw_info.first_name, 
                         last_name:  auth.extra.raw_info.last_name, 
                         full_name:  auth.extra.raw_info.name,
-                        username:   auth.extra.raw_info.uid,
+                        username:   auth.extra.raw_info.name,
                         email:      auth.info.email,
                         gender:     auth.extra.raw_info.gender,
                         provider:   auth.provider,
