@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518061822) do
+ActiveRecord::Schema.define(version: 20140518071032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20140518061822) do
     t.boolean  "paid",                 default: false
     t.text     "payment_details"
     t.float    "actual_amount_in_btc", default: 0.0
+    t.string   "message"
   end
 
   add_index "tips", ["invoice_address"], name: "index_tips_on_invoice_address", using: :btree

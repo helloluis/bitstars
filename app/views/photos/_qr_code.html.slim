@@ -4,7 +4,10 @@ div id='invoice' class='modal fade' role='dialog'
     div class='modal-header'
       button type="button" class="close" data-dismiss="modal" aria-hidden="true" 
         | &times;
-      h1 = t(:tip)
+      h1 
+        = t(:tip)
+        | &nbsp;
+        = @photo.user.full_name
       p = t(:tip_instructions)
       
     div class='modal-body'

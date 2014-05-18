@@ -6,7 +6,8 @@ class TipsController < ApplicationController
   end
 
   def create
-    @tip = current_user.sent_tips.build(params[:tip].permit!)
+    @tip = Tip.new(params[:tip].merge(sender_id: current_user.id).permit!)
+    @tip.generate_invoice_address!
     respond_to do |format|
       format.json do 
         if @tip.valid? && @tip.save

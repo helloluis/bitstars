@@ -32,6 +32,11 @@ select {
   .form-control {
     margin-right:2px;
   }
+  textarea {
+    width:95% !important;
+    height:50px;
+    margin-bottom:10px;
+  }
   .btn {
     padding:16px 25px 25px 25px;
     font-size:24px;
