@@ -8,12 +8,39 @@ div class='container standalone-container'
         a href="/your_entries" go back to Your Stuff ...
     p Fill in all the fields below in order to be eligible for contest winnings and tips 
 
-  = simple_form_for @user do |f|
-    = f.input :email
-    = f.input :phone
-    = f.input :address
-    = f.input :city
-    = f.input :country
-    = f.input :postal_code
-    = f.submit
+  = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+    div.form-group
+      label.col-sm-2.control-label Email
+      div.col-sm-10
+        = f.input_field :email, class: 'form-control'
 
+    div.form-group
+      label.col-sm-2.control-label Phone
+      div.col-sm-10
+        = f.input_field :phone, class: 'form-control'
+
+    div.form-group
+      label.col-sm-2.control-label Address
+      div.col-sm-10
+        = f.input_field :address, class: 'form-control'
+
+    div.form-group
+      label.col-sm-2.control-label City
+      div.col-sm-10
+        = f.input_field :city, class: 'form-control'
+
+    div.form-group
+      label.col-sm-2.control-label Country
+      div.col-sm-10
+        = f.input_field :country, class: 'form-control'
+
+    div.form-group
+      label.col-sm-2.control-label Postal Code
+      div.col-sm-10
+        = f.input_field :postal_code, class: 'form-control'
+    
+    div.form-group
+      div class="col-sm-offset-2 col-sm-10"
+        button type='submit' class='btn btn-default' Update Profile
+
+  div style='margin-bottom:20px'

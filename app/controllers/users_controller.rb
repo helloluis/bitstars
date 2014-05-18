@@ -9,9 +9,14 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user].permit!)
-      flash[:notice] = "Great! You've completed your profile and can now receive tips and contest winnings." if @user.has_completed_profile?
+      if @user.has_completed_profile?
+        flash[:notice] = "Great! You've completed your profile and can now receive tips and contest winnings."
+      else
+        flash[:error] = "Your profile is still not complete. You won't be eligible to receive winnings or tips yet."
+      end
       return redirect_to "/your_entries"
     else
+      flash[:alert] = "There were some problems with saving your profile."
       render :action => :edit
     end
   end
