@@ -12,6 +12,11 @@ var Tipper = {
 
     that.form.submit(function(){
       
+      if (!this.current_user) {
+        that.show_error("You need to login <a href='/users/auth/instagram'>via Instagram</a> or <a href='/users/auth/facebook'>Facebook</a> in order to tip other users.");
+        return false;
+      }
+
       that.form.find(".btn").button('loading');
 
       $.ajax({
@@ -41,12 +46,9 @@ var Tipper = {
     $("#qr_code").attr( 'src', $("#qr_code").attr('data-src')+escape(invoice_address_with_amount) );
     $("#invoice_address").val(invoice_address_with_amount);
     $("#invoice").modal();
-    // $('#invoice').on('hidden.bs.modal', function (e) {
-    //   // that.redirect_to_thanks(remittance_id);
-    // });
   },
 
   show_error: function(str) {
-    $("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>" + str + "</strong></div>").appendTo('body');
+    Flasher.show("danger", str);
   }
 }
