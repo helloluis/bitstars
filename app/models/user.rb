@@ -19,24 +19,23 @@ class User < ActiveRecord::Base
     end
   end
 
-  has_many :received_tips, class_name: "Tip", foreign_key: "recipient_id" do 
-    def confirmed
-      where(status: 1)
-    end
+  has_many :received_tips, class_name: "TipPayment", foreign_key: "recipient_id" do 
+    
   end
 
-  has_many :sent_tips, class_name: "Tip", foreign_key: "sender_id" do 
-    def confirmed
-      where(status: 1)
-    end
+  has_many :sent_tips, class_name: "TipPayment", foreign_key: "sender_id" do 
+    
   end
   
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable,
           :omniauthable, :omniauth_providers => [:facebook, :instagram]
 
+  after_initialize :init_default_values
 
-  after_create :generate_tip_address!
+  def init_default_values
+    self.country = "Philippines"
+  end
 
   def self.find_by_username(username)
     where(username: username).first
@@ -51,11 +50,11 @@ class User < ActiveRecord::Base
 
     user.update_attributes( 
       access_token: auth.credentials.token, 
-      username: auth.info.nickname, 
-      full_name: auth.info.name, 
-      avatar: auth.info.image, 
-      bio: auth.info.bio, 
-      website:auth.info.website )
+      username:     auth.info.nickname, 
+      full_name:    auth.info.name, 
+      avatar:       auth.info.image, 
+      bio:          auth.info.bio, 
+      website:      auth.info.website )
     user
   end
 
@@ -105,15 +104,15 @@ class User < ActiveRecord::Base
     "http://#{provider}.com/#{username}"
   end
 
-  def generate_tip_address!(force=false)
-    if tip_address.blank? || force==true
-      callback_url = url_encode("http://#{App.url}/users/#{id}/callback_for_blockchain")
-      if resp = Yajl::Parser.parse(open("https://blockchain.info/api/receive?method=create&address=#{App.wallet}&callback=#{callback_url}"))
-        update_attributes(:tip_address => resp['input_address'])
-      end
-    end
-    tip_address
-  end
+  # def generate_tip_address!(force=false)
+  #   if tip_address.blank? || force==true
+  #     callback_url = url_encode("http://#{App.url}/users/#{id}/callback_for_blockchain")
+  #     if resp = Yajl::Parser.parse(open("https://blockchain.info/api/receive?method=create&address=#{App.wallet}&callback=#{callback_url}"))
+  #       update_attributes(:tip_address => resp['input_address'])
+  #     end
+  #   end
+  #   tip_address
+  # end
 
   # Friendly_Id code to only update the url for new records
   # User.all.each{|u| u.slug=nil; u.save }

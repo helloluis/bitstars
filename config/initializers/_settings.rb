@@ -12,7 +12,8 @@ App.url = Rails.env.development? ? "bitstars.xxx" : "bitstars.ph"
 App.email_url = "bitstars.ph"
 # email domains also need to be set up in production.rb
 
-App.wallet = "1AoZJzq5FqdJygZyG7KYkmpYZx7vMxn4cw" # John's wallet
+# App.wallet = "1AoZJzq5FqdJygZyG7KYkmpYZx7vMxn4cw" # John's wallet
+App.wallet = "1Brt3KNoAF6ovANZG3KpybpLhnAi1kWPc9" # Luis@sci.ventures / Blockchain.info
 
 App.currency = "BTC"
 
@@ -54,8 +55,8 @@ App.services = {
   },
   :facebook => {
     username: "",
-    app_id:   "836953916333257",
-    secret:   "e367a62ee7d6ff94c3121ab4d7b044cd"
+    app_id:   "838918866136762",
+    secret:   "4ca317ea59738dec88264e0e8798f0fc"
   },
   :twitter => {
     username: "",
@@ -75,6 +76,8 @@ App.services = {
 if Rails.env.production?
   App.services.instagram.client_id="b55465b7d8c7436ba963ecfcf793f8f2"
   App.services.instagram.client_secret="22513346373a4321a3d328b943e1ee7a"
+  App.services.facebook.app_id = "836953916333257"
+  App.services.facebook.secret = "e367a62ee7d6ff94c3121ab4d7b044cd"
 end
 
 App.currencies = [

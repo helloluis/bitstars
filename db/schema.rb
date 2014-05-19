@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518072255) do
+ActiveRecord::Schema.define(version: 20140519034834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,17 +65,31 @@ ActiveRecord::Schema.define(version: 20140518072255) do
   create_table "tables", force: true do |t|
   end
 
+  create_table "tip_payments", force: true do |t|
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.integer  "tip_id"
+    t.text     "payment_details"
+    t.float    "original_amount_in_btc"
+    t.float    "final_amount_in_btc"
+    t.float    "transaction_fee"
+    t.boolean  "paid_out"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tip_payments", ["recipient_id", "tip_id"], name: "index_tip_payments_on_recipient_id_and_tip_id", using: :btree
+  add_index "tip_payments", ["sender_id", "tip_id"], name: "index_tip_payments_on_sender_id_and_tip_id", using: :btree
+  add_index "tip_payments", ["tip_id"], name: "index_tip_payments_on_tip_id", using: :btree
+
   create_table "tips", force: true do |t|
     t.integer  "photo_id"
     t.integer  "recipient_id"
     t.integer  "sender_id"
     t.float    "amount_in_btc",        default: 0.0
-    t.float    "amount_in_php",        default: 0.0
-    t.float    "transaction_fee",      default: 0.0
     t.datetime "created_at"
     t.string   "invoice_address"
     t.boolean  "paid",                 default: false
-    t.text     "payment_details"
     t.float    "actual_amount_in_btc", default: 0.0
     t.string   "message"
     t.integer  "status",               default: 0
@@ -114,7 +128,7 @@ ActiveRecord::Schema.define(version: 20140518072255) do
     t.string   "gender"
     t.string   "access_token"
     t.string   "refresh_token"
-    t.string   "tip_address"
+    t.string   "wallet_address"
     t.text     "bio"
     t.text     "counts"
     t.boolean  "banned",                 default: false
@@ -140,6 +154,6 @@ ActiveRecord::Schema.define(version: 20140518072255) do
   add_index "users", ["refresh_token"], name: "index_users_on_refresh_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
-  add_index "users", ["tip_address"], name: "index_users_on_tip_address", using: :btree
+  add_index "users", ["wallet_address"], name: "index_users_on_wallet_address", using: :btree
 
 end
