@@ -26,11 +26,11 @@ class TipsController < ApplicationController
       transaction_hash:       params[:transaction_hash],
       input_transaction_hash: params[:input_transaction_hash],
       input_address:          params[:input_address],
-      value_in_satoshi:       params[:value].to_f,
+      value_in_satoshi:       params[:value].to_i,
       value_in_btc:           params[:value].to_f/100000000
       })
     
-    render :nothing => true
+    render plain: "*ok*"
 
   end
 

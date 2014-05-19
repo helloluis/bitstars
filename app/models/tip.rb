@@ -43,17 +43,17 @@ class Tip < ActiveRecord::Base
   end
 
   def total_payments
-    total = tip_payments.map(&:final_amount_in_btc).sum
+    total = tip_payments.map(&:final_amount_in_sats).sum
     total
   end
 
-  def check_for_total_payments
-    success! if total_payments>=total_in_btc
-  end
-
   def add_payment_details!(hash)
-    self.tip_payments.create(sender: sender, recipient: recipient, payment_details: hash)
-    self.update_attributes(:actual_amount_in_btc => total_payments)
+    return false if self.tip_payments.where(transaction_hash: hash[:transaction_hash]).exists?
+    self.tip_payments.create( sender: sender, 
+                              recipient: recipient, 
+                              payment_details: hash, 
+                              transaction_hash: hash[:transaction_hash])
+    self.update_attributes(:actual_amount_in_sats => total_payments)
     self.success!
     self.recipient.calculate_total_earnings!
   end

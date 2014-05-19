@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519091357) do
+ActiveRecord::Schema.define(version: 20140519101058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,11 +76,13 @@ ActiveRecord::Schema.define(version: 20140519091357) do
     t.boolean  "paid_out"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "transaction_hash"
   end
 
   add_index "tip_payments", ["recipient_id", "tip_id"], name: "index_tip_payments_on_recipient_id_and_tip_id", using: :btree
   add_index "tip_payments", ["sender_id", "tip_id"], name: "index_tip_payments_on_sender_id_and_tip_id", using: :btree
   add_index "tip_payments", ["tip_id"], name: "index_tip_payments_on_tip_id", using: :btree
+  add_index "tip_payments", ["transaction_hash"], name: "index_tip_payments_on_transaction_hash", using: :btree
 
   create_table "tips", force: true do |t|
     t.integer  "photo_id"
