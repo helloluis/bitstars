@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable,
           :omniauthable, :omniauth_providers => [:facebook, :instagram]
 
+  validates_uniqueness_of :email
+
   after_initialize :init_default_values
 
   def init_default_values
