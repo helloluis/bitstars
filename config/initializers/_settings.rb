@@ -45,8 +45,8 @@ App.services = {
     secret_access_key:  ""
   },
   :instagram => {
-    client_id:      "b55465b7d8c7436ba963ecfcf793f8f2",
-    client_secret:  "22513346373a4321a3d328b943e1ee7a"
+    client_id:      "825e0611bba34fa38931a071e9e9072e",
+    client_secret:  "0459374440b04064a32f645dbc3594d4"
   },
   :mailchimp => {
     access_key: "",
@@ -73,8 +73,8 @@ App.services = {
 }
 
 if Rails.env.production?
-  App.services.instagram.client_id="be255cfa336445be9a38c2c04fbe9285"
-  App.services.instagram.client_secret="254e4a2eaa744139b18255836e39f82c"
+  App.services.instagram.client_id="b55465b7d8c7436ba963ecfcf793f8f2"
+  App.services.instagram.client_secret="22513346373a4321a3d328b943e1ee7a"
 end
 
 App.currencies = [
