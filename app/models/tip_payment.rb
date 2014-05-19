@@ -4,6 +4,10 @@ class TipPayment < ActiveRecord::Base
 
   belongs_to :tip
 
+  belongs_to :sender, class_name: "User", foreign_key: "sender_id"
+
+  belongs_to :recipient, class_name: "User", foreign_key: "recipient_id"
+
   after_create :calculate_amounts
 
   after_create :send_notifications

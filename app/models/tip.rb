@@ -65,7 +65,7 @@ class Tip < ActiveRecord::Base
   end
 
   def add_payment_details!(hash)
-    self.tip_payments.create(payment_details: hash)
+    self.tip_payments.create(sender: sender, recipient: recipient, photo: photo, payment_details: hash)
     self.update_attributes(:actual_amount_in_btc => total_payments)
     self.success!
   end
