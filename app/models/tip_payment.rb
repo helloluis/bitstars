@@ -2,7 +2,7 @@ class TipPayment < ActiveRecord::Base
 
   belongs_to :tip
 
-  before_create :calculate_amounts
+  after_create :calculate_amounts
 
   after_create :send_notifications
 
@@ -11,6 +11,7 @@ class TipPayment < ActiveRecord::Base
     self.original_amount_in_btc = raw_btc
     self.final_amount_in_btc    = raw_btc*(100-(App.transaction_fee_percentage*100))
     self.transaction_fee        = raw_btc*App.transaction_fee_percentage
+    self.save
   end
 
   # def forward_payment_to_user_wallet
