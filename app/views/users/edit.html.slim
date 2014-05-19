@@ -28,6 +28,11 @@ div class='container standalone-container'
         = f.input_field :last_name, class: 'form-control'
 
     div.form-group
+      label.col-sm-2.control-label Gender
+      div.col-sm-10
+        = f.input_field :gender, as: :select, collection: ['male','female'], class: 'form-control'
+
+    div.form-group
       label.col-sm-2.control-label Email
       div.col-sm-10
         = f.input_field :email, class: 'form-control'

@@ -64,9 +64,12 @@ p {
     width:50%;
     font-size: rem-calc(28px);
   }
+  
+  .navbar {
+    border-width:0px;
+  }
 
   .navbar-info {
-    overflow:hidden;
     margin-top:15px;
     ul {
       list-style-type:none;

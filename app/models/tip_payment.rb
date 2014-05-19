@@ -13,6 +13,7 @@ class TipPayment < ActiveRecord::Base
     self.original_amount_in_btc = raw_btc
     self.final_amount_in_btc    = raw_btc*(100-(App.transaction_fee_percentage*100))
     self.transaction_fee        = raw_btc*App.transaction_fee_percentage
+    self.paid_out               = true
     self.save
   end
 

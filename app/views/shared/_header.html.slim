@@ -5,7 +5,7 @@ header id="branding" class="navbar navbar-default"
         h1 class='logo' = App.name
       p class="tagline" = App.tagline
     
-    nav class='navbar-info navbar-right'
+    nav class='navbar navbar-default navbar-info navbar-right' role='navigation'
       ul
         li
           a href="/photos"
@@ -18,8 +18,20 @@ header id="branding" class="navbar navbar-default"
         li
           | &middot;
         - if user_signed_in?
-          li
-            a href="/your_entries" = "Your Stuff"
+          li class="dropdown"
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              | Your Stuff
+              b class="caret"
+            ul class="dropdown-menu"
+              li
+                a href="/your_entries" Your Entries
+              li
+                a href="/select_photos" Submit Selfies
+              li
+                a href="/edit_profile" Your Profile
+              li
+                a href='/users/sign_out' Logout
+          
         - else
           li
             a href=user_omniauth_authorize_path(:instagram) = t(:join)
