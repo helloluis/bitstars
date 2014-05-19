@@ -1,7 +1,5 @@
 class Tip < ActiveRecord::Base
 
-  include Payout
-
   serialize :payment_details, Array
 
   belongs_to :sender, class_name: "User", foreign_key: "sender_id"
