@@ -13,7 +13,7 @@ class TipPayment < ActiveRecord::Base
   after_create :send_notifications
 
   def calculate_amounts
-    raw_btc = self.payment_details[:value_in_btc]
+    raw_btc = self.payment_details[:value_in_satoshi]
     self.original_amount_in_sats = raw_btc
     self.final_amount_in_sats    = raw_btc-(raw_btc*App.transaction_fee_percentage)
     self.transaction_fee         = raw_btc*App.transaction_fee_percentage
