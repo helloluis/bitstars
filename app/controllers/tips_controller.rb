@@ -23,7 +23,7 @@ class TipsController < ApplicationController
     @tip = Tip.find(params[:id])
     
     if @tip.pending?
-      @tip.add_payment_details({
+      @tip.add_payment_details!({
         transaction_hash:       params[:transaction_hash],
         input_transaction_hash: params[:input_transaction_hash],
         input_address:          params[:input_address],
