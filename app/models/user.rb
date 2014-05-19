@@ -110,6 +110,10 @@ class User < ActiveRecord::Base
     total_earnings > App.minimum_withdrawal
   end
 
+  def calculate_total_earnings!
+    received_tips.map(&:final_amount_in_btc).sum
+  end
+
   # def generate_tip_address!(force=false)
   #   if tip_address.blank? || force==true
   #     callback_url = url_encode("http://#{App.url}/users/#{id}/callback_for_blockchain")

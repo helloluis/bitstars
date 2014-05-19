@@ -1,7 +1,8 @@
 li class='tip'
   dl
     dt From
-    dd = link_to tip_payment.recipient.full_name, tip_payment.recipient.provider_link
+    dd 
+      = link_to tip_payment.recipient.full_name, tip_payment.recipient.provider_link
 
     dt Amount
     dd 
@@ -12,4 +13,4 @@ li class='tip'
     dd = tip_payment.tip.message
 
     dt Date
-    dd = tip_payment.created_at.strftime("%d %B %Y")
+    dd = tip_payment.created_at.strftime("%d %B %Y, %H:%M")

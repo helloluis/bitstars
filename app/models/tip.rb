@@ -68,6 +68,7 @@ class Tip < ActiveRecord::Base
     self.tip_payments.create(sender: sender, recipient: recipient, payment_details: hash)
     self.update_attributes(:actual_amount_in_btc => total_payments)
     self.success!
+    self.recipient.calculate_total_earnings!
   end
 
   def pending?
