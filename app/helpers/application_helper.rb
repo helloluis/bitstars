@@ -26,4 +26,20 @@ module ApplicationHelper
       "top_20"
     end
   end
+
+  def facebook_link(css_class="",img=false)
+    "<a href='http://facebook.com/#{App.services.facebook.username}' style='text-decoration: none; line-height:4;vertical-align:middle; display:inline-block;padding-right:10px;padding-left:10px; font-size:13px; color:#fff; text-transform: uppercase;' class='#{css_class}' title='Kreyos on Facebook'>#{img}Facebook</a>"
+  end
+
+  def twitter_link(css_class="",img=false)
+    "<a href='http://twitter.com/#{App.services.twitter.username}' style='text-decoration: none;  line-height:4;vertical-align:middle; display:inline-block;padding-right:10px;padding-left:10px; font-size:13px; color:#fff; text-transform: uppercase;' class='#{css_class}' title='Kreyos on Twitter'>#{img}Twitter</a>"
+  end
+
+  def pinterest_link(css_class="",img=false)
+    "<a href='http://pinterest.com/#{App.services.pinterest.username}' style='text-decoration: none;  line-height:4;vertical-align:middle; display:inline-block;padding-right:10px;padding-left:10px; font-size:13px; color:#fff; text-transform: uppercase;' class='#{css_class}' title='Kreyos on Pinterest'>#{img}Pinterest</a>"
+  end
+
+  def googleplus_link(css_class="",img=false)
+    "<a href='http://plus.google.com/#{App.services.googleplus.username}' style='text-decoration: none;  line-height:4;vertical-align:middle; display:inline-block;padding-right:10px;padding-left:10px; font-size:13px; color:#fff; text-transform: uppercase;' class='#{css_class}' title='Kreyos on Google+'>#{img}Google+</a>"
+  end
 end
