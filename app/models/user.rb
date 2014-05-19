@@ -104,6 +104,10 @@ class User < ActiveRecord::Base
     "http://#{provider}.com/#{username}"
   end
 
+  def has_withdrawable_funds?
+    total_earnings > App.minimum_withdrawal
+  end
+
   # def generate_tip_address!(force=false)
   #   if tip_address.blank? || force==true
   #     callback_url = url_encode("http://#{App.url}/users/#{id}/callback_for_blockchain")

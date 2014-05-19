@@ -18,4 +18,9 @@ class UserMailer < ActionMailer::Base
     @sender = tip.sender
     mail(to: @photo.user.email, subject: t(:your_selfie_is_todays_winner))
   end
+
+  def request_withdrawal(user)
+    @user = user
+    mail(to: App.emails.admin, subject: "#{user.full_name} is requesting a withdrawal of funds.")
+  end
 end

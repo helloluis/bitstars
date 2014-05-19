@@ -1,0 +1,12 @@
+p
+  a href=user_url(@user) 
+    = @user.full_name
+  | is requesting to withdraw their funds to their wallet address 
+
+p
+  strong 
+    = @user.wallet_address
+
+p
+  strong
+    = @user.total_earnings

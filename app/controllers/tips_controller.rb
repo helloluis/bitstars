@@ -1,8 +1,8 @@
 class TipsController < ApplicationController
 
   def index
-    @received_tips = current_user.received_tips.confirmed
-    @sent_tips = current_user.sent_tips.confirmed
+    @received_tips = current_user.received_tips
+    @sent_tips = current_user.sent_tips
   end
 
   def create
@@ -30,6 +30,12 @@ class TipsController < ApplicationController
         value_in_satoshi:       params[:value],
         value_in_btc:           params[:value]/100000000
         })
+    end
+  end
+
+  def request_withdrawal
+    if current_user.has_withdrawable_funds?
+      UserMailer.request_withdrawal(current_user).deliver
     end
   end
 

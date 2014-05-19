@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     member do 
       get :callback_for_blockchain
     end
+    collection do
+      get :request_withdrawal
+    end
   end
   resources :winnings
 
@@ -31,11 +34,15 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/winners" => "users#index"
   get "/rules"   => "static#rules"
-  get "/select_your_entries" => "users#select_photos"
-  get "/your_entries"  => "users#photos"
-  get "/edit_profile"  => "users#edit"
+  get "/about"   => "static#about"
+  get "/privacy" => "static#privacy"
+  get "/contact" => "static#contact"
+
+  get "/winners"              => "users#index"
+  get "/select_your_entries"  => "users#select_photos"
+  get "/your_entries"         => "users#photos"
+  get "/edit_profile"         => "users#edit"
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

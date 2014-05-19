@@ -33,6 +33,8 @@ App.winner_lockout = 1.week
 
 App.minimum_tip = 0.0001
 
+App.minimum_withdrawal = 0.025
+
 App.daily_prize_in_php = 500
 
 App.transaction_fee_percentage = 0.01
