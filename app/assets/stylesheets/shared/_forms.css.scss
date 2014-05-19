@@ -48,3 +48,38 @@ select {
   width: 50% !important;
   max-width:600px;
 }
+
+table.tips {
+  width:100%;
+  tr {
+    border-bottom:1px solid #ddd;
+    margin-bottom:10px;
+    font-size:14px;
+    td.amount {
+      width:25%;
+      text-align:left;
+    }
+    td.date {
+      width:15%;
+      font-size:12px;
+    }
+    td.other_user {
+      width:23%;
+      font-size:13px;
+    }
+    td.message {
+      font-size:12px;
+      font-style:italic;
+    }
+    &.header {
+      td {
+        font-size:14px;
+        font-weight:normal;
+        &.message {
+          font-style:normal;
+        }
+      }
+    }
+    
+  }
+}

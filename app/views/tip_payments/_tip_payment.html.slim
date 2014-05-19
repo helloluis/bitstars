@@ -1,16 +1,10 @@
-li class='tip'
-  dl
-    dt From
-    dd 
-      = link_to tip_payment.recipient.full_name, tip_payment.recipient.provider_link
-
-    dt Amount
-    dd 
-      | &#3647;
-      = tip_payment.final_amount_in_btc
-
-    dt Message
-    dd = tip_payment.tip.message
-
-    dt Date
-    dd = tip_payment.created_at.strftime("%d %B %Y, %H:%M")
+tr class='tip'
+  td.other_user
+    = link_to tip_payment.recipient.full_name, tip_payment.recipient.provider_link
+  td.amount.default-font
+    | &#3647;
+    = tip_payment.final_amount_in_sats
+  td.message
+    = tip_payment.tip.message
+  td.date 
+    small == tip_payment.created_at.strftime("%d %B %Y<br />%H:%M")

@@ -23,7 +23,12 @@ div class='container'
     div class='col-md-6'
       h2 = t(:received_tips)
       - if @received_tips.any?
-        ul.tips
+        table.tips
+          tr.header
+            td.from From
+            td.amount Amount
+            td.message Message
+            td.date Date
           = render @received_tips
 
       - else
@@ -33,7 +38,12 @@ div class='container'
     div class='col-md-6'
       h2 = t(:sent_tips)
       - if @sent_tips.any?
-        ul.tips
+        table.tips
+          tr.header
+            td.from From
+            td.amount Amount
+            td.message Message
+            td.date Date
           = render @sent_tips
 
       - else

@@ -33,8 +33,8 @@ header id="branding" class="navbar navbar-default"
                 a href="/winnings" Your Winnings
               li
                 a href="/edit_profile" Your Profile
-              li
-                a href='/users/sign_out' Logout
+              li 
+                = link_to 'Logout', destroy_user_session_path, :method => :delete
           
         - else
           li
