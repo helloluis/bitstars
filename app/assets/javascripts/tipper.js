@@ -12,7 +12,7 @@ var Tipper = {
 
     that.form.submit(function(){
       
-      if (!this.current_user) {
+      if (!that.current_user) {
         that.show_error("You need to login <a href='/users/auth/instagram'>via Instagram</a> or <a href='/users/auth/facebook'>Facebook</a> in order to tip other users.");
         return false;
       }
