@@ -45,8 +45,8 @@ App.services = {
     secret_access_key:  ""
   },
   :instagram => {
-    client_id:      "825e0611bba34fa38931a071e9e9072e",
-    client_secret: "0459374440b04064a32f645dbc3594d4"
+    client_id:      "b55465b7d8c7436ba963ecfcf793f8f2",
+    client_secret:  "22513346373a4321a3d328b943e1ee7a"
   },
   :mailchimp => {
     access_key: "",
