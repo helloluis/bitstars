@@ -1,4 +1,8 @@
 class UserMailer < ActionMailer::Base
+  
+  default from: App.emails.support
+  layout "mailer"
+  helper :application
 
   def notify_winner(photo)
     @photo = photo

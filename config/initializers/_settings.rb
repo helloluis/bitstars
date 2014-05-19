@@ -25,6 +25,8 @@ App.emails = {
   noreply:    "no-reply@#{App.email_url}"
 }
 
+App.emails.support = "luis@bitmarket.ph"
+
 App.timezone = "GMT+8"
 
 App.max_submissions_per_day = 3
