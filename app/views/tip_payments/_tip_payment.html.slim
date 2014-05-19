@@ -2,8 +2,8 @@ tr class='tip'
   td.other_user
     = link_to tip_payment.recipient.full_name, tip_payment.recipient.provider_link
   td.amount.default-font
-    | &#3647;
-    = tip_payment.final_amount_in_sats
+    = tip_payment.in_mbtc
+    | mBTC
   td.message
     = tip_payment.tip.message
   td.date 
