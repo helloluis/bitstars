@@ -14,7 +14,6 @@ var Heart = {
     var that = this;
     $(".heart").click(function(){
       var h = $(this);
-      h.button("loading");
       if (h.find(".glyphicon").hasClass('liked')) {
         that.unheart( h, h.attr('data-id') );
       } else {
@@ -29,7 +28,7 @@ var Heart = {
       type: "GET",
       success : function(data){
         el.find(".glyphicon").removeClass("liked");
-        el.find(".heart-label").text( el.find(".heart-label").attr('data-liked') ).button('reset');
+        el.find(".heart-label").text( el.find(".heart-label").attr('data-liked') );
         el.removeClass('btn-danger').addClass('btn-default');
         $(".like_count").text(data.count);
       }
@@ -42,7 +41,7 @@ var Heart = {
       type: "GET",
       success : function(data){
         el.find(".glyphicon").addClass("liked");
-        el.find(".heart-label").text( el.find(".heart-label").attr('data-unlike') ).button('reset');
+        el.find(".heart-label").text( el.find(".heart-label").attr('data-unlike') );
         el.removeClass('btn-default').addClass('btn-danger');
         $(".like_count").text(data.count);
       }
