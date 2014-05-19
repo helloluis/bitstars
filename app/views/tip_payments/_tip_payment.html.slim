@@ -1,13 +1,13 @@
 li class='tip'
   dl
     dt From
-    dd = link_to tip.recipient.full_name, tip.recipient.provider_link
+    dd = link_to tip_payment.recipient.full_name, tip_payment.recipient.provider_link
 
     dt Amount
-    dd = tip.actual_amount_in_btc
+    dd = tip_payment.actual_amount_in_btc
 
     dt Message
-    dd = tip.message
+    dd = tip_payment.tip.message
 
     dt Date
-    dd = tip.created_at.strftime("%d %B %Y")
+    dd = tip_payment.created_at.strftime("%d %B %Y")
