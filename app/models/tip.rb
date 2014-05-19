@@ -55,7 +55,6 @@ class Tip < ActiveRecord::Base
 
   def total_payments
     total = tip_payments.map(&:final_amount_in_btc).sum
-    # total = tip_payments.map{|tp| tp.payment_details.map{|p| p[:value_in_btc] }.sum }.flatten.sum
     total
   end
 
