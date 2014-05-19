@@ -62,7 +62,12 @@ class Photo < ActiveRecord::Base
   end
 
   def check_eligibility
-    self.eligible = !user.has_won_recently?
+    self.eligible = !user.has_won_recently? && !nsfw
+  end
+
+  def nsfw=(boolean)
+    attributes[:eligible] = false if boolean
+    attributes[:nsfw] = boolean
   end
 
   def tip!(sender, amount_in_btc, amount_in_php)

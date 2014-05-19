@@ -1,6 +1,8 @@
 tr class='tip'
-  td.other_user
-    = link_to tip_payment.recipient.full_name, tip_payment.recipient.provider_link
+  td.from_user
+    = link_to tip_payment.sender.full_name, user_path(tip_payment.sender)
+  td.to_user
+    = link_to tip_payment.recipient.full_name, user_path(tip_payment.recipient)
   td.amount.default-font
     /= tip_payment.final_amount_in_sats
     = number_with_precision(tip_payment.in_mbtc,precision:2)
