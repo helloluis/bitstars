@@ -13,6 +13,7 @@ class UserMailer < ActionMailer::Base
     @photo = photo
     @tip = tip
     @sender = tip.sender
+    @recipient = tip.recipient
     mail(to: @sender.email, subject: t(:your_tip_has_been_sent_successfully))
   end
 
@@ -20,6 +21,7 @@ class UserMailer < ActionMailer::Base
     @photo = photo
     @tip = tip
     @sender = tip.sender
+    @recipient = tip.recipient
     mail(to: @photo.user.email, subject: t(:youve_just_received_a_tip))
   end
 
