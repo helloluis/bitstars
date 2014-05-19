@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   get "/privacy" => "static#privacy"
   get "/contact" => "static#contact"
 
-  get "/winners"              => "users#index"
+  get "/winners"              => "photos#winners"
   get "/select_your_entries"  => "users#select_photos"
   get "/your_entries"         => "users#photos"
   get "/edit_profile"         => "users#edit"

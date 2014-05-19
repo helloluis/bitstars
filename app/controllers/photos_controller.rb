@@ -47,6 +47,10 @@ class PhotosController < ApplicationController
     end
   end
 
+  def winners
+    @winning_photos = Photo.winners
+  end
+
   protected
 
     def get_photo

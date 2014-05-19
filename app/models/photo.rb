@@ -10,6 +10,10 @@ class Photo < ActiveRecord::Base
   validate :check_already_entered, on: :create
   validate :check_max_submission, on: :create
 
+  def self.winners
+    where(["disqualified=false AND winner=true"]).order("created_at DESC")
+  end
+
   def self.today
     where(["disqualified=false AND created_at>=?",Time.now.beginning_of_day]).
     order("num_likes DESC, num_views DESC")
