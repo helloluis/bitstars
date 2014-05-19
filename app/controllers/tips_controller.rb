@@ -27,8 +27,8 @@ class TipsController < ApplicationController
         transaction_hash:       params[:transaction_hash],
         input_transaction_hash: params[:input_transaction_hash],
         input_address:          params[:input_address],
-        value_in_satoshi:       params[:value],
-        value_in_btc:           params[:value]/100000000
+        value_in_satoshi:       params[:value].to_i,
+        value_in_btc:           params[:value].to_i/100000000
         })
     end
   end
