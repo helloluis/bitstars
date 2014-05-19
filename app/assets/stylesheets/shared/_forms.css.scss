@@ -32,6 +32,9 @@ select {
   .form-control {
     margin-right:2px;
   }
+  .control-label {
+    margin-right:5px;
+  }
   textarea {
     width:95% !important;
     height:50px;
@@ -42,6 +45,8 @@ select {
     font-size:24px;
   }
 }
+
+
 
 #invoice.modal .modal-lg {
   min-width:360px;

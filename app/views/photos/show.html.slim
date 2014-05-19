@@ -1,3 +1,7 @@
+- content_for :page_scripts do
+  javascript:
+    RATES = #{@rates.to_json.html_safe};
+
 div class='container standalone-image'
   div class='row'
     = render :partial => "photos/standalone"
