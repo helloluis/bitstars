@@ -4,7 +4,8 @@ tr class='tip'
   td.amount.default-font
     /= tip_payment.final_amount_in_sats
     = number_with_precision(tip_payment.in_mbtc,precision:2)
-    | mBTC
+    | &nbsp;
+    span title='milli-bitcoin' mBTC
   td.message
     = tip_payment.tip.message
   td.date 
