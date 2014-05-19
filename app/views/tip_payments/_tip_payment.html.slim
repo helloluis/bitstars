@@ -4,7 +4,7 @@ li class='tip'
     dd = link_to tip_payment.recipient.full_name, tip_payment.recipient.provider_link
 
     dt Amount
-    dd == number_to_currency(tip_payment.final_amount_in_btc,"&#3647;")
+    dd == number_to_currency(tip_payment.final_amount_in_btc,unit:"&#3647;")
 
     dt Message
     dd = tip_payment.tip.message
