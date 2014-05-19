@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
   end
 
   def calculate_total_earnings!
-    received_tips.map(&:final_amount_in_btc).sum
+    received_tips.map(&:final_amount_in_sats).sum
     save
   end
 
