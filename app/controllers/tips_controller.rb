@@ -20,7 +20,7 @@ class TipsController < ApplicationController
   end
 
   def callback_for_blockchain
-    @tip = Tip.find(params[:invoice_id])
+    @tip = Tip.find(params[:id])
     
     if @tip.pending?
       @tip.add_payment_details({
