@@ -7,10 +7,10 @@ class TipsController < ApplicationController
 
   def create
     @tip = Tip.new(params[:tip].merge(sender_id: current_user.id).permit!)
-    @tip.generate_invoice_address!
     respond_to do |format|
       format.json do 
         if @tip.valid? && @tip.save
+          @tip.generate_invoice_address!
           render :json => @tip.as_json(methods: [ :invoice_address_with_amount]) 
         else
           render :json => { error: @tip.errors.full_messages.join(" ") }
