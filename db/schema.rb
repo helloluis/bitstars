@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519101058) do
+ActiveRecord::Schema.define(version: 20140519234529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(version: 20140519101058) do
     t.datetime "entered_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "nsfw",         default: false
   end
 
+  add_index "photos", ["nsfw"], name: "index_photos_on_nsfw", using: :btree
   add_index "photos", ["user_id", "provider", "original_id"], name: "index_photos_on_original_provider_id", using: :btree
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
   add_index "photos", ["winner", "created_at"], name: "index_photos_on_daily_winner", using: :btree
