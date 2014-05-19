@@ -20,6 +20,14 @@ class TipPayment < ActiveRecord::Base
     self.save
   end
 
+  def in_mbtc
+    final_amount_in_sats/10000
+  end
+
+  def in_btc
+    final_amount_in_sats*100000000
+  end
+
   # def forward_payment_to_user_wallet
   #   unless tip.recipient.wallet_address.blank?
   #     # TODO: send money using Blockchain.info Wallet API

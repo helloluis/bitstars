@@ -112,6 +112,7 @@ class User < ActiveRecord::Base
 
   def calculate_total_earnings!
     received_tips.map(&:final_amount_in_btc).sum
+    save
   end
 
   # def generate_tip_address!(force=false)

@@ -26,20 +26,7 @@ class Tip < ActiveRecord::Base
   end
 
   def self.today_amount
-    self.where(["created_at>=?",Time.now.beginning_of_day]).map(&:actual_amount_in_btc).sum
-  end
-
-  def in_mbtc
-    amount_in_btc/1000
-  end
-
-  def in_microbtc
-    amount_in_btc/1000000
-  end
-
-  def in_satoshis
-    amount_in_btc/100000000
-    # 0.000 000 01
+    self.where(["created_at>=?",Time.now.beginning_of_day]).map(&:actual_amount_in_sats).sum
   end
 
   def generate_invoice_address!(force=false)

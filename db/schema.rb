@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519034834) do
+ActiveRecord::Schema.define(version: 20140519091357) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20140519034834) do
     t.integer  "recipient_id"
     t.integer  "tip_id"
     t.text     "payment_details"
-    t.float    "original_amount_in_btc"
-    t.float    "final_amount_in_btc"
+    t.float    "original_amount_in_sats"
+    t.float    "final_amount_in_sats"
     t.float    "transaction_fee"
     t.boolean  "paid_out"
     t.datetime "created_at"
@@ -86,13 +86,13 @@ ActiveRecord::Schema.define(version: 20140519034834) do
     t.integer  "photo_id"
     t.integer  "recipient_id"
     t.integer  "sender_id"
-    t.float    "amount_in_btc",        default: 0.0
+    t.float    "amount_in_btc",         default: 0.0
     t.datetime "created_at"
     t.string   "invoice_address"
-    t.boolean  "paid",                 default: false
-    t.float    "actual_amount_in_btc", default: 0.0
+    t.boolean  "paid",                  default: false
+    t.float    "actual_amount_in_sats", default: 0.0
     t.string   "message"
-    t.integer  "status",               default: 0
+    t.integer  "status",                default: 0
   end
 
   add_index "tips", ["invoice_address"], name: "index_tips_on_invoice_address", using: :btree
