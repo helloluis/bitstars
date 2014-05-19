@@ -1,7 +1,7 @@
 class TipPayment < ActiveRecord::Base
 
-  serialize :payment_details, Array
-  
+  serialize :payment_details
+
   belongs_to :tip
 
   after_create :calculate_amounts

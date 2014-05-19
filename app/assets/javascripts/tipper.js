@@ -46,6 +46,10 @@ var Tipper = {
     $("#qr_code").attr( 'src', $("#qr_code").attr('data-src')+escape(invoice_address_with_amount) );
     $("#invoice_address").val(invoice_address_with_amount);
     $("#invoice").modal();
+    $('#invoice').on('hidden.bs.modal', function (e) {
+      $("#qr_code").attr('src','');
+      $("#invoice_address").val("");
+    });
   },
 
   show_error: function(str) {
