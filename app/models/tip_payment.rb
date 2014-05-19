@@ -16,6 +16,9 @@ class TipPayment < ActiveRecord::Base
     self.save
   end
 
+  def photo
+    tip.photo
+  end
   # def forward_payment_to_user_wallet
   #   unless tip.recipient.wallet_address.blank?
   #     # TODO: send money using Blockchain.info Wallet API
@@ -26,7 +29,7 @@ class TipPayment < ActiveRecord::Base
   # end
 
   def send_notifications
-    UserMailer.notify_tip_sender(photo, self).deliver
-    UserMailer.notify_tip_recipient(photo, self).deliver
+    UserMailer.notify_tip_sender(tip.photo, self).deliver
+    UserMailer.notify_tip_recipient(tip.photo, self).deliver
   end
 end
