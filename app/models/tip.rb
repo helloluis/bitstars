@@ -6,6 +6,8 @@ class Tip < ActiveRecord::Base
 
   belongs_to :recipient, class_name: "User", foreign_key: "recipient_id"
 
+  belongs_to :photo
+
   has_many :tip_payments
 
   validate :check_minimum_tip
@@ -65,7 +67,7 @@ class Tip < ActiveRecord::Base
   def add_payment_details!(hash)
     self.tip_payments.create(payment_details: hash)
     self.update_attributes(:actual_amount_in_btc => total_payments)
-    self.check_for_total_payments
+    self.success!
   end
 
   def pending?
