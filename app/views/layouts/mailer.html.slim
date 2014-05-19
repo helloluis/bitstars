@@ -1,0 +1,190 @@
+doctype html
+
+head  
+
+  title = App.name
+
+  meta name='viewport' content='width=320,targetdensitydpi=device-dpi'
+
+  css:
+    @media only screen and (max-width: 480px) { 
+      td[class="body-content"] {text-align: left !important;width:320px !important;}
+      table[class=w640], td[class=w640], img[class=w640] { width:320px !important; }
+      td[class=w640] table {
+        width:320px !important;
+        min-width: 320px !important;
+      } 
+      td[class="logo"] { margin:0!important;} 
+      td[class="tagline"] { margin:0!important;}
+
+      /* Transactional e-mail specific */
+        table { width:auto}
+        td[class=w640] table { margin:20px 0; }
+        td[class="body-content"] {
+          padding:0 5%!important;
+        }
+
+      /* end of Transactional e-mail specific styles */
+    }
+     
+    @media only screen and (max-width: 670px) { 
+      table[class=w640], td[class=w640], img[class=w640] { width:320px !important; }
+      td[class=w640] table {
+        min-width:480px;
+        margin:0 auto;
+        max-width:480px !important;
+        width:100% !important;
+      }
+
+      td[class=w640] h1, td[class=w640] h4 {
+        text-align: center!important;
+      }
+      td[class=w640] h1 {
+        font-size:20px;
+      }
+      td[class=w640] p {
+        font-size:14px;
+      }
+
+      img { line-height: 100%;}
+      td[class="logo"] { text-align:center !important; width: 320px !important; display:block; margin:0 auto;} 
+      td[class="tagline"] { text-align:center !important; width: 320px !important; display:block; margin:0 auto;} 
+      td[class="content-image"] { text-align:center !important; width:320px !important; } 
+      td[class="banner-ad"] { text-align:center !important; width:320px !important; } 
+      td[class="snippet-text"]{  text-align:center !important;  display:block;}
+      a[class="button"]{display:block !important; line-height:40px !important; border-top:solid 1px #666 !important;  font-size:14px !important; padding: 5px 0; }
+      td[class="social-media"]{padding:0 !important; border-top:solid 1px #9f9f9f !important; border-bottom:solid 1px #FFFFFF !important;}
+      table[class=social-networks] {
+        margin: 0 auto;
+        padding: 0;
+      }
+      table[class=social-networks] h4 {
+        margin-bottom:0 !important;
+      }
+      .body-content {
+        width:100%!important;
+        margin:0 auto!important;
+      }
+      table[class=body-content] table {
+        text-align: left;
+        width:100%;
+      }
+
+    /* Transactional e-mail specific */
+
+    /* end of Transactional e-mail specific styles */
+    } 
+
+    #outlook a {   }  
+    .ReadMsgBody {  }
+    .ExternalClass { w }
+    body { }
+    img {  }
+    br, strong br, b br, em br, i br { line-height:100%; }
+    h1, h2, h3, h4, h5, h6 {  }
+    h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {  }
+    h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {   }
+    h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { }
+    h3, h4 { }
+    table td, table tr { border-collapse: collapse; }
+    .yshortcuts, .yshortcuts a, .yshortcuts a:link,.yshortcuts a:visited, .yshortcuts a:hover, .yshortcuts a span { }
+    code { }
+    body, td {  }
+    h1 {  }
+    .header-content {  }
+    .social-networks {}
+    .social-networks a.button { }
+    .social-networks a.button img { }
+    .social-networks h4 {  }
+    .social-media-in-body { }
+    .img-responsive { }
+    .body-content p {}
+    .tagline {}
+    .snippet-text { }
+    .snippet-text a { }
+    .footer-text {  }
+    .footer-text2 {  }
+    .footer-text a { }
+    .footer-text2 a { }
+
+    /* Transactional e-mail specific */
+    .body-content {}
+    .orders { }
+    .orders tr { }
+    .orders td { }
+
+    .orders tr.items td.col-item { }
+    .orders tr.coupon_code, .orders tr.shipping_cost_row {}
+    /* end of Transactional e-mail specific styles */
+
+  css:
+    [touch-action="none"]{ -ms-touch-action: none; touch-action: none; }[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x; }[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y; }[touch-action="scroll"],[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; }</style><style id="clearly_highlighting_css" type="text/css">/* selection */ html.clearly_highlighting_enabled ::-moz-selection { background: rgba(246, 238, 150, 0.99); } html.clearly_highlighting_enabled ::selection { background: rgba(246, 238, 150, 0.99); } /* cursor */ html.clearly_highlighting_enabled {    /* cursor and hot-spot position -- requires a default cursor, after the URL one */    cursor: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--cursor.png") 14 16, text; } /* highlight tag */ em.clearly_highlight_element {    font-style: inherit !important; font-weight: inherit !important;    background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--yellow.png");    background-repeat: repeat-x; background-position: top left; background-size: 100% 100%; } /* the delete-buttons are positioned relative to this */ em.clearly_highlight_element.clearly_highlight_first { position: relative; } /* delete buttons */ em.clearly_highlight_element a.clearly_highlight_delete_element {    display: none; cursor: pointer;    padding: 0; margin: 0; line-height: 0;    position: absolute; width: 34px; height: 34px; left: -17px; top: -17px;    background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--delete-sprite.png"); background-repeat: no-repeat; background-position: 0px 0px; } em.clearly_highlight_element a.clearly_highlight_delete_element:hover { background-position: -34px 0px; } /* retina */ @media (min--moz-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {    em.clearly_highlight_element { background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--yellow@2x.png"); }    em.clearly_highlight_element a.clearly_highlight_delete_element { background-image: url("chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/clearly/images/highlight--delete-sprite@2x.png"); background-size: 68px 34px; } } 
+
+body bgcolor="#FFFFFF" style="font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;margin: 0; padding: 0; width: 100% !important;"
+
+  table border="0" cellspacing="0" cellpadding="0" width="100%" bgcolor="#ffffff"
+    tbody
+      tr style="border-collapse: collapse;"
+        td align='center' style="border-collapse: collapse;"
+
+          table class='w640' border='0' cellspacing='0' cellpadding='0' width='640'
+            tbody
+
+              //! Header
+              tr style="border-collapse: collapse;"
+                td.w640 style="border-collapse: collapse;"
+                  table align="left" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="640"
+                    tbody
+                      tr style="border-collapse: collapse;"
+                        td.logo align="left" style="border-collapse: collapse;"
+                          a href="http://#{App.url}"
+                            = image_tag "logo_and_logotype.png", style: "display:inline-block", border: "0", alt: App.name, width: 142, height:50
+
+                        td.tagline align="right" width="250" style="padding: 30px 0px 10px 70px;"
+                          a href="http://#{App.url}" style="color:#7fc8e5"
+                            = App.tagline          
+                  hr style="border-bottom:20px solid #7fc8e5;border-top:0;width:100%;clear:both;border-left: 0;border-right: 0;"
+              /! -// header
+
+              //! Body Text           
+              tr style="border-collapse: collapse;"
+                td.w640 align="center" style="border-collapse: collapse;"
+                  table.body-content bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0 0 0;"
+                    tbody
+                      tr style="border-collapse: collapse;"
+                        td.body-content align="left" style="border-collapse: collapse; padding:20px"
+
+                          = yield
+              
+              /! //Body Text
+
+              //! navi / social-networks
+              tr style="border-collapse: collapse;"
+                td.w640 style="border-collapse: collapse;"
+                  table.social-networks border="0" cellpadding="0" cellspacing="0" width="100%" style="background: #403f41;padding: 0 0 20px 0;"
+                    tbody
+                      tr style="border-collapse: collapse;"
+                        td align="center" style="border-collapse: collapse;"
+                          h4 style="line-height: 100% !important; -webkit-font-smoothing: antialiased; background: #7fc8e5; padding: 20px 0;margin: 0 0 20px 0;color: #fff; text-transform: uppercase; text-shadow: 0 1px 1px rgba(0,0,0,0.2); font-size:20px;"
+                            | Follow #{App.name} On:
+                          == facebook_link('button', image_tag("mailer/facebook_48.png", style: "outline: none; margin-right:10px;vertical-align:middle", border:0, alt: "Like Us on Facebook", width: 48, height: 48))
+                          == twitter_link('button', image_tag("mailer/twitter_48.png", style: "outline: none; margin-right:10px;vertical-align:middle", border:0, alt: "Follow Us on Twitter", width: 48, height: 48))
+                          == googleplus_link('button', image_tag("mailer/googleplus_48.png", style: "outline: none; margin-right:10px;vertical-align:middle", border:0, alt: "Follow Us on Google+", width: 48, height: 48))
+                          == pinterest_link('button', image_tag("mailer/pinterest_48.png", style: "outline: none; margin-right:10px;vertical-align:middle", border:0, alt: "Follow Us on Pinterest", width: 48, height: 48))
+              /! //navi / social-networks
+
+
+              //! footer area
+              tr style="border-collapse: collapse;"
+                td.footer-text2 style="border-collapse: collapse; font-size:10px; color:#4f4f4f; text-align:center;"
+                  br
+                    = App.name
+                    | -
+                    = App.address
+                    | &nbsp;&middot;&nbsp;
+                    a href="http://www.#{App.url}/privacy-policy" style="color:#4f4f4f;"
+                      | Privacy Policy
+                    | &nbsp;|&nbsp;
+                    a href="http://www.#{App.url}" style="color:#4f4f4f;"
+                      | www.#{App.url}
+              /! //footer area
