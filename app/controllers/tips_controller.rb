@@ -31,6 +31,9 @@ class TipsController < ApplicationController
         value_in_btc:           params[:value].to_i/100000000
         })
     end
+    
+    render :nothing => true
+
   end
 
   def request_withdrawal
