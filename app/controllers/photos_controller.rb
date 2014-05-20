@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
 
   before_filter :get_photo, :except => [ :index, :batch_create ]
 
-  before_filter :get_rates, :only => [ :show ]
+  before_filter :get_rates, :only => [ :index, :show ]
 
   def index
     @photo = Photo.random(params[:view_count], params[:like_count], params[:today])

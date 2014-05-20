@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519234529) do
+ActiveRecord::Schema.define(version: 20140520003704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,11 +149,14 @@ ActiveRecord::Schema.define(version: 20140519234529) do
     t.string   "city"
     t.string   "country"
     t.string   "postal_code"
+    t.boolean  "payout_to_charity",      default: true
+    t.text     "charity",                default: "t"
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["payout_to_charity"], name: "index_users_on_payout_to_charity", using: :btree
   add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
   add_index "users", ["refresh_token"], name: "index_users_on_refresh_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
