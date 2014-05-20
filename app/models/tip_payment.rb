@@ -12,12 +12,18 @@ class TipPayment < ActiveRecord::Base
 
   after_create :send_notifications
 
+  after_create :update_photo_count
+
   def calculate_amounts
     raw_btc = self.payment_details[:value_in_satoshi]
     self.original_amount_in_sats = raw_btc
     self.final_amount_in_sats    = raw_btc-(raw_btc*App.transaction_fee_percentage)
     self.transaction_fee         = raw_btc*App.transaction_fee_percentage
     self.save
+  end
+
+  def update_photo_count
+    tip.photo.increment!(:num_tips)
   end
 
   def in_mbtc
@@ -27,15 +33,6 @@ class TipPayment < ActiveRecord::Base
   def in_btc
     final_amount_in_sats*100000000
   end
-
-  # def forward_payment_to_user_wallet
-  #   unless tip.recipient.wallet_address.blank?
-  #     # TODO: send money using Blockchain.info Wallet API
-
-  #     update_attributes(paid_out: true)
-  #     send_notifications
-  #   end
-  # end
 
   def send_notifications
     UserMailer.notify_tip_sender(tip.photo, tip, self).deliver
