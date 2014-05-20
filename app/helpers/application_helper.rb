@@ -44,7 +44,7 @@ module ApplicationHelper
   end
 
   def charity_info(charity_slug)
-    if charity = App.charities.find{|c| c[:slug]=charity_slug }
+    if charity = App.charities.find{|c| c[:slug]==charity_slug }
       str = ""
       str << content_tag(:h3, link_to(charity.name, charity.url), class: 'charity-name' )
       str << content_tag(:p, charity.description, class: 'charity-description')
