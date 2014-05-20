@@ -23,6 +23,9 @@ class UsersController < ApplicationController
 
   def select_photos
     @retrieved_photos = current_user.retrieve_photos
+  rescue Koala::Facebook::AuthenticationError => e 
+    flash[:error] = "Please login to Facebook again."
+    redirect_to root_path
   end
 
   def photos
