@@ -68,6 +68,9 @@ div class='col-md-4'
         small
           = link_to "Follow #{@photo.user.username} on #{@photo.user.provider.titleize}", @photo.user.provider_link
 
+      hr.clearfix
+      = render :partial => "shared/social"
+
   div class='panel tip-form-panel'
     div class='panel-heading'
       h2.panel-title Like this selfie?

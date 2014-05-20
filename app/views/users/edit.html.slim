@@ -12,13 +12,13 @@
       show_charity = function(opt){
         
         if (opt.attr('data-name')) {
-          $("#user_charity").val( opt.val() );
+          //$("#user_charity").val( opt.val() );
           var info = $(".charity-information").removeClass('hidden');
           info.find(".charity-name").text(opt.attr('data-name'));
           info.find(".charity-link").attr('href',opt.attr('data-url')).text(opt.attr('data-url'));
           info.find(".charity-description").text(opt.attr('data-description'));
         } else {
-          $("#user_charity").value("");
+          //$("#user_charity").value("");
           var info = $(".charity-information").addClass('hidden');
         }
         
@@ -54,7 +54,7 @@ div class='container standalone-container'
     div.form-group
       label.col-sm-2.control-label Charity
       div.col-sm-10
-        select id='charities' name='charities' class='form-control charity-control'
+        select id='charities' name='user[charity]' class='form-control charity-control'
           option 
             | Select a charity
           - App.charities.each do |charity|
@@ -67,7 +67,7 @@ div class='container standalone-container'
             br
             small.charity-description
 
-        = f.input_field :charity, as: :hidden, class: 'charity-control'
+        /= f.input_field :charity, as: :hidden, class: 'charity-control'
 
     div.form-group
       label.col-sm-2.control-label Wallet Address
