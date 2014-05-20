@@ -68,18 +68,30 @@ div class='col-md-4'
         small
           = link_to "Follow #{@photo.user.username} on #{@photo.user.provider.titleize}", @photo.user.provider_link
 
-  div class='panel'
+  div class='panel tip-form-panel'
     div class='panel-heading'
       h2.panel-title Like this selfie?
-      p 
-        | Show #{@photo.user.username} some love with a small tip using Bitcoin! 
-        small 
-          | (
-          a href="/rules#giving_tips" How Does This Work?
-          | )
+      - if @photo.user.has_completed_profile? && @photo.user.payout_to_charity?
+        p
+          | <strong>#{@photo.user.username}</strong> has opted to donate all their #{App.name} tips and winning to charity.  
+          small 
+            | (
+            a href="/rules#giving_tips" How Does This Work?
+            | )
+        div.charity-info
+          == charity_info(@photo.user.charity)
+          p.small 
+            | (By tipping #{@photo.user.username}, you are making a donation to this charity.)
+      - else
+        p 
+          | Show <strong>#{@photo.user.username}</strong> some love with a small tip using Bitcoin! 
+          small 
+            | (
+            a href="/rules#giving_tips" How Does This Work?
+            | )
     div class='panel-body'
       - unless @photo.user.has_completed_profile?
-        p 
+        p.sorry
           | Sorry, this user needs to complete their profile information before they can receive tips or winnings.
       - else
         = render :partial => "photos/tip_form"

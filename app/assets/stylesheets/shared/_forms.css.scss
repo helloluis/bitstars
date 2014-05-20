@@ -88,3 +88,17 @@ table.tips {
   &.received_tips td.to_user { display:none; }
   &.sent_tips td.from_user { display:none; }
 }
+
+.control-label-left {
+  text-align:left !important;
+}
+.form-group.disabled {
+  opacity:0.5;
+}
+
+.charity-information {
+  margin:10px;
+  p {
+    margin-bottom:0px;
+  }
+}

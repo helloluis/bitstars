@@ -1,3 +1,38 @@
+- content_for :page_scripts do
+  javascript:
+    var toggle_fields = function(){
+        if ($("#user_payout_to_charity").is(":checked")) {
+          $("#user_wallet_address").attr('disabled','disabled').parents(".form-group").addClass('disabled');
+          $(".charity-control").removeAttr('disabled').parents(".form-group").removeClass('disabled');
+        } else {
+          $("#user_wallet_address").removeAttr('disabled').parents(".form-group").removeClass('disabled');
+          $(".charity-control").attr('disabled','disabled').parents(".form-group").addClass('disabled');
+        }
+      },
+      show_charity = function(opt){
+        
+        if (opt.attr('data-name')) {
+          $("#user_charity").val( opt.val() );
+          var info = $(".charity-information").removeClass('hidden');
+          info.find(".charity-name").text(opt.attr('data-name'));
+          info.find(".charity-link").attr('href',opt.attr('data-url')).text(opt.attr('data-url'));
+          info.find(".charity-description").text(opt.attr('data-description'));
+        } else {
+          $("#user_charity").value("");
+          var info = $(".charity-information").addClass('hidden');
+        }
+        
+      };
+
+
+    $(function(){
+      $("#user_payout_to_charity").change(toggle_fields);
+      $("#charities").change(function(){
+        show_charity($(this).find("option:selected"));
+      });
+      toggle_fields();
+    });
+
 div class='container standalone-container'
 
   div class='jumbotron'
@@ -10,6 +45,31 @@ div class='container standalone-container'
 
   = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
     
+    div.form-group
+      div.col-sm-12
+        label.col-sm-offset-2.col-sm-10.control-label.control-label-left
+          = f.input_field :payout_to_charity, as: :boolean
+          | Donate all my tips and winnings to charity automatically
+
+    div.form-group
+      label.col-sm-2.control-label Charity
+      div.col-sm-10
+        select id='charities' name='charities' class='form-control charity-control'
+          option 
+            | Select a charity
+          - App.charities.each do |charity|
+            option value=charity.slug data-name=charity.name data-description=charity.description data-url=charity.url 
+              = charity.name
+        div class='charity-information hidden'
+          p 
+            strong.charity-name
+            br
+            a href='' class='charity-link' target='_blank'
+            br
+            small.charity-description
+
+        = f.input_field :charity, as: :hidden, class: 'charity-control'
+
     div.form-group
       label.col-sm-2.control-label Wallet Address
       div.col-sm-10

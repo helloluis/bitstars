@@ -97,6 +97,57 @@ App.currencies = [
   { symbol: "HK$",     slug: "HKD", name: "Hong Kong Dollar" }
 ]
 
+App.charities = [
+  {
+    slug: "abs",
+    name: "ABS CBN Foundation",
+    url: "http://www.abs-cbnfoundation.com/",
+    description: "Outreach programs for children, their families, the environment, and community." 
+    },
+  {
+    slug: 'car',
+    name: "Compassion and Responsibility for Animals (CARA)",
+    url: "http://caraphil.org",
+    description: "Formed in 2000 by a group of animal lovers determined to help the plight of the animals in the Philippines."
+    },
+  {
+    slug: 'gk',
+    name: "Gawad Kalinga",
+    url: "http://www.gawadkalinga.org/",
+    description: "Promotes alternative solution to housing problems in povery-striken areas."
+    },
+  {
+    slug: "har",
+    name: "Haribon Foundation",
+    url: "http://haribon.org.ph",
+    description: "A membership organization committed to nature conservation through community empowerment, and scientific excellence."
+  },
+  {
+    slug: "paw",
+    name: "Philippine Animal Welfare Society (PAWS)",
+    url: "http://www.paws.org.ph/",
+    description: "A volunteer-based non-government organization whose goal is to prevent animal cruelty through education, animal sheltering and advocacy."
+    },
+  {
+    slug: 'prc',
+    name: "Philippine National Red Cross",
+    url: "http://www.redcross.org.ph/",
+    description: "Provides relief assistance during times of disasters and natural calamities."
+    },
+  {
+    slug: "wv",
+    name: "World Vision Philippines",
+    url: "http://worldvision.org.ph",
+    description: "Works for the wellbeing of the poor through sustainable development, disaster and emergency response, and public engagement."
+  },
+  {
+    slug: 'wwf',
+    name: "Worldwide Fund for Nature (WWF)",
+    url: "http://wwf.org.ph/",
+    description: "Stop and reverse the accelerating degradation of the Philippine environment, and build a future in which Filipinos live in harmony with nature."
+  }
+]
+
 # johnbailon
 # yo_leroy
 # tonyotonio

@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20140520003704) do
     t.string   "city"
     t.string   "country"
     t.string   "postal_code"
-    t.boolean  "payout_to_charity",      default: true
+    t.boolean  "payout_to_charity",      default: false
     t.text     "charity",                default: "t"
   end
 
