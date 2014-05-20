@@ -58,8 +58,7 @@ div class='container standalone-container'
           option 
             | Select a charity
           - App.charities.each do |charity|
-            option value=charity.slug data-name=charity.name data-description=charity.description data-url=charity.url 
-              = charity.name
+            | <option value="#{charity.slug}" data-name="#{charity.name}" data-description="#{charity.description}" data-url="#{charity.url}" #{charity.slug==@user.charity ? "selected='selected'" : ''}>#{charity.name}</option>
         div class='charity-information hidden'
           p 
             strong.charity-name

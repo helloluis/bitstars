@@ -115,6 +115,10 @@ class User < ActiveRecord::Base
     save
   end
 
+  def total_earnings_in_mbtc
+    total_earnings/10000
+  end
+
   # def generate_tip_address!(force=false)
   #   if tip_address.blank? || force==true
   #     callback_url = url_encode("http://#{App.url}/users/#{id}/callback_for_blockchain")
