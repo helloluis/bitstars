@@ -30,6 +30,10 @@ Rails.application.routes.draw do
       get :unheart
       post :flag
       post :unflag
+      get :set_winner
+      get :unset_winner
+      get :disqualify
+      get :requalify
     end
     collection do 
       post :batch_create

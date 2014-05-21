@@ -1,3 +1,12 @@
+- if user_signed_in? && current_user.is_admin?
+  header class='navbar navbar-default-admin' 
+    p.text-center 
+      | You are logged in as an admin. 
+      small
+        a href="/admin" Go to Dashboard
+        | &nbsp;&middot;&nbsp;
+        a href="/users/sign_out" Logout
+
 header id="branding" class="navbar navbar-default"
   div class="container"
     div class="navbar-left"

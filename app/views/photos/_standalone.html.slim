@@ -64,6 +64,9 @@ div class='col-md-4'
       - elsif @photo.position_today
         p class='position' 
           | Currently the ##{@photo.position_today} most popular selfie today!
+      - elsif @photo.disqualified?
+        p class='disqualified'
+          | This photo is DISQUALIFIED.
 
       p class='submitted' 
         | Submitted by 
@@ -74,6 +77,8 @@ div class='col-md-4'
         br
         small
           = link_to "Follow #{@photo.user.username} on #{@photo.user.provider.titleize}", @photo.user.provider_link
+
+      = render :partial => "photos/admin_tools"
 
       = render :partial => "photos/flag_button_and_dialog"
 

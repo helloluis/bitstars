@@ -62,10 +62,24 @@ class Photo < ActiveRecord::Base
     if user.has_won_recently?
       errors.add(:base, "This user has won already within the last #{App.winner_lockout} and can't be awarded again.") 
     else
+      date_of_photo = self.created_at
       self.update_attributes(winner: true)
       user.update_attributes(last_won_on: Time.now, has_won: true)
+      Photo.where("winner=true AND created_at>=? AND created_at<?", date_of_photo.beginning_of_day, date_of_photo+1.day).update_all(winner: true)
       UserMailer.notify_winner(self).deliver
     end
+  end
+
+  def unwin!
+    self.update_attributes(winner: false)
+  end
+
+  def disqualify!
+    self.update_attributes(disqualified: true)
+  end
+
+  def requalify!
+    self.update_attributes(disqualified: false)
   end
 
   def self.candidates_for_today

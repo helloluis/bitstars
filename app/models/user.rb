@@ -88,6 +88,10 @@ class User < ActiveRecord::Base
     user
   end
 
+  def is_admin?
+    email && App.emails.values.include?(email)
+  end
+
   def has_completed_profile?
     !email.blank? && !phone.blank? && !address.blank? && !city.blank?
   end
