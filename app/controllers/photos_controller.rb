@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
 
   include ApplicationHelper
 
-  before_filter :get_photo, :except => [ :index, :batch_create, :not_found, :winners ]
+  before_filter :get_photo, :except => [ :index, :by_date, :batch_create, :not_found, :winners ]
 
   before_filter :authenticate_user!, :except => [ :index, :show, :by_date, :not_found, :winners  ]
 
