@@ -10,19 +10,21 @@ class UserMailer < ActionMailer::Base
   end
 
   def notify_tip_sender(photo, tip, payment)
-    @photo = photo
-    @tip = tip
-    @sender = tip.sender
+    @photo     = photo
+    @tip       = tip
+    @payment   = payment
+    @sender    = tip.sender
     @recipient = tip.recipient
-    mail(to: @sender.email, subject: t(:your_tip_has_been_sent_successfully))
+    mail(to: @sender.email, subject: "#{App.name}: #{t(:your_tip_has_been_sent_successfully)}" )
   end
 
   def notify_tip_recipient(photo, tip, payment)
-    @photo = photo
-    @tip = tip
-    @sender = tip.sender
+    @photo     = photo
+    @tip       = tip
+    @payment   = payment
+    @sender    = tip.sender
     @recipient = tip.recipient
-    mail(to: @photo.user.email, subject: t(:youve_just_received_a_tip))
+    mail(to: @photo.user.email, subject: "#{App.name}: #{t(:youve_just_received_a_tip)}" )
   end
 
   def request_withdrawal(user)
