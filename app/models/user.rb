@@ -23,13 +23,19 @@ class User < ActiveRecord::Base
     end
   end
 
-  has_many :received_tips, class_name: "TipPayment", foreign_key: "recipient_id" do 
-    
+  has_many :prizes do 
+    def confirmed
+      where("revoked!=true")
+    end
+
+    def revoked
+      where("revoked=true")
+    end
   end
 
-  has_many :sent_tips, class_name: "TipPayment", foreign_key: "sender_id" do 
-    
-  end
+  has_many :received_tips, class_name: "TipPayment", foreign_key: "recipient_id"
+  
+  has_many :sent_tips, class_name: "TipPayment", foreign_key: "sender_id"
   
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable,
@@ -121,7 +127,11 @@ class User < ActiveRecord::Base
   end
 
   def calculate_total_earnings!
-    received_tips.map(&:final_amount_in_sats).sum
+    tips                = self.received_tips.map(&:final_amount_in_sats).sum
+    prizes              = self.prizes.confirmed.map(&:amount_in_sats).sum
+    self.total_tips     = tips
+    self.total_winnings = prizes
+    self.total_earnings = tips + prizes
     save
   end
 
