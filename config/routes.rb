@@ -33,7 +33,8 @@ Rails.application.routes.draw do
     end
     collection do 
       post :batch_create
-      get "/:year/:month/:day" => "photos#by_date"
+      get  :not_found
+      get  "/:year/:month/:day" => "photos#by_date"
     end
   end
 

@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     def winners
       where(["winner=true AND disqualified=false"]).order("created_at DESC")
     end
+
+    def qualified
+      where(["disqualified=false"])
+    end
   end
 
   has_many :received_tips, class_name: "TipPayment", foreign_key: "recipient_id" do 

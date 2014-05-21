@@ -1,8 +1,8 @@
 class PhotosController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [ :index, :show, :by_date  ]
+  before_filter :authenticate_user!, :except => [ :index, :show, :by_date, :not_found  ]
 
-  before_filter :get_photo, :except => [ :index, :batch_create ]
+  before_filter :get_photo, :except => [ :index, :batch_create, :not_found ]
 
   before_filter :get_rates, :only => [ :index, :show, :by_date ]
 
@@ -69,16 +69,18 @@ class PhotosController < ApplicationController
   end
 
   def by_date
-    @date   = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
-    @date_after = @date+1.day
+    @date        = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
+    @date_after  = @date+1.day
     @date_before = @date-1.day
-    @photos = Photo.by_date(@date)
+    @photos      = Photo.by_date(@date)
   end
 
   protected
 
     def get_photo
-      @photo = Photo.where("disqualified=false AND id=?", params[:id]).first
+      unless (@photo = Photo.where("disqualified=false AND id=?", params[:id]).first)
+        redirect_to not_found_photos_path
+      end
     end
 
     def get_rates

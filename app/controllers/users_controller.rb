@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id]) #find_by_username(params[:id])
-    @photos = @user.photos.page(params[:page]).per('20')
+    @photos = @user.photos.qualified.page(params[:page]).per('20')
   end
 
 end
