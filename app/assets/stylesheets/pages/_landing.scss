@@ -106,7 +106,7 @@ section {
     font-size: rem-calc(20px);
   }
 
-  @media (min-width:$screen-md-min) {
+  @media (min-width:$screen-md-min + 200) {
     .btn.btn-large {
       font-size: rem-calc(24px);
     }
