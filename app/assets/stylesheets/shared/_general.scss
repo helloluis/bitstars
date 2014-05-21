@@ -148,6 +148,7 @@ p {
   @media (min-width:$screen-md-min) {
     &.main-nav {
       float: right;
+      width:auto;
     }
   }
 }
