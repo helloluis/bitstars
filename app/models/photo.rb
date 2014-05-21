@@ -65,7 +65,7 @@ class Photo < ActiveRecord::Base
       date_of_photo = self.created_at
       self.update_attributes(winner: true)
       user.update_attributes(last_won_on: Time.now, has_won: true)
-      Photo.where("winner=true AND created_at>=? AND created_at<?", date_of_photo.beginning_of_day, date_of_photo+1.day).update_all(winner: true)
+      Photo.where("winner=true AND created_at>=? AND created_at<?", date_of_photo.beginning_of_day, date_of_photo+1.day).update_all(winner: false)
       UserMailer.notify_winner(self).deliver
     end
   end
