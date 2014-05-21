@@ -97,6 +97,14 @@ App.currencies = [
   { symbol: "HK$",     slug: "HKD", name: "Hong Kong Dollar" }
 ]
 
+App.flag_reasons = [
+  { slug: :not_selfie, description: "This is not a selfie" },
+  { slug: :nsfw,       description: "This contains nudity" },
+  { slug: :fake,       description: "This photo is a fake" }
+]
+# if you add more flag reasons, don't forget to add the corresponding slugs to Photo.rb's make_flaggable call
+
+
 App.charities = [
   {
     slug: "abs",

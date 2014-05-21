@@ -305,3 +305,11 @@ img.flag {
 .social_buttons .pinterest a {
   margin-bottom:-45px;
 }
+
+ol,ul {
+  &.nolist {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+  }
+}

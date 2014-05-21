@@ -5,6 +5,8 @@ class Photo < ActiveRecord::Base
   has_many :likes
   before_create :check_eligibility
 
+  make_flaggable :not_selfie, :nsfw, :fake
+
   serialize :images
 
   validate :check_already_entered, on: :create

@@ -31,28 +31,30 @@ div class='col-md-8'
 div class='col-md-4'
   div class='panel'
     div class='panel-body'
-        
-      div class='heart-container likes_and_views pull-left'
-        p
+      
+      div class='heart-container clearfix'
+        div class='pull-left'
           a class='heart btn btn-large #{liked?(@photo) ? 'btn-danger' : 'btn-default'} btn-block' data-id=@photo.id title="#{liked?(@photo) ? "You liked this" : ""}"
             span class='glyphicon glyphicon-heart #{liked?(@photo)}'
             span class='heart-label' data-like="Like" data-unlike="Liked!" = liked?(@photo) ? "Liked!" : "Like"
-          br
+
+        - if @next_photo
+          div class='pull-right'
+            p
+              a href=photo_path(@next_photo) class='btn btn-large btn-info next-photo'
+                | Next &rarr;
+      
+      div.clearfix
+        p.photo-stats.likes_and_views
           span class='like_count' 
             strong = @photo.num_likes
-          |  likes
+            |  likes
           | &nbsp;&middot;&nbsp;
           span class='view_count' = pluralize(@photo.num_views,'view')
           | &nbsp;&middot;&nbsp;
           span class='tip_count' = pluralize(@photo.num_tips, 'tip')
           br
           small class='created_at' = @photo.created_at.strftime("%d %B %Y")
-
-      - if @next_photo
-        div class='pull-right'
-          p
-            a href=photo_path(@next_photo) class='btn btn-large btn-info next-photo'
-              | Next &rarr;
 
       div class='clearfix'
       - if @photo.winner?
@@ -69,6 +71,8 @@ div class='col-md-4'
         br
         small
           = link_to "Follow #{@photo.user.username} on #{@photo.user.provider.titleize}", @photo.user.provider_link
+
+      = render :partial => "photos/flag_button_and_dialog"
 
       hr.clearfix
       = render :partial => "shared/social"

@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
 
+  make_flagger
+  
   after_initialize :init_default_values
 
   def init_default_values

@@ -51,6 +51,23 @@ class PhotosController < ApplicationController
     @winning_photos = Photo.winners
   end
 
+  def flag
+    unless @photo.flagged_by?(current_user, params[:flag])
+      current_user.flag(@photo, params[:flag])
+      UserMailer.report_content(@photo, current_user)
+      flash[:notice] = "Thank you for reporting this content, an administrator will review your request shortly."
+    else
+      flash[:alert] = "You've already flagged that content."
+    end
+    redirect_to :action => :show
+  end
+
+  def unflag!
+    current_user.unflag!(@photo, params[:flag]) if @photo.flagged_by?(current_user, params[:flag])
+    flash[:notice] = "We've removed your flag request on that item."
+    redirect_to :action => :show
+  end
+
   protected
 
     def get_photo

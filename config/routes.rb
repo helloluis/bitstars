@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     member do 
       get :heart
       get :unheart
+      post :flag
+      post :unflag
     end
     collection do 
       post :batch_create

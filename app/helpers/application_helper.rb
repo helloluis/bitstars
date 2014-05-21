@@ -11,6 +11,13 @@ module ApplicationHelper
     "liked" if user_signed_in? && photo.liked_by?(current_user)
   end
 
+  def already_flagged?(photo)
+    return false if user_signed_in?
+    App.flag_reasons.each do |reason|
+      return "already_flagged" if photo.flagged_by?(current_user, reason.slug)
+    end
+  end
+
   def with_position?
     "photos_with_position" if @with_position
   end

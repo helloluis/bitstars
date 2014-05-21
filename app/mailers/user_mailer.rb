@@ -29,4 +29,10 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(to: App.emails.admin, subject: "#{user.full_name} is requesting a withdrawal of funds.")
   end
+
+  def report_content(photo, user)
+    @user = user
+    @photo = photo
+    mail(to: App.emails.admin, subject: "#{user.full_name} is reporting Content ##{photo.id}")
+  end
 end
