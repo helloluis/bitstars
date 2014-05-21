@@ -1,0 +1,29 @@
+- if user_signed_in?
+  p.small
+    a href="#!" class='toggle_flag_dialog #{already_flagged?(@photo)}' data-toggle="modal" data-target="#flag_modal"
+      span class='glyphicon glyphicon-flag'
+      | Flag this selfie
+
+  div class="modal fade" id='flag_modal' tabindex="-1" role="dialog" aria-labelledby="flag_modal_label" aria-hidden="true"
+    div class="modal-dialog"
+      form action='/photos/#{@photo.id}/flag' method='post'
+        div class="modal-content"
+          div class="modal-header"
+            button type="button" class="close" data-dismiss="modal" aria-hidden="true" &times;
+            h4 class="modal-title" Flag this content
+
+          div class="modal-body"
+            = hidden_field_tag :authenticity_token, form_authenticity_token
+            p
+              | Help us keep #{App.name} fun, fair, and appropriate for all ages. If you think this photo doesn't meet <a href="/rules">our guidelines</a>, please state the reason and send a report to our admin.
+            ul.nolist
+              - App.flag_reasons.each do |flag|
+                li
+                  label
+                    | <input type='radio' name='flag' value='#{flag.slug}' #{current_user.flagged?(@photo, flag.slug) ? 'selected="selected"' : ''} />
+                    = flag.description
+
+          div class="modal-footer"
+            button type="button" class="btn btn-default" data-dismiss="modal" Close
+            button type="submit" class="btn btn-primary" Send Report
+          

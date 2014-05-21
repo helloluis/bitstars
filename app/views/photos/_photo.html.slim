@@ -9,7 +9,8 @@ li class='photo'
         span class='likes'
           span class='glyphicon glyphicon-heart' 
           = photo.num_likes
-      p class='position #{position_class(position)} pull-right'
-        | #
-        = position
+      - if @with_position
+        p class='position #{position_class(position)} pull-right'
+          | #
+          = position
       span.clearfix

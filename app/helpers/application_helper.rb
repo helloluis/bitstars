@@ -11,6 +11,13 @@ module ApplicationHelper
     "liked" if user_signed_in? && photo.liked_by?(current_user)
   end
 
+  def already_flagged?(photo)
+    return false if !user_signed_in? || !photo
+    App.flag_reasons.each do |reason|
+      return "already_flagged" if photo.flagged_by?(current_user, reason.slug)
+    end
+  end
+
   def with_position?
     "photos_with_position" if @with_position
   end
@@ -44,11 +51,32 @@ module ApplicationHelper
   end
 
   def charity_info(charity_slug)
-    if charity = App.charities.find{|c| c[:slug]=charity_slug }
+    if charity = App.charities.find{|c| c[:slug]==charity_slug }
       str = ""
       str << content_tag(:h3, link_to(charity.name, charity.url), class: 'charity-name' )
       str << content_tag(:p, charity.description, class: 'charity-description')
       str
     end
   end
+
+  def two_days_ago
+    2.days.ago.beginning_of_day
+  end
+
+  def photos_by_date_path(date)
+    "/photos/#{date.strftime("%Y")}/#{date.strftime("%m")}/#{date.strftime("%d")}"
+  end
+
+  def user_is_admin?
+    user_signed_in? && current_user.is_admin?
+  end
+
+  def to_mbtc(satoshis)
+    [number_with_precision(satoshis.to_i.to_f/10000, precision: 2),"mBTC"].join(" ")
+  end
+
+  def to_btc(satoshis)
+    [number_with_precision(satoshis.to_i.to_f/100000000, precision: 6),"BTC"].join(" ")
+  end
+
 end

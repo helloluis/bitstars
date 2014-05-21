@@ -31,6 +31,8 @@ gem 'ckeditor'
 gem 'kaminari'
 gem 'pry'
 
+gem 'make_flaggable', :git => 'git://github.com/cavneb/make_flaggable.git'
+
 gem 'simple_form'
 gem 'country_select'
 

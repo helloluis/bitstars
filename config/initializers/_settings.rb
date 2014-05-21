@@ -18,14 +18,13 @@ App.wallet = "1Brt3KNoAF6ovANZG3KpybpLhnAi1kWPc9" # Luis@sci.ventures / Blockcha
 App.currency = "BTC"
 
 App.emails = {
-  admin:      "admin@#{App.email_url}",
-  sales:      "sales@#{App.email_url}",
-  support:    "support@#{App.email_url}",
-  accounting: "accounts@#{App.email_url}",
-  noreply:    "no-reply@#{App.email_url}"
+  admin:      "admin@bitstars.ph",
+  sales:      "support@bitstars.ph",
+  support:    "support@bitstars.ph",
+  accounting: "support@bitstars.ph"
 }
 
-App.emails.support = "luis@bitmarket.ph"
+# App.emails.support = "luis@bitmarket.ph"
 
 App.timezone = "GMT+8"
 
@@ -96,6 +95,14 @@ App.currencies = [
   { symbol: "SG$",      slug: "SGD", name: "Singaporean Dollar" },
   { symbol: "HK$",     slug: "HKD", name: "Hong Kong Dollar" }
 ]
+
+App.flag_reasons = [
+  { slug: :not_selfie, description: "This is not a selfie" },
+  { slug: :nsfw,       description: "This contains nudity" },
+  { slug: :fake,       description: "This photo is a fake" }
+]
+# if you add more flag reasons, don't forget to add the corresponding slugs to Photo.rb's make_flaggable call
+
 
 App.charities = [
   {

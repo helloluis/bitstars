@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520003704) do
+ActiveRecord::Schema.define(version: 20140521080310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(version: 20140520003704) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "flaggings", force: true do |t|
+    t.string   "flaggable_type"
+    t.integer  "flaggable_id"
+    t.string   "flagger_type"
+    t.integer  "flagger_id"
+    t.string   "flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "flaggings", ["flag", "flaggable_type", "flaggable_id"], name: "index_flaggings_on_flag_and_flaggable_type_and_flaggable_id", using: :btree
+  add_index "flaggings", ["flag", "flagger_type", "flagger_id", "flaggable_type", "flaggable_id"], name: "access_flag_flaggings", using: :btree
+  add_index "flaggings", ["flaggable_type", "flaggable_id"], name: "index_flaggings_on_flaggable_type_and_flaggable_id", using: :btree
+  add_index "flaggings", ["flagger_type", "flagger_id", "flaggable_type", "flaggable_id"], name: "access_flaggings", using: :btree
 
   create_table "likes", force: true do |t|
     t.integer  "photo_id"
@@ -56,6 +71,17 @@ ActiveRecord::Schema.define(version: 20140520003704) do
   add_index "photos", ["user_id", "provider", "original_id"], name: "index_photos_on_original_provider_id", using: :btree
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
   add_index "photos", ["winner", "created_at"], name: "index_photos_on_daily_winner", using: :btree
+
+  create_table "prizes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.float    "amount_in_sats"
+    t.boolean  "revoked",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prizes", ["user_id", "photo_id"], name: "index_prizes_on_user_id_and_photo_id", using: :btree
 
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false

@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!, except: [ :show ]
+  before_filter :authenticate_user!, except: [ :show, :index ]
 
+  def index
+
+  end
+  
   def edit
     @user = current_user
   end
@@ -23,6 +27,9 @@ class UsersController < ApplicationController
 
   def select_photos
     @retrieved_photos = current_user.retrieve_photos
+  rescue Koala::Facebook::AuthenticationError => e 
+    flash[:error] = "Please login to Facebook again."
+    redirect_to root_path
   end
 
   def photos
@@ -32,7 +39,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id]) #find_by_username(params[:id])
-    @photos = @user.photos.page(params[:page]).per('20')
+    @photos = @user.photos.qualified.page(params[:page]).per('20')
   end
 
 end

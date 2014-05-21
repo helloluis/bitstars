@@ -3,7 +3,11 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   has_many :tips
   has_many :likes
+  has_one :prize
+
   before_create :check_eligibility
+
+  make_flaggable :not_selfie, :nsfw, :fake
 
   serialize :images
 
@@ -11,22 +15,31 @@ class Photo < ActiveRecord::Base
   validate :check_max_submission, on: :create
 
   def self.winners
-    where(["disqualified=false AND winner=true"]).order("created_at DESC")
+    where(["disqualified!=true AND winner=true"]).order("created_at DESC")
+  end
+
+  def self.todays_winner
+    where(["disqualified!=true AND winner=true AND created_at>=?",Time.now.beginning_of_day])
   end
 
   def self.today
-    where(["disqualified=false AND created_at>=?",Time.now.beginning_of_day]).
+    where(["disqualified!=true AND created_at>=?",Time.now.beginning_of_day]).
     order("num_likes DESC, num_views DESC")
   end
 
   def self.yesterday(limit=10)
-    where(["disqualified=false AND created_at>=? AND created_at<?",Time.now.yesterday.beginning_of_day,Time.now.beginning_of_day]).
+    where(["disqualified!=true AND created_at>=? AND created_at<?",Time.now.yesterday.beginning_of_day,Time.now.beginning_of_day]).
     order("num_likes DESC, num_views DESC").
     limit(limit)
   end
 
+  def self.by_date(date)
+    where(["disqualified!=true AND created_at>=? AND created_at<?",date,date+1.day]).
+    order("num_likes DESC, num_views DESC")
+  end
+
   def self.random(like_count=0, view_count=0, today=false)
-    sql = ["disqualified=false"]
+    sql = ["disqualified!=true"]
     sql[0] += " AND num_likes>=#{like_count.to_i}" if like_count && like_count.to_i>0
     sql[0] += " AND num_views>=#{view_count.to_i}" if view_count && view_count.to_i>0
     if today
@@ -39,7 +52,7 @@ class Photo < ActiveRecord::Base
 
   def position_today
     if num_likes > 0 && created_at>=Time.now.beginning_of_day
-      if photos_today = Photo.where(["disqualified=false AND created_at>=?",Time.now.beginning_of_day]).order("num_likes DESC, num_views DESC").select(:id).limit(20)
+      if photos_today = Photo.where(["disqualified!=true AND created_at>=?",Time.now.beginning_of_day]).order("num_likes DESC, num_views DESC").select(:id).limit(20)
         photo_ids = photos_today.map(&:id)
         hash = Hash[photo_ids.map.with_index.to_a]
         hash.keys.include?(id) ? (hash[id]+1) : false
@@ -53,16 +66,38 @@ class Photo < ActiveRecord::Base
 
   def win!
     if user.has_won_recently?
-      errors.add(:base, "This user has won already within the last #{App.winner_lockout} and can't be awarded again.") 
+      
+      errors.add(:base, "This user has won already within the last #{App.winner_lockout/86400} days and can't be awarded again.") 
+
     else
+      
+      date_of_photo = self.created_at
+      
+      Photo.where("winner=true AND created_at>=? AND created_at<?", date_of_photo.beginning_of_day, date_of_photo+1.day).update_all(winner: false)
+      
       self.update_attributes(winner: true)
+
+      Prize.create(user: user, photo: self)
+      
       user.update_attributes(last_won_on: Time.now, has_won: true)
-      UserMailer.notify_winner(self).deliver
+      
     end
   end
 
+  def unwin!
+    self.update_attributes(winner: false)
+  end
+
+  def disqualify!
+    self.update_attributes(disqualified: true, winner: false)
+  end
+
+  def requalify!
+    self.update_attributes(disqualified: false)
+  end
+
   def self.candidates_for_today
-    self.where(["disqualified=false AND eligible=true AND created_at>=?", Time.now.beginning_of_day])
+    self.where(["disqualified!=true AND eligible=true AND created_at>=?", Time.now.beginning_of_day])
   end
 
   def check_eligibility
@@ -103,11 +138,11 @@ class Photo < ActiveRecord::Base
   end
 
   def next_photo
-    self.class.unscoped.where("disqualified=false AND id>?", id).order("created_at ASC").first
+    self.class.unscoped.where("disqualified!=true AND id>?", id).order("created_at ASC").first
   end
 
   def prev_photo
-    self.class.unscoped.where("disqualified=false AND id<?", id).order("created_at ASC").first
+    self.class.unscoped.where("disqualified!=true AND id<?", id).order("created_at ASC").first
   end
 
 end

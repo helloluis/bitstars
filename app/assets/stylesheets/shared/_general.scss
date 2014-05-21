@@ -23,6 +23,36 @@ html, body {
   //  FOR MOBILE
 }
 
+h1,
+.h1 {
+  font-size: rem-calc(36px);
+}
+
+h2,
+.h2 {
+  font-size: rem-calc(30px);
+}
+
+h3,
+.h3 {
+  font-size: rem-calc(24px);
+}
+
+h4,
+.h4 {
+  font-size: rem-calc(18px);
+}
+
+h5,
+.h5 {
+  font-size: rem-calc(14px);
+}
+
+h6,
+.h6 {
+  font-size: rem-calc(12px);
+}
+
 h1,h2,h3,h4,h5,h6 {
   @include fontstack('primary',300);
   color:#444;
@@ -104,6 +134,23 @@ p {
 
 .navbar {
   margin-bottom:0px;
+
+  &.main-nav {
+    text-align: center;
+    float: none;
+    width: 100%;
+
+    li {
+      float: none
+    }
+  }
+
+  @media (min-width:$screen-md-min) {
+    &.main-nav {
+      float: right;
+      width:auto;
+    }
+  }
 }
 
 .modal-dialog {
@@ -201,8 +248,8 @@ dl {
 
 footer {
   background-color:#ddd;
-  font-size:13px;
-  padding-top:20px;
+  font-size:rem-calc(13px);
+  padding-top:rem-calc(20px);
   ul{
     list-style-type:none;
     overflow:hidden;
@@ -210,7 +257,7 @@ footer {
     padding:0px;
     li {
       float:left;
-      margin-right:10px;
+      margin-right:rem-calc(10px);
     } 
   } 
 }
@@ -291,13 +338,63 @@ img.flag {
     margin-top:15px;
     margin-bottom:0px;
   }
+  .request_withdrawal_funds {
+    color:#fff !important;
+    &:hover {
+      background-color: #219524 !important;
+    }
+  }
 }
 
 .landing-panel {
   .or {
-    font-size:24px;
+    font-size:rem-calc(24px);
     font-weight:bold;
     margin:0px;
     padding:0px;
   }
+}
+
+.social_buttons .pinterest a {
+  margin-bottom:-45px;
+}
+
+ol,ul {
+  &.nolist {
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+  }
+}
+
+.navbar.navbar-default-admin {
+  background:#f70;
+  color:#fff;
+  height:auto;
+  min-height:auto;
+  padding:5px 0px;
+  p {
+    margin:0px;
+    padding:0px;
+    a {
+      color:#fc0;
+    }
+  }
+}
+
+ul,ol {
+  &.admin-tools {
+    border:1px solid #f70;
+    padding:5px 15px;
+    margin-bottom:20px;
+    display:block;
+    li {
+      font-size:13px;
+      line-height:24px;
+    }
+  }
+}
+
+.disqualified {
+  color:#900;
 }

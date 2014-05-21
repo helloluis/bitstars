@@ -38,6 +38,7 @@ class TipsController < ApplicationController
     if current_user.has_withdrawable_funds?
       UserMailer.request_withdrawal(current_user).deliver
     end
+    render :nothing => true
   end
 
 end

@@ -17,15 +17,25 @@ class User < ActiveRecord::Base
     def winners
       where(["winner=true AND disqualified=false"]).order("created_at DESC")
     end
+
+    def qualified
+      where(["disqualified=false"])
+    end
   end
 
-  has_many :received_tips, class_name: "TipPayment", foreign_key: "recipient_id" do 
-    
+  has_many :prizes do 
+    def confirmed
+      where("revoked!=true")
+    end
+
+    def revoked
+      where("revoked=true")
+    end
   end
 
-  has_many :sent_tips, class_name: "TipPayment", foreign_key: "sender_id" do 
-    
-  end
+  has_many :received_tips, class_name: "TipPayment", foreign_key: "recipient_id"
+  
+  has_many :sent_tips, class_name: "TipPayment", foreign_key: "sender_id"
   
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable,
@@ -33,6 +43,8 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
 
+  make_flagger
+  
   after_initialize :init_default_values
 
   def init_default_values
@@ -82,6 +94,10 @@ class User < ActiveRecord::Base
     user
   end
 
+  def is_admin?
+    email && App.emails.values.include?(email)
+  end
+
   def has_completed_profile?
     !email.blank? && !phone.blank? && !address.blank? && !city.blank?
   end
@@ -111,12 +127,20 @@ class User < ActiveRecord::Base
   end
 
   def calculate_total_earnings!
-    received_tips.map(&:final_amount_in_sats).sum
+    tips                = self.received_tips.map(&:final_amount_in_sats).sum
+    prizes              = self.prizes.confirmed.map(&:amount_in_sats).sum
+    self.total_tips     = tips
+    self.total_winnings = prizes
+    self.total_earnings = tips + prizes
     save
   end
 
   def total_earnings_in_mbtc
     total_earnings/10000
+  end
+
+  def location
+    [ city, country ].reject{|r|r.blank?}.join(", ")
   end
 
   # def generate_tip_address!(force=false)
