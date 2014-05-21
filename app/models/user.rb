@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
   end
 
   def location
-    [ city, country ].compact.join(", ")
+    [ city, country ].reject{|r|r.blank?}.join(", ")
   end
 
   # def generate_tip_address!(force=false)
