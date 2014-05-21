@@ -1,8 +1,12 @@
 class PhotosController < ApplicationController
 
+  include ApplicationHelper
+
+  before_filter :get_photo, :except => [ :index, :by_date, :batch_create, :not_found, :winners ]
+
   before_filter :authenticate_user!, :except => [ :index, :show, :by_date, :not_found, :winners  ]
 
-  before_filter :get_photo, :except => [ :index, :batch_create, :not_found, :winners ]
+  before_filter :authenticate_admin!, :only => [ :set_winner, :unset_winner, :disqualify, :requalify ]
 
   before_filter :get_rates, :only => [ :index, :show, :by_date ]
 
@@ -75,11 +79,37 @@ class PhotosController < ApplicationController
     @photos      = Photo.by_date(@date)
   end
 
+  def set_winner
+    @photo.win!
+    return redirect_to photo_path(@photo)
+  end
+
+  def unset_winner
+    @photo.unwin!
+    return redirect_to photo_path(@photo)
+  end
+
+  def disqualify
+    @photo.disqualify!
+    return redirect_to photo_path(@photo)
+  end
+
+  def requalify
+    @photo.requalify!
+    return redirect_to photo_path(@photo)
+  end
+
   protected
 
     def get_photo
-      unless (@photo = Photo.where("disqualified=false AND id=?", params[:id]).first)
-        redirect_to not_found_photos_path
+      if user_is_admin?
+        unless (@photo = Photo.find(params[:id]))
+          redirect_to not_found_photos_path
+        end
+      else
+        unless (@photo = Photo.where("disqualified=false AND id=?", params[:id]).first)
+          redirect_to not_found_photos_path
+        end
       end
     end
 
@@ -87,4 +117,16 @@ class PhotosController < ApplicationController
       @rates = CurrencyExchangeRates.refresh!(false,true)
       @rates_updated = CurrencyExchangeRates.last.updated_at
     end
+
+    def authenticate_admin!
+      if user_signed_in?
+        unless current_user.is_admin?
+          flash[:alert] = "You are not an administrator."
+          return redirect_to photo_path(@photo)
+        end
+      else
+        return redirect_to photo_path(@photo)
+      end
+    end
+
 end

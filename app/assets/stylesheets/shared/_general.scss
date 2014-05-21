@@ -337,6 +337,12 @@ img.flag {
     margin-top:15px;
     margin-bottom:0px;
   }
+  .request_withdrawal_funds {
+    color:#fff !important;
+    &:hover {
+      background-color: #219524 !important;
+    }
+  }
 }
 
 .landing-panel {
@@ -358,4 +364,36 @@ ol,ul {
     margin:0px;
     padding:0px;
   }
+}
+
+.navbar.navbar-default-admin {
+  background:#f70;
+  color:#fff;
+  height:auto;
+  min-height:auto;
+  padding:5px 0px;
+  p {
+    margin:0px;
+    padding:0px;
+    a {
+      color:#fc0;
+    }
+  }
+}
+
+ul,ol {
+  &.admin-tools {
+    border:1px solid #f70;
+    padding:5px 15px;
+    margin-bottom:20px;
+    display:block;
+    li {
+      font-size:13px;
+      line-height:24px;
+    }
+  }
+}
+
+.disqualified {
+  color:#900;
 }

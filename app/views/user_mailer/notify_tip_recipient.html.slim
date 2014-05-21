@@ -1,2 +1,34 @@
 h1
-  | You received a tip!
+  | Congratulations, you just received a tip from 
+  a href=user_url(@sender) = @sender.full_name
+  | !
+
+img src=@photo.images[:low] width=500
+
+blockquote
+  p = @tip.message
+
+p
+  em
+    | Original Amount
+  br
+  strong
+    == number_to_currency(@payment.original_amount_in_sats/100000000, unit: '&#3647;'.html_safe)
+
+p
+  em Transaction Fee (#{App.transaction_fee_percentage*100}%)
+  br
+  strong
+    == number_to_currency(@payment.transaction_fee/100000000, unit: '&#3647;'.html_safe)
+
+p
+  em Final Amount
+  br
+  strong
+    == number_to_currency(@payment.final_amount_in_sats/100000000, unit: '&#3647;'.html_safe)
+
+p
+  | Thank you!
+
+p
+  | The #{App.name} team

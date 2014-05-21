@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521014251) do
+ActiveRecord::Schema.define(version: 20140521080310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(version: 20140521014251) do
   add_index "photos", ["user_id", "provider", "original_id"], name: "index_photos_on_original_provider_id", using: :btree
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
   add_index "photos", ["winner", "created_at"], name: "index_photos_on_daily_winner", using: :btree
+
+  create_table "prizes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.float    "amount_in_sats"
+    t.boolean  "revoked",        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prizes", ["user_id", "photo_id"], name: "index_prizes_on_user_id_and_photo_id", using: :btree
 
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
