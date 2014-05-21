@@ -19,13 +19,12 @@ App.currency = "BTC"
 
 App.emails = {
   admin:      "admin@#{App.email_url}",
-  sales:      "sales@#{App.email_url}",
+  sales:      "support@#{App.email_url}",
   support:    "support@#{App.email_url}",
-  accounting: "accounts@#{App.email_url}",
-  noreply:    "no-reply@#{App.email_url}"
+  accounting: "support@#{App.email_url}"
 }
 
-App.emails.support = "luis@bitmarket.ph"
+# App.emails.support = "luis@bitmarket.ph"
 
 App.timezone = "GMT+8"
 
