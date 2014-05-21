@@ -1,3 +1,8 @@
 
 h3 
   | Hey, you won!
+
+p
+  | Congratulations! You've won Selfie of the Day for #{@photo.created_at.strftime("%d %B %Y")}.
+
+= image_tag @photo.images[:low]

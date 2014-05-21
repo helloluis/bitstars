@@ -16,6 +16,10 @@ class Photo < ActiveRecord::Base
     where(["disqualified!=true AND winner=true"]).order("created_at DESC")
   end
 
+  def self.todays_winner
+    where(["disqualified!=true AND winner=true AND created_at>=?",Time.now.beginning_of_day])
+  end
+
   def self.today
     where(["disqualified!=true AND created_at>=?",Time.now.beginning_of_day]).
     order("num_likes DESC, num_views DESC")
