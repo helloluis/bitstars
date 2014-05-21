@@ -27,6 +27,11 @@ class Photo < ActiveRecord::Base
     limit(limit)
   end
 
+  def self.by_date(date)
+    where(["disqualified=false AND created_at>=? AND created_at<?",date,date+1.day]).
+    order("num_likes DESC, num_views DESC")
+  end
+
   def self.random(like_count=0, view_count=0, today=false)
     sql = ["disqualified=false"]
     sql[0] += " AND num_likes>=#{like_count.to_i}" if like_count && like_count.to_i>0

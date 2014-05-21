@@ -1,10 +1,10 @@
 class PhotosController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [ :index, :show  ]
+  before_filter :authenticate_user!, :except => [ :index, :show, :by_date  ]
 
   before_filter :get_photo, :except => [ :index, :batch_create ]
 
-  before_filter :get_rates, :only => [ :index, :show ]
+  before_filter :get_rates, :only => [ :index, :show, :by_date ]
 
   def index
     @photo = Photo.random(params[:view_count], params[:like_count], params[:today])
@@ -66,6 +66,13 @@ class PhotosController < ApplicationController
     current_user.unflag!(@photo, params[:flag]) if @photo.flagged_by?(current_user, params[:flag])
     flash[:notice] = "We've removed your flag request on that item."
     redirect_to :action => :show
+  end
+
+  def by_date
+    @date   = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
+    @date_after = @date+1.day
+    @date_before = @date-1.day
+    @photos = Photo.by_date(@date)
   end
 
   protected

@@ -23,6 +23,12 @@ div class="container"
           small = Time.now.yesterday.strftime("%d %B %Y")
         = render :partial => "photos/list", locals: { photos: @photos_yesterday }
 
+      div.clearfix
+
+        = link_to "More Photos ...", photos_by_date_path(two_days_ago), class: 'btn btn-block btn-primary btn-lg'
+
+      div class='clearfix' style='margin-bottom:20px'
+    
     aside class="sidebar col-md-4"
       div class='panel landing-panel'
         

@@ -58,4 +58,13 @@ module ApplicationHelper
       str
     end
   end
+
+  def two_days_ago
+    2.days.ago.beginning_of_day
+  end
+
+  def photos_by_date_path(date)
+    "/photos/#{date.strftime("%Y")}/#{date.strftime("%m")}/#{date.strftime("%d")}"
+  end
+
 end
