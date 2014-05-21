@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     end
     collection do 
       post :batch_create
+      get  :winners
       get  :not_found
       get  "/:year/:month/:day" => "photos#by_date"
     end
@@ -43,7 +44,6 @@ Rails.application.routes.draw do
   get "/privacy" => "static#privacy"
   get "/contact" => "static#contact"
 
-  get "/winners"              => "photos#winners"
   get "/select_your_entries"  => "users#select_photos"
   get "/your_entries"         => "users#photos"
   get "/edit_profile"         => "users#edit"
