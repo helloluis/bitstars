@@ -1,17 +1,19 @@
 header class='nav navbar-default user-nav'
   div class='container'
     div class='navbar-left'
-      h1 = t(:tips)
+      h1 
+        = t(:your_tips)
+        / | &nbsp;
+        / small = link_to "&larr; back".html_safe, "/your_entries"
 
     ul class='nav navbar-nav navbar-right'
-      li = link_to "&larr; Back".html_safe, "/your_entries", class:"default-font"
-      li = link_to "#{t(:tips)} (#{number_to_currency(current_user.total_tips,unit:'&#3647;'.html_safe)})".html_safe, tips_path, class: 'default-font active'
-      li = link_to "#{t(:winnings)} (#{number_to_currency(current_user.total_winnings,unit:'&#3647;'.html_safe)})".html_safe, winnings_path, class: 'default-font'
-      li
+      li = link_to "#{t(:tips)} (#{to_mbtc(current_user.total_tips)})".html_safe, tips_path, class: 'default-font active', title: to_btc(current_user.total_tips)
+      li = link_to "#{t(:winnings)} (#{to_mbtc(current_user.total_winnings)})".html_safe, winnings_path, class: 'default-font', title: to_btc(current_user.total_winnings)
+      li 
         p.navbar-text 
           span = t(:total_earnings)
           | &nbsp;
-          strong class='default-font' = number_to_currency(current_user.total_earnings,unit:"&#3647;".html_safe)
+          strong class='default-font' title=to_btc(current_user.total_earnings) = "#{to_mbtc(current_user.total_earnings)}"
       li 
         - if current_user.has_withdrawable_funds?
           a class='btn btn-success btn-lg request_withdrawal_funds' href=request_withdrawal_tips_path Request Withdrawal
