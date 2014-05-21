@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def already_flagged?(photo)
-    return false if user_signed_in?
+    return false if user_signed_in? || !photo
     App.flag_reasons.each do |reason|
       return "already_flagged" if photo.flagged_by?(current_user, reason.slug)
     end
