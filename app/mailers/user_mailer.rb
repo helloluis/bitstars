@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   
-  default from: App.emails.support
+  default from: App.emails.admin
   layout "mailer"
   helper :application
 

@@ -291,6 +291,12 @@ img.flag {
     margin-top:15px;
     margin-bottom:0px;
   }
+  .request_withdrawal_funds {
+    color:#fff !important;
+    &:hover {
+      background-color: #219524 !important;
+    }
+  }
 }
 
 .landing-panel {

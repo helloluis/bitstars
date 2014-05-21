@@ -18,10 +18,10 @@ App.wallet = "1Brt3KNoAF6ovANZG3KpybpLhnAi1kWPc9" # Luis@sci.ventures / Blockcha
 App.currency = "BTC"
 
 App.emails = {
-  admin:      "admin@#{App.email_url}",
-  sales:      "support@#{App.email_url}",
-  support:    "support@#{App.email_url}",
-  accounting: "support@#{App.email_url}"
+  admin:      "admin@bitstars.ph",
+  sales:      "support@bitstars.ph",
+  support:    "support@bitstars.ph",
+  accounting: "support@bitstars.ph"
 }
 
 # App.emails.support = "luis@bitmarket.ph"
