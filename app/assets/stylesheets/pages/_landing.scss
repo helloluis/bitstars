@@ -100,3 +100,15 @@ section {
     color: #28b62c;
   }
 }
+
+.landing-panel {
+  .btn.btn-large {
+    font-size: rem-calc(20px);
+  }
+
+  @media (min-width:$screen-md-min) {
+    .btn.btn-large {
+      font-size: rem-calc(24px);
+    }
+  }
+}
