@@ -32,7 +32,9 @@ App.max_submissions_per_day = 3
 
 App.winner_lockout = 1.week
 
-App.minimum_tip = 0.0001
+App.minimum_tip = 0.00005
+
+App.maximum_tip = 2.0
 
 App.minimum_withdrawal = 0.025
 
@@ -60,6 +62,8 @@ App.services = {
     username: "wearebitstars",
     app_id:   "838918866136762",
     secret:   "4ca317ea59738dec88264e0e8798f0fc"
+    # app_id: "836953916333257",
+    # secret: "e367a62ee7d6ff94c3121ab4d7b044cd"
   },
   :twitter => {
     username: "wearebitstars",

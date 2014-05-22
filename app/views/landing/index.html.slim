@@ -1,10 +1,29 @@
 - content_for :page_scripts do
   javascript:
+    var prep_for_justify = function(){
+      $(".intro").find(".intro-1, .intro-2, .intro-3, .intro-4, .intro-5").each(function(){
+        $(this).attr('data-text', $(this).text());
+      });
+      },
+    justify = function(){
+      $(".intro").find(".intro-1, .intro-2, .intro-3, .intro-4, .intro-5").each(function(){
+        $(this).text( $(this).attr('data-text') );
+      }).
+      lineJustify();
+    };
+    
     $(function(){
-      $(".intro").find(".intro-1, .intro-2, .intro-3, .intro-4, .intro-5").lineJustify();
+      
+      prep_for_justify();
+
       $(".photos").imagesLoaded(function(){
         $(".photos").masonry({ itemSelector: ".photo" });
       });
+      
+      $(window).resize(_.throttle(justify,100));
+      
+      justify();
+
     });
 
 div class="container"
@@ -46,34 +65,37 @@ div class="container"
       div class='panel landing-panel'
         
         div class='panel-heading'
-          h2 class='intro'
-            span class='intro-1' 
-              | Submit your selfies 
-            span class='intro-2' and win up to 
-            span class='intro-3' == number_to_currency(App.daily_prize_in_php,unit:"&#8369;".html_safe)
-            span class='intro-4' 
+          div class='intro'
+            p class='intro-1' 
+              | Submit your selfies
+            p class='intro-2' 
+              | and win up to
+            p class='intro-3' 
+              == number_to_currency(App.daily_prize_in_php,unit:"&#8369;".html_safe)
+            p class='intro-4' 
               | (that's 0.02 Bitcoin)
-            span class='intro-5' every single day!
+            p class='intro-5' 
+              | every single day!
 
         div class='panel-body'
           - if user_signed_in?
             div class='user-well'
               div class='pull-left'
-                = link_to image_tag(current_user.avatar, class: 'avatar'), current_user.provider_link
+                = link_to image_tag(current_user.avatar, class: 'avatar'), user_path(current_user)
               div class='pull-left'
                 p 
                   strong
-                    | Signed in as<br />#{link_to current_user.username, current_user.provider_link}
+                    | Signed in as<br />#{link_to current_user.username, user_path(current_user)}
                   br
                   small 
                     | Tips 
                     span class='default-font'
-                      strong = number_to_currency(current_user.total_tips,unit:"&#3647;".html_safe)
+                      strong = to_mbtc(current_user.total_tips)
                   br
                   small 
                     | Total Earnings 
                     span class='default-font'
-                      strong = number_to_currency(current_user.total_earnings,unit:"&#3647;".html_safe)
+                      strong = to_mbtc(current_user.total_earnings)
             div.clearfix
             a href='/select_your_entries' class='btn btn-success btn-large btn-huge btn-block' = t(:submit_your_selfies)
             

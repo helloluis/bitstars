@@ -23,6 +23,36 @@ html, body {
   //  FOR MOBILE
 }
 
+h1,
+.h1 {
+  font-size: rem-calc(36px);
+}
+
+h2,
+.h2 {
+  font-size: rem-calc(30px);
+}
+
+h3,
+.h3 {
+  font-size: rem-calc(24px);
+}
+
+h4,
+.h4 {
+  font-size: rem-calc(18px);
+}
+
+h5,
+.h5 {
+  font-size: rem-calc(14px);
+}
+
+h6,
+.h6 {
+  font-size: rem-calc(12px);
+}
+
 h1,h2,h3,h4,h5,h6 {
   @include fontstack('primary',300);
   color:#444;
@@ -56,6 +86,18 @@ p {
 // HEADER
 #branding {
   padding:rem-calc(10px) 0;
+  background:image-url('bg_masthead.png') bottom center repeat-x;
+  @include border-radius(0px);
+  border-width:0px 0px 4px 0px;
+  border-color:#246;
+  color:#fff;
+
+  .tagline {
+    color:#caf9ff;
+    text-shadow:1px 1px 0px #000; 
+    margin-bottom:0px;
+    padding-bottom:0px;
+  }
 
   .navbar-brand {
     margin: 0;
@@ -67,17 +109,27 @@ p {
   
   .navbar {
     border-width:0px;
+    min-height:40px;
   }
 
   .navbar-info {
+    background-color:transparent;
     margin-top:15px;
     ul {
       list-style-type:none;
       li {
         float:left;
         margin-right:10px;
+        color:#ccf;
         a {
           font-weight:bold;
+          color:#fff;
+        }
+        .dropdown-menu li a {
+          color:#246;
+          &:hover {
+            color:$highlight-color;
+          };
         }
       }
     }
@@ -88,7 +140,8 @@ p {
     margin:0px 10px 0px 0px;
     width:200px;
     height:53px;
-    background:image-url('logo.png');
+    background:image-url('logo_on_dark.png');
+    background-size:cover;
     text-indent:-4000px;
   }
 
@@ -104,6 +157,23 @@ p {
 
 .navbar {
   margin-bottom:0px;
+
+  &.main-nav {
+    text-align: center;
+    float: none;
+    width: 100%;
+
+    li {
+      float: none
+    }
+  }
+
+  @media (min-width:$screen-md-min) {
+    &.main-nav {
+      float: right;
+      width:auto;
+    }
+  }
 }
 
 .modal-dialog {
@@ -201,8 +271,8 @@ dl {
 
 footer {
   background-color:#ddd;
-  font-size:13px;
-  padding-top:20px;
+  font-size:rem-calc(13px);
+  padding-top:rem-calc(20px);
   ul{
     list-style-type:none;
     overflow:hidden;
@@ -210,7 +280,7 @@ footer {
     padding:0px;
     li {
       float:left;
-      margin-right:10px;
+      margin-right:rem-calc(10px);
     } 
   } 
 }
@@ -245,7 +315,7 @@ img.flag {
 }
 
 .btn.btn-huge {
-  font-size:24px;
+  font-size:22px;
 }
 
 .panel {
@@ -301,7 +371,7 @@ img.flag {
 
 .landing-panel {
   .or {
-    font-size:24px;
+    font-size:rem-calc(24px);
     font-weight:bold;
     margin:0px;
     padding:0px;
@@ -350,4 +420,18 @@ ul,ol {
 
 .disqualified {
   color:#900;
+}
+
+header.user-header {
+  .avatar {
+    width:50px;
+    height:50px;
+    margin:25px 20px 0px 0px;
+    border:1px solid #ccc;
+    padding:2px;
+  }
+  h1 {
+    margin-bottom:0px;
+    padding-bottom:0px;
+  }
 }

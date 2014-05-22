@@ -22,8 +22,9 @@ class PhotosController < ApplicationController
 
   def batch_create
     photos = []
+    photo_errors = []
     params[:photos].values.each do |p|
-      photos << Photo.create( user:         current_user,
+      photo = Photo.new( user:         current_user,
                     provider:     params[:provider], 
                     original_id:  p['id'],
                     description:  p['text'],
@@ -31,10 +32,17 @@ class PhotosController < ApplicationController
                       standard:   p['standard'], 
                       low:        p['low'],
                       thumbnail:  p['thumbnail']
-                      })
+                      },
+                    eligible: current_user.has_won_recently? )
+      if photo.valid? && photo.save
+        photos << photo 
+      else
+        logger.info photo.errors.inspect
+        photo_errors << photo.errors
+      end
     end
     respond_to do |format|
-      format.json { render :json => photos }
+      format.json { render :json => { photos: photos, errors: photo_errors } }
     end
   end
 

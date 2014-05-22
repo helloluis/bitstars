@@ -13,20 +13,27 @@ p
     | Original Amount
   br
   strong
-    == number_to_currency(@payment.original_amount_in_sats/100000000, unit: '&#3647;'.html_safe)
+    == to_mbtc(@payment.original_amount_in_sats)
 
 p
   em Transaction Fee (#{App.transaction_fee_percentage*100}%)
   br
   strong
-    == number_to_currency(@payment.transaction_fee/100000000, unit: '&#3647;'.html_safe)
+    == to_mbtc(@payment.transaction_fee)
 
 p
   em Final Amount
   br
   strong
-    == number_to_currency(@payment.final_amount_in_sats/100000000, unit: '&#3647;'.html_safe)
-
+    == to_mbtc(@payment.final_amount_in_sats)
+  br
+  small
+    | (
+    = to_btc(@payment.final_amount_in_sats)
+    |  or 
+    = to_php(@payment.final_amount_in_sats)
+    | )
+    
 p
   | Thank you!
 

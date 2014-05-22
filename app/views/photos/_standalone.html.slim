@@ -64,6 +64,9 @@ div class='col-md-4'
       - elsif @photo.position_today
         p class='position' 
           | Currently the ##{@photo.position_today} most popular selfie today!
+      - elsif @photo.user.has_won_recently?
+        p class='ineligible'
+          | This photo is not eligible to win today's contest because the owner has already won once this week.
       - elsif @photo.disqualified?
         p class='disqualified'
           | This photo is DISQUALIFIED.

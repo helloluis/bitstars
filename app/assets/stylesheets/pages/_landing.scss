@@ -98,5 +98,27 @@ section {
   }
   .intro-3 {
     color: #28b62c;
+    font-weight:bold;
   }
+}
+
+.landing-panel {
+  .btn.btn-large {
+    font-size: rem-calc(20px);
+  }
+
+  @media (min-width:$screen-md-min + 200) {
+    .btn.btn-large {
+      font-size: rem-calc(24px);
+    }
+  }
+}
+
+@media (max-width:960px) {
+  header.navbar .navbar {
+    text-align:center;
+  }
+  .main h1 {
+    font-size:rem-calc(24px);
+  }  
 }
