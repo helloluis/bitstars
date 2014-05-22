@@ -10,7 +10,7 @@ module SocialNetworks
     if provider=='instagram'
       
       if client = Instagram.client(:access_token => access_token)
-        client.user_recent_media(count: 40).each do |photo|
+        client.user_recent_media(count: 50).each do |photo|
           normalized_photos << {
             id:             photo.id,
             text:           (photo.caption ? photo.caption.text : ""),
