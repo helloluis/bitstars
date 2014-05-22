@@ -1,10 +1,29 @@
 - content_for :page_scripts do
   javascript:
+    var prep_for_justify = function(){
+      $(".intro").find(".intro-1, .intro-2, .intro-3, .intro-4, .intro-5").each(function(){
+        $(this).attr('data-text', $(this).text());
+      });
+      },
+    justify = function(){
+      $(".intro").find(".intro-1, .intro-2, .intro-3, .intro-4, .intro-5").each(function(){
+        $(this).text( $(this).attr('data-text') );
+      }).
+      lineJustify();
+    };
+    
     $(function(){
-      $(".intro").find(".intro-1, .intro-2, .intro-3, .intro-4, .intro-5").lineJustify();
+      
+      prep_for_justify();
+
       $(".photos").imagesLoaded(function(){
         $(".photos").masonry({ itemSelector: ".photo" });
       });
+      
+      $(window).resize(_.throttle(justify,100));
+      
+      justify();
+
     });
 
 div class="container"
@@ -46,14 +65,17 @@ div class="container"
       div class='panel landing-panel'
         
         div class='panel-heading'
-          h2 class='intro'
-            span class='intro-1' 
-              | Submit your selfies 
-            span class='intro-2' and win up to 
-            span class='intro-3' == number_to_currency(App.daily_prize_in_php,unit:"&#8369;".html_safe)
-            span class='intro-4' 
+          div class='intro'
+            p class='intro-1' 
+              | Submit your selfies
+            p class='intro-2' 
+              | and win up to
+            p class='intro-3' 
+              == number_to_currency(App.daily_prize_in_php,unit:"&#8369;".html_safe)
+            p class='intro-4' 
               | (that's 0.02 Bitcoin)
-            span class='intro-5' every single day!
+            p class='intro-5' 
+              | every single day!
 
         div class='panel-body'
           - if user_signed_in?

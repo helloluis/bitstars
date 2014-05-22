@@ -98,6 +98,7 @@ section {
   }
   .intro-3 {
     color: #28b62c;
+    font-weight:bold;
   }
 }
 
@@ -113,7 +114,7 @@ section {
   }
 }
 
-@media (max-width:768px) {
+@media (max-width:960px) {
   header.navbar .navbar {
     text-align:center;
   }

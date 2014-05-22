@@ -70,7 +70,7 @@
                .css({
                 "text-align": "justify",
                 "font-size": Math.floor(width/numOfStr) + "px"
-              })
+                })
                .text(str)
                .append("<br/>");
         
@@ -81,8 +81,7 @@
         
         span = adjustWidth(span, width);
         wrapped += $("<div />").append(span[0]).html();
-        // or just use outerHTML
-        // wrapped += span[0].outerHTML;
+       
       }
     }
     return wrapped;
