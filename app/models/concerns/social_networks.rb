@@ -28,7 +28,7 @@ module SocialNetworks
       
       graph = Koala::Facebook::API.new(access_token)
 
-      graph.get_connections("me","photos").each_with_index do |photo,i|
+      graph.get_connections("me","photos/uploaded").each_with_index do |photo,i|
         normalized_photos << {
           id:   photo['id'],
           text: [ (photo['message'] || nil),

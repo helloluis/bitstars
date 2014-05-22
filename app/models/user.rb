@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
   end
 
   # def generate_tip_address!(force=false)
-  #   if tip_address.blank? || force==true
+  #   if tip_address.blank? || force==trretuue
   #     callback_url = url_encode("http://#{App.url}/users/#{id}/callback_for_blockchain")
   #     if resp = Yajl::Parser.parse(open("https://blockchain.info/api/receive?method=create&address=#{App.wallet}&callback=#{callback_url}"))
   #       update_attributes(:tip_address => resp['input_address'])

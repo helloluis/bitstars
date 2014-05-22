@@ -96,12 +96,8 @@ class Photo < ActiveRecord::Base
     self.update_attributes(disqualified: false)
   end
 
-  def self.candidates_for_today
-    self.where(["disqualified!=true AND eligible=true AND created_at>=?", Time.now.beginning_of_day])
-  end
-
   def check_eligibility
-    self.eligible = !user.has_won_recently? && !nsfw
+    self.eligible = (!user.has_won_recently? && !nsfw)
   end
 
   def nsfw=(boolean)
