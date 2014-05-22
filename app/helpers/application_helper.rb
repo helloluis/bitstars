@@ -71,12 +71,24 @@ module ApplicationHelper
     user_signed_in? && current_user.is_admin?
   end
 
-  def to_mbtc(satoshis)
-    [number_with_precision(satoshis.to_i.to_f/10000, precision: 2),"mBTC"].join(" ")
+  def to_mbtc(satoshis, no_unit=false)
+    if no_unit
+      number_with_precision(satoshis.to_i.to_f/10000)
+    else
+      [number_with_precision(satoshis.to_i.to_f/10000, precision: 2),"mBTC"].join(" ")
+    end
   end
 
-  def to_btc(satoshis)
-    [number_with_precision(satoshis.to_i.to_f/100000000, precision: 6),"BTC"].join(" ")
+  def to_btc(satoshis, no_unit=false)
+    if no_unit
+      number_with_precision(satoshis.to_i.to_f/100000000, precision: 6)
+    else
+      [number_with_precision(satoshis.to_i.to_f/100000000, precision: 6),"BTC"].join(" ")
+    end
+  end
+
+  def to_php(satoshis)
+    number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "PHP")
   end
 
 end
