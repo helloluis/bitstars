@@ -68,12 +68,12 @@ div class="container"
                   small 
                     | Tips 
                     span class='default-font'
-                      strong = number_to_currency(current_user.total_tips,unit:"&#3647;".html_safe)
+                      strong = to_mbtc(current_user.total_tips)
                   br
                   small 
                     | Total Earnings 
                     span class='default-font'
-                      strong = number_to_currency(current_user.total_earnings,unit:"&#3647;".html_safe)
+                      strong = to_mbtc(current_user.total_earnings)
             div.clearfix
             a href='/select_your_entries' class='btn btn-success btn-large btn-huge btn-block' = t(:submit_your_selfies)
             
