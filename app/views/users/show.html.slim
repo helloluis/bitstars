@@ -1,11 +1,14 @@
 div class='container'
-  header
-    h1 
-      = @user.username
-      | &nbsp;
-      small = @user.full_name
-    p 
-      = link_to "Follow #{@user.username} on #{@user.provider}", @user.provider_link
-      
+  header class='user-header'
+    div class='pull-left'
+      img src=@user.avatar class='avatar'
+    div class='pull-left'
+      h1 
+        = @user.username
+        | &nbsp;
+        small = @user.full_name
+      p 
+        = link_to "Follow #{@user.username} on #{@user.provider}", @user.provider_link
+  div class='clearfix'
   div class='row'
     = render :partial => "photos/list", locals: { photos: @photos }

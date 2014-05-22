@@ -112,3 +112,12 @@ section {
     }
   }
 }
+
+@media (max-width:768px) {
+  header.navbar .navbar {
+    text-align:center;
+  }
+  .main h1 {
+    font-size:rem-calc(24px);
+  }  
+}

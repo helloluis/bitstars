@@ -26,7 +26,7 @@
         &.author {
           color:$primary-color;
           a {
-            @extend .primary_fontstack;
+            @extend .body_fontstack;
             font-size:16px;
           }
         }
@@ -56,8 +56,9 @@
       margin-bottom:5px;
       &.more_selfies{
         a { 
-          @extend .primary_fontstack;
-          font-size:rem-calc(30px);
+          @extend .body_fontstack;
+          font-size:rem-calc(24px);
+          font-style:italic;
           display:block;
           padding:50% 20px;
           text-align:center;
@@ -69,6 +70,21 @@
       border-right:4px solid #999;
       border-bottom:4px solid #999;
     }
+  }
+}
+
+@media (max-width:768px) {
+  .photos .photo {
+    width:49%;
+    .author {
+      font-size:rem-calc(13px);
+      line-height:1.1;
+    }
+    .thumbnail.more_selfies a {
+      @extend .body_fontstack;
+      font-size:rem-calc(16px);
+      line-height:1.2;
+    } 
   }
 }
 

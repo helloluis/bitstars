@@ -119,6 +119,8 @@ class User < ActiveRecord::Base
   end
 
   def provider_link
+    provider=='facebook' ?
+    "http://#{provider}.com/profile.php?id=#{uid}" :
     "http://#{provider}.com/#{username}"
   end
 
