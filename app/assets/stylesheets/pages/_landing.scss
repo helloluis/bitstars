@@ -114,11 +114,31 @@ section {
   }
 }
 
-@media (max-width:960px) {
-  header.navbar .navbar {
-    text-align:center;
+@media (max-width:1080px) {
+  #branding {
+    .navbar-brand {
+      float:none!important;
+    }
+    .navbar-header {
+      padding-top:10px;
+      width:100%;
+      clear:both;
+    }
+    .tagline {
+      font-size:rem-calc(14px);  
+    }
+    .main-nav.navbar-right {
+      float:none!important;
+      margin:0px 0px 10px -30px;
+      ul > li {
+        width:20%;
+        &.dot {
+          width:5%;
+        }
+      }
+    }
   }
   .main h1 {
     font-size:rem-calc(24px);
-  }  
+  }
 }

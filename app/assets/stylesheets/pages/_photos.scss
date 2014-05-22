@@ -30,7 +30,7 @@
             font-size:16px;
           }
         }
-        .date {
+        &.date {
           display:none;
         }
         &.likes {
@@ -82,18 +82,26 @@
   }
 }
 
-@media (max-width:960px) {
+@media (max-width:1080px) {
   .photos .photo {
     width:49%;
-    .author {
-      font-size:rem-calc(13px);
-      line-height:1.1;
+    .caption {
+      .author {
+        a {
+          font-size:rem-calc(14px) !important;
+        }
+        font-size:rem-calc(14px) !important;
+        line-height:1.1;
+      }  
     }
     .thumbnail.more_selfies a {
       @extend .body_fontstack;
       font-size:rem-calc(16px);
       line-height:1.2;
-    } 
+    }
+    .position {
+      font-size:rem-calc(16px) !important;
+    }
   }
 }
 
