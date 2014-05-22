@@ -43,6 +43,22 @@ module SocialNetworks
           size_thumbnail: photo['images'][2] ? [ photo['images'][2]['width'], photo['images'][2]['height'] ] : [ photo['width'], photo['height'] ]
         }
       end
+
+      graph.get_connections("me","photos").each_with_index do |photo,i|
+        normalized_photos << {
+          id:   photo['id'],
+          text: [ (photo['message'] || nil),
+                  (photo['from']  ? "From #{photo['from']['name']}" : nil), 
+                  (photo['place'] ? "At #{photo['place']['name']}"  : nil) ].
+                  compact.join("\n"),
+          low:            photo['images'][1] ? photo['images'][1]['source'] : photo['images'][0]['source'],
+          standard:       photo['images'][0]['source'],
+          thumbnail:      photo['images'][2] ? photo['images'][2]['source'] : photo['images'][0]['source'],
+          size_low:       photo['images'][1] ? [ photo['images'][1]['width'], photo['images'][1]['height'] ] : [ photo['width'], photo['height'] ],
+          size_standard:  [ photo['width'], photo['height'] ],
+          size_thumbnail: photo['images'][2] ? [ photo['images'][2]['width'], photo['images'][2]['height'] ] : [ photo['width'], photo['height'] ]
+        }
+      end
     end
     
     normalized_photos
