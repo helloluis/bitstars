@@ -3,6 +3,32 @@ module ApplicationHelper
     "BITST&#10029;RS - #{@page_title || App.tagline}"
   end
 
+  def page_open_graph_tags
+    str = ""
+    if @photo
+      str << content_tag(:meta,'',property:'og:title',content:"A selfie by #{@photo.user.username} on #{App.name}")
+      str << content_tag(:meta,'',property:'og:type',content:"photo")
+      str << content_tag(:meta,'',property:'og:description',content:@photo.description)
+      str << content_tag(:meta,'',property:'og:image',content:@photo.images[:low])
+      str << content_tag(:meta,'',property:'og:url',content:photo_url(@photo))
+      str << content_tag(:meta,'',property:'twitter:card',content:'summary')
+      str << content_tag(:meta,'',property:'twitter:site',content:App.services.twitter.username)
+      str << content_tag(:meta,'',property:'twitter:title',content:"A selfie by #{@photo.user.username} on #{App.name}")
+      str << content_tag(:meta,'',property:'twitter:description',content:@photo.description)
+    else
+      str << content_tag(:meta,'',property:'og:title',content:App.name)
+      str << content_tag(:meta,'',property:'og:type',content:"website")
+      str << content_tag(:meta,'',property:'og:description',content:App.tagline)
+      str << content_tag(:meta,'',property:'og:image',content:asset_url('logo.png'))
+      str << content_tag(:meta,'',property:'og:url',content:"http://#{App.url}")
+      str << content_tag(:meta,'',property:'twitter:card',content:'summary')
+      str << content_tag(:meta,'',property:'twitter:site',content:App.services.twitter.username)
+      str << content_tag(:meta,'',property:'twitter:title',content:App.name)
+      str << content_tag(:meta,'',property:'twitter:description',content:App.description)
+    end
+    str
+  end
+
   def already_entered?(photo, provider='instagram')
     "already_entered" if user_signed_in? && Photo.already_entered?(current_user.id, provider, photo['id'])
   end

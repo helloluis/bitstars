@@ -11,6 +11,7 @@ class PhotosController < ApplicationController
   before_filter :get_rates, :only => [ :index, :show, :by_date ]
 
   def index
+    @random = true
     @photo = Photo.random(params[:view_count], params[:like_count], params[:today])
   end
 
