@@ -57,12 +57,12 @@ App.services = {
     list_id:    ""
   },
   :facebook => {
-    username: "",
+    username: "wearebitstars",
     app_id:   "838918866136762",
     secret:   "4ca317ea59738dec88264e0e8798f0fc"
   },
   :twitter => {
-    username: "",
+    username: "wearebitstars",
     app_id:   "",
     secret:   ""
   },

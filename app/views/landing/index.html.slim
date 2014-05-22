@@ -19,7 +19,7 @@ div class="container"
         li class='photo'
           div class='thumbnail more_selfies'
             a href=photos_by_date_path(@today)
-              | More selfies from today ...
+              | See more selfies from today ...
       / = render :partial => "photos/list", locals: { photos: @photos }
 
       div.clearfix
@@ -34,7 +34,7 @@ div class="container"
           li class='photo'
             div class='thumbnail more_selfies'
               a href=photos_by_date_path(@yesterday)
-                | More selfies from yesterday ...
+                | See more selfies from yesterday ...
 
       div.clearfix
 
