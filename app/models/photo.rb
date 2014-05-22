@@ -5,8 +5,6 @@ class Photo < ActiveRecord::Base
   has_many :likes
   has_one :prize
 
-  before_create :check_eligibility
-
   make_flaggable :not_selfie, :nsfw, :fake
 
   serialize :images
@@ -94,10 +92,6 @@ class Photo < ActiveRecord::Base
 
   def requalify!
     self.update_attributes(disqualified: false)
-  end
-
-  def check_eligibility
-    self.eligible = (!user.has_won_recently? && !nsfw)
   end
 
   def nsfw=(boolean)

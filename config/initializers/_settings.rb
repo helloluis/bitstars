@@ -62,6 +62,8 @@ App.services = {
     username: "",
     app_id:   "838918866136762",
     secret:   "4ca317ea59738dec88264e0e8798f0fc"
+    # app_id: "836953916333257",
+    # secret: "e367a62ee7d6ff94c3121ab4d7b044cd"
   },
   :twitter => {
     username: "",
