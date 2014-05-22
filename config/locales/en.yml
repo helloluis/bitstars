@@ -45,3 +45,8 @@ en:
   tip_instructions: "Send your tip by scanning the QR Code or copying the Tip Address below. Once the tip has been confirmed, we'll notify the recipient and pass along your message, if any."
   your_tip_has_been_sent_successfully: "Your tip has been sent successfully!"
   youve_just_received_a_tip: "You've just received a tip!"
+  about: "About"
+  privacy: "Privacy"
+  contact: "Contact"
+  edit_profile: "Edit Profile"
+  logout: "Logout"

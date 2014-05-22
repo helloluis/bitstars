@@ -12,8 +12,6 @@ footer
           a href="/contact" = t(:contact)
         - if user_signed_in?
           li class="divider" &middot;
-          li = link_to "Edit Profile", edit_user_path(current_user)
-          li class="divider" &middot;
           li = link_to 'Logout', destroy_user_session_path, :method => :delete
       p
         | &copy; #{App.url} 2014
