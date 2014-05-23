@@ -114,34 +114,78 @@ section {
   }
 }
 
-@media (max-width:1080px) {
+@media (max-width:480px) {
   #branding {
     .navbar-brand {
       float:none!important;
+
     }
     .navbar-header {
-      padding-top:10px;
+      padding:10px 0px 0px 0px;
+      margin:0px;
       width:100%;
       clear:both;
+      text-align:center;
+    }
+    h1.logo {
+      width:150px;
+      height:40px;
+      margin-left:70px;
+      float:none!important;
     }
     .tagline {
-      font-size:rem-calc(14px);  
+      margin-top:0px;
+      font-size:rem-calc(10px);
+      display:block;
+      float:none!important;
+      width:100%;
     }
     .main-nav.navbar-right {
+      border-top:1px solid rgba(255,255,255,0.2);
       float:none!important;
-      margin:0px 0px 10px -30px;
+      padding-bottom:10px;
+      margin:0px 0px 15px 0px;
+      ul {
+        margin-left:10px;
+      }
       ul > li {
-        width:20%;
-        &.dot {
-          width:5%;
+        font-size:rem-calc(9px);
+        a {
+          font-weight:normal;
         }
       }
     }
   }
   .main h1 {
-    font-size:rem-calc(24px);
+    font-size:rem-calc(13px);
   }
   .main h2 {
-    font-size:rem-calc(20px);
+    font-size:rem-calc(11px);
+  }
+  .main {
+    h1, h2 {
+      small {
+        display:block;
+      }
+    }
+  }
+  .btn-lg {
+    font-size:rem-calc(10px);
+  }
+  .sidebar .panel {
+    .btn-huge {
+      font-size:rem-calc(10px);
+    }
+    .or {
+      font-size:rem-calc(8px);
+    }
+    .panel-nav {
+      .btn-primary, .btn-info, .btn-default {
+        font-size:rem-calc(7px) !important;
+      }
+    }
+  }
+  footer {
+    font-size:rem-calc(8px);
   }
 }

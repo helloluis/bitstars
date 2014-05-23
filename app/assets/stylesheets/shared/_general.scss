@@ -436,3 +436,14 @@ header.user-header {
   }
 }
 
+@media (max-width:480px) {
+  h1 {
+    font-size:rem-calc(12px);
+  }
+  h2, h3, h4 {
+    font-size:rem-calc(10px);
+  }
+  p, label {
+    font-size:rem-calc(8px);
+  }
+}
