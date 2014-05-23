@@ -30,30 +30,32 @@ div class="container"
   div class="row"
     div class="main col-md-8"
       h1 
-        | Today's Top Selfies 
+        = link_to "Today's Top Selfies &rarr;".html_safe, photos_by_date_path(@today)
+        | &nbsp;
         small = @today.strftime("%d %B %Y")
       ul class='photos #{with_position?}'
         - @photos.each_with_index do |photo,i|
           = render :partial => "photos/photo", locals: { photo: photo, position: (i+1) }
-        li class='photo'
-          div class='thumbnail more_selfies'
-            a href=photos_by_date_path(@today)
-              | See more selfies from today ...
+        / li class='photo'
+        /   div class='thumbnail more_selfies'
+        /     a href=photos_by_date_path(@today)
+        /       | See more selfies from today &rarr;
       / = render :partial => "photos/list", locals: { photos: @photos }
 
       div.clearfix
       
       - if @photos_yesterday
         h2
-          | Yesterday's Top 10 Selfies 
+          = link_to "Yesterday's Top 10 Selfies &rarr;".html_safe, photos_by_date_path(@yesterday)
+          | &nbsp;
           small = @yesterday.strftime("%d %B %Y")
         ul class='photos #{with_position?}'
           - @photos_yesterday.each_with_index do |photo,i|
             = render :partial => "photos/photo", locals: { photo: photo, position: (i+1) }
-          li class='photo'
-            div class='thumbnail more_selfies'
-              a href=photos_by_date_path(@yesterday)
-                | See more selfies from yesterday ...
+          / li class='photo'
+          /   div class='thumbnail more_selfies'
+          /     a href=photos_by_date_path(@yesterday)
+          /       | See more selfies from yesterday &rarr;
 
       div.clearfix
 

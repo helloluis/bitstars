@@ -9,22 +9,23 @@
 
 header id="branding" class="navbar navbar-default"
   div class="container"
-    div class="navbar navbar-left navbar-logo"
-      a href="/" title="#{App.name}: #{App.tagline}"
+    / div class="navbar navbar-left navbar-logo"
+    div class='navbar-header'
+      a href="/" title="#{App.name}: #{App.tagline}" class='navbar-brand'
         h1 class='logo' = App.name
       p class="tagline" = App.tagline
     
-    nav class='navbar navbar-default navbar-info main-nav' role='navigation'
+    nav class='navbar-info navbar-right main-nav' role='navigation'
       ul
         li
           a href="/photos"
             = t(:browse)
-        li
+        li.dot
           | &middot;
         li
           a href='/rules' 
             = t(:rules)
-        li
+        li.dot
           | &middot;
         - if user_signed_in?
           li class="dropdown"

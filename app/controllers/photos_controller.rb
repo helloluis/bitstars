@@ -85,7 +85,7 @@ class PhotosController < ApplicationController
     @date        = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
     @date_after  = @date+1.day
     @date_before = @date-1.day
-    @photos      = Photo.by_date(@date)
+    @photos      = Photo.by_date(@date).page(params[:page]).per(30)
   end
 
   def set_winner

@@ -85,7 +85,7 @@ p {
 
 // HEADER
 #branding {
-  padding:rem-calc(10px) 0;
+  //padding:rem-calc(10px) 0;
   background:image-url('bg_masthead.png') bottom center repeat-x;
   @include border-radius(0px);
   border-width:0px 0px 4px 0px;
@@ -101,7 +101,7 @@ p {
 
   .navbar-brand {
     margin: 0;
-    padding:15px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
     height:auto;
     width:50%;
     font-size: rem-calc(28px);
@@ -435,3 +435,4 @@ header.user-header {
     padding-bottom:0px;
   }
 }
+

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :photos do 
     def today
-      where(["entered_at>=? AND disqualified=false", Time.now.beginning_of_day])
+      where(["entered_at>=? AND disqualified=false", Time.now.in_time_zone.beginning_of_day])
     end
 
     def winners
@@ -145,19 +145,4 @@ class User < ActiveRecord::Base
     [ city, country ].reject{|r|r.blank?}.join(", ")
   end
 
-  # def generate_tip_address!(force=false)
-  #   if tip_address.blank? || force==true
-  #     callback_url = url_encode("http://#{App.url}/users/#{id}/callback_for_blockchain")
-  #     if resp = Yajl::Parser.parse(open("https://blockchain.info/api/receive?method=create&address=#{App.wallet}&callback=#{callback_url}"))
-  #       update_attributes(:tip_address => resp['input_address'])
-  #     end
-  #   end
-  #   tip_address
-  # end
-
-  # Friendly_Id code to only update the url for new records
-  # User.all.each{|u| u.slug=nil; u.save }
-  # def should_generate_new_friendly_id?
-  #   new_record? || slug.blank?
-  # end
 end

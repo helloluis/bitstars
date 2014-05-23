@@ -30,7 +30,7 @@
             font-size:16px;
           }
         }
-        .date {
+        &.date {
           display:none;
         }
         &.likes {
@@ -63,7 +63,7 @@
           font-size:rem-calc(20px);
           font-style:italic;
           display:block;
-          padding:50% 20px;
+          padding:20px ;
           text-align:center;
         }
       }
@@ -83,17 +83,34 @@
 }
 
 @media (min-width:960px) {
+  .container {
+    width:940px;
+  }
   .photos .photo {
     width:49%;
-    .author {
-      font-size:rem-calc(13px);
-      line-height:1.1;
+    .caption {
+      .author {
+        a {
+          font-size:rem-calc(14px) !important;
+        }
+        font-size:rem-calc(14px) !important;
+        line-height:1.1;
+      }  
     }
     .thumbnail.more_selfies a {
       @extend .body_fontstack;
       font-size:rem-calc(16px);
       line-height:1.2;
-    } 
+    }
+    .position {
+      font-size:rem-calc(16px) !important;
+    }
+  }
+}
+
+@media (max-width:480px) {
+  .photos .photo {
+    width:99%;
   }
 }
 

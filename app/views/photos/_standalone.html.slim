@@ -48,13 +48,13 @@ div class='col-md-4'
         p.photo-stats.likes_and_views
           span class='like_count' 
             strong = @photo.num_likes
-            |  likes
+          |  likes
           | &nbsp;&middot;&nbsp;
           span class='view_count' = pluralize(@photo.num_views,'view')
           | &nbsp;&middot;&nbsp;
           span class='tip_count' = pluralize(@photo.num_tips, 'tip')
           br
-          small class='created_at' = @photo.created_at.strftime("%d %B %Y")
+          small class='created_at' title=@photo.created_at.strftime("%d %B %Y, %H:%M%p") = @photo.created_at.strftime("%d %B %Y")
 
       div class='clearfix'
       - if @photo.winner?
