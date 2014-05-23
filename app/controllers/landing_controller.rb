@@ -2,8 +2,9 @@ class LandingController < ApplicationController
 
   def index
     @photos = Photo.today
-    @today  = Time.now.beginning_of_day
-    @yesterday = Time.now.yesterday.beginning_of_day
+    @time = Time.now.in_time_zone
+    @today  = @time.beginning_of_day
+    @yesterday = @time.yesterday.beginning_of_day
     @with_position = true
     @photos_yesterday = Photo.yesterday(10)
   end

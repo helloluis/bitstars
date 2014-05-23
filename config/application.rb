@@ -20,6 +20,6 @@ module Bitstars
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.sass.preferred_syntax = :scss
-    
+    config.time_zone = 'Singapore'    
   end
 end

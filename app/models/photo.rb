@@ -17,22 +17,23 @@ class Photo < ActiveRecord::Base
   end
 
   def self.todays_winner
-    where(["disqualified!=true AND winner=true AND created_at>=?",Time.now.beginning_of_day])
+    where(["disqualified!=true AND winner=true AND created_at>=?",Time.now.in_time_zone.beginning_of_day])
   end
 
   def self.today
-    where(["disqualified!=true AND created_at>=?",Time.now.beginning_of_day]).
+    where(["disqualified!=true AND created_at>=?",Time.now.in_time_zone.beginning_of_day]).
     order("num_likes DESC, num_views DESC")
   end
 
   def self.yesterday(limit=10)
-    where(["disqualified!=true AND created_at>=? AND created_at<?",Time.now.yesterday.beginning_of_day,Time.now.beginning_of_day]).
+    time = Time.now.in_time_zone
+    where(["disqualified!=true AND created_at>=? AND created_at<?",time.yesterday.beginning_of_day,time.beginning_of_day]).
     order("num_likes DESC, num_views DESC").
     limit(limit)
   end
 
   def self.by_date(date)
-    where(["disqualified!=true AND created_at>=? AND created_at<?",date,date+1.day]).
+    where(["disqualified!=true AND created_at>=? AND created_at<?",date.in_time_zone,date.in_time_zone+1.day]).
     order("num_likes DESC, num_views DESC")
   end
 
@@ -49,8 +50,9 @@ class Photo < ActiveRecord::Base
   end
 
   def position_today
-    if num_likes > 0 && created_at>=Time.now.beginning_of_day
-      if photos_today = Photo.where(["disqualified!=true AND created_at>=?",Time.now.beginning_of_day]).order("num_likes DESC, num_views DESC").select(:id).limit(20)
+    time = Time.now.in_time_zone
+    if num_likes > 0 && created_at>=time.beginning_of_day
+      if photos_today = Photo.where(["disqualified!=true AND created_at>=?",time.beginning_of_day]).order("num_likes DESC, num_views DESC").select(:id).limit(20)
         photo_ids = photos_today.map(&:id)
         hash = Hash[photo_ids.map.with_index.to_a]
         hash.keys.include?(id) ? (hash[id]+1) : false
@@ -116,7 +118,7 @@ class Photo < ActiveRecord::Base
   end
 
   def self.already_entered?(user_id, provider, photo_id)
-    where(["user_id=? AND provider=? AND original_id=? AND created_at>=?",user_id,provider,photo_id,Time.now.beginning_of_day]).exists?
+    where(["user_id=? AND provider=? AND original_id=? AND created_at>=?",user_id,provider,photo_id,Time.now.in_time_zone.beginning_of_day]).exists?
   end
 
   def liked_by?(user)

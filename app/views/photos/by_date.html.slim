@@ -16,3 +16,15 @@ div class='container standalone-image'
     div.row
       div.col-md-12
         = render :partial => "photos/list", locals: { photos: @photos }
+
+        = paginate @photos
+        
+- content_for :page_scripts do
+  javascript:
+    $(function(){
+      $("ul.photos").imagesLoaded(function(){
+        $("ul.photos").masonry({
+          itemSelector: ".photo"
+        });
+      });
+    });
