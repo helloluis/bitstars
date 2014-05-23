@@ -56,23 +56,11 @@
       }
     }
     .thumbnail {
-      border-color:#ccc;
       margin-bottom:5px;
-      &.more_selfies{
-        a { 
-          @extend .body_fontstack;
-          font-size:rem-calc(20px);
-          font-style:italic;
-          display:block;
-          padding:20px ;
-          text-align:center;
-        }
+      &:hover {
+        border-right:4px solid #999;
+        border-bottom:4px solid #999;  
       }
-    }
-    .thumbnail:hover{
-      border-color:#999;
-      border-right:4px solid #999;
-      border-bottom:4px solid #999;
     }
   }
 
@@ -83,8 +71,15 @@
   }
 }
 
+.thumbnail, .panel {
+  border-color:#ccc;
+  &:hover {
+    border-color:#999;
+  }
+}
+
 .thumbnail.thumbnail-winner {
-  border:1px solid #f60;
+  border:1px solid $primary-color;
   &:hover {
     border-color:#f60;
     border-right:4px solid #f60;

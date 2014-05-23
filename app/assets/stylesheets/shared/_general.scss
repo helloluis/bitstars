@@ -1,7 +1,7 @@
 html, body {
   font-size:$main-font-size;
   font-weight:200;
-  background: #FFF image-url('ticks_yellow.png');
+  background: #e8e6d3 image-url('ticks_yellow.png');
   @include fontstack('body');
   color:#666;
 
