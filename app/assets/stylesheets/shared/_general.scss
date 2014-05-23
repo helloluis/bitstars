@@ -1,8 +1,7 @@
 html, body {
   font-size:$main-font-size;
   font-weight:200;
-  background: #FFF;
-  @include background-size(contain);
+  background: #FFF image-url('ticks_yellow.png');
   @include fontstack('body');
   color:#666;
 
@@ -272,7 +271,7 @@ dl {
 }
 
 footer {
-  background-color:#ddd;
+  background-color:#ccb;
   font-size:rem-calc(13px);
   padding-top:rem-calc(20px);
   ul{
@@ -332,6 +331,10 @@ img.flag {
     overflow:hidden;
     margin-bottom:20px;
     font-size:14px;
+    p {
+      margin:0px;
+      padding:0px;
+    }
   }
 }
 

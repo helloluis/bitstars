@@ -2,7 +2,9 @@ var Selector = {
   
   max_entries : 3,
 
-  initialize : function(){
+  initialize : function(max_entries){
+    
+    this.max_entries = max_entries;
     
     this.initialize_masonry();
 

@@ -29,9 +29,11 @@ div class='container'
       a href="/edit_profile" Edit your profile here ...
 
   - if @photos && @photos.values.any?
+    div.user-entries-container
     - @photos.each do |date, photos|
-      h3 = date.strftime("%d %B %Y")
-      = render :partial => "photos/list", locals: { photos: photos }
+      div.user-entries
+        h3 = date.strftime("%d %B %Y")
+        = render :partial => "photos/list", locals: { photos: photos }
   - else
     p class='text-center'
       | Oops! We couldn't find any selfies.

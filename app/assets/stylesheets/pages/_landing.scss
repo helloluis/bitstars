@@ -103,6 +103,9 @@ section {
 }
 
 .landing-panel {
+  &.affix {
+    top:10px;
+  }
   .btn.btn-large {
     font-size: rem-calc(20px);
   }
