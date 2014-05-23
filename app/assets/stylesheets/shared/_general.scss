@@ -521,4 +521,10 @@ header.user-header {
   p, label, th, td, a {
     font-size:rem-calc(8px);
   }
+  .alert {
+    font-size:rem-calc(9px);
+    button {
+      font-size:rem-calc(11px);
+    }
+  }
 }
