@@ -276,9 +276,18 @@
   .panel {
     font-size:rem-calc(9px);
   }
+}
+
+@media (max-width:960px) {
   .standalone-image .heart-container {
     a, span.glyphicon-heart {
       font-size:rem-calc(12px);
     }
+  }
+}
+
+@media (min-width:481px) and (max-width:960px) {
+  .photos .photo {
+    width:49%;
   }
 }
