@@ -82,7 +82,7 @@
   }
 }
 
-@media (max-width:960px) {
+@media (min-width:960px) {
   .photos .photo {
     width:49%;
     .author {
@@ -124,7 +124,7 @@
     a {
       display:block;
       cursor:pointer;
-      font-size:rem-calc(28px);
+      font-size:rem-calc(24px);
       &:hover {
         .glyphicon-heart {
           color:#610;
