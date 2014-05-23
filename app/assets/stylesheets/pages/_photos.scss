@@ -82,7 +82,10 @@
   }
 }
 
-@media (max-width:1080px) {
+@media (min-width:980px) {
+  .container {
+    width:940px;
+  }
   .photos .photo {
     width:49%;
     .caption {
@@ -102,6 +105,12 @@
     .position {
       font-size:rem-calc(16px) !important;
     }
+  }
+}
+
+@media (max-width:480px) {
+  .photos .photo {
+    width:99%;
   }
 }
 

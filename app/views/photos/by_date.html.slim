@@ -4,13 +4,13 @@ div class='container standalone-image'
       h3 
         a href=photos_by_date_path(@date_after) 
           | &larr; 
-          = @date_after.strftime("%d %B %Y")
+          = @date_after.strftime("%d %B")
     div.col-md-6
       h1.text-center = @date.strftime("%d %B %Y")
     div.col-md-3
       h3.text-right
         a href=photos_by_date_path(@date_before)
-          = @date_before.strftime("%d %B %Y")
+          = @date_before.strftime("%d %B")
           | &rarr;
 
     div.row
@@ -18,7 +18,7 @@ div class='container standalone-image'
         = render :partial => "photos/list", locals: { photos: @photos }
 
         = paginate @photos
-        
+
 - content_for :page_scripts do
   javascript:
     $(function(){
