@@ -181,14 +181,16 @@ p {
   @include border-radius(5px);
 }
 
-.qr_code {
+#invoice {
   border:1px solid #ccc;
   padding:20px;
   margin: 0 auto;
-  text-align:center;
-  img {
-    margin: 0 auto 10px;
-    border:1px solid $primary-color;
+  .modal-body {
+    text-align:center;
+    img {
+      margin: 0 auto 10px;
+      border:1px solid $primary-color;
+    }
   }
 }
 
