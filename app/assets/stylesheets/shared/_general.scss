@@ -69,14 +69,9 @@ p {
   font-family: "Helvetica", "sans-serif" !important;
 }
 
-// a {
-//   color:$link-color;
-//   @include fontstack('secondary');
-// }
-
-// h1, h2, h3, h4, h5 {
-//   @include fontstack(primary);
-// }
+a {
+  color:$link-color;
+}
 
 .page-header {
   border:0 none;
@@ -124,11 +119,15 @@ p {
           font-weight:bold;
           color:#fff;
         }
-        .dropdown-menu li a {
-          color:#246;
-          &:hover {
-            color:$highlight-color;
-          };
+        .dropdown-menu {
+          background:#002532;
+          border-color:#015370;
+          li a {
+            color:#fff;
+            &:hover {
+              color:$highlight-color;
+            };
+          }  
         }
       }
     }
@@ -172,6 +171,12 @@ p {
       float: right;
       width:auto;
     }
+  }
+}
+
+.user-earnings-nav {
+  li {
+    margin-bottom:15px;
   }
 }
 
@@ -399,7 +404,7 @@ ol,ul {
   background:#f70;
   color:#fff;
   height:auto;
-  min-height:auto;
+  min-height:40px;
   padding:5px 0px;
   p {
     margin:0px;
@@ -438,6 +443,17 @@ header.user-header {
   h1 {
     margin-bottom:0px;
     padding-bottom:0px;
+  }
+}
+
+.jumbotron {
+  border-color:#ccb;
+  overflow:hidden;
+  .btn-lg {
+    font-size:rem-calc(28px);
+  }
+  #submit_btn {
+    margin-top:30px;
   }
 }
 
@@ -497,7 +513,7 @@ header.user-header {
     }
     .tagline {
       margin-top:10px;
-      font-size:rem-calc(10px);
+      font-size:rem-calc(14px);
     }
     .main-nav.navbar-right {
       float:none!important;
@@ -505,7 +521,7 @@ header.user-header {
       ul {
         margin:0px;
         li {
-          font-size:rem-calc(9px);
+          font-size:rem-calc(14px);
         }
       } 
     }
@@ -513,18 +529,18 @@ header.user-header {
 }
 @media (max-width:960px) {
   h1 {
-    font-size:rem-calc(12px);
+    font-size:rem-calc(20px);
   }
   h2, h3, h4 {
-    font-size:rem-calc(10px);
+    font-size:rem-calc(16px);
   }
-  p, label, th, td, a {
-    font-size:rem-calc(8px);
+  p, label, th, td {
+    font-size:rem-calc(14px);
   }
   .alert {
-    font-size:rem-calc(9px);
+    font-size:rem-calc(14px);
     button {
-      font-size:rem-calc(11px);
+      font-size:rem-calc(16px);
     }
   }
 }

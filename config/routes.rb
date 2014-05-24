@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get :callback_for_blockchain
     end
     collection do
+      get :sent
       get :request_withdrawal
     end
   end

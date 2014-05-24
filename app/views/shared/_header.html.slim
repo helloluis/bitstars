@@ -5,7 +5,7 @@
       small
         a href="/admin" Go to Dashboard
         | &nbsp;&middot;&nbsp;
-        a href="/users/sign_out" Logout
+        = link_to 'Logout', destroy_user_session_path, :method => :delete
 
 header id="branding" class="navbar navbar-default"
   div class="container"
@@ -34,13 +34,15 @@ header id="branding" class="navbar navbar-default"
               b class="caret"
             ul class="dropdown-menu"
               li
-                a href="/your_entries" Your Entries
+                a href="/your_entries" Your Selfies
               li
                 a href="/select_your_entries" Submit Selfies
               li
-                a href="/tips" Your Tips
+                a href="/winnings" Winning Selfies
               li
-                a href="/winnings" Your Winnings
+                a href="/tips" Tips Received
+              li
+                a href="/tips/sent" Tips Sent
               li
                 a href="/edit_profile" Your Profile
               li 

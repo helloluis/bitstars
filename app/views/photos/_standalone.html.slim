@@ -54,7 +54,8 @@ div class='col-md-4'
           | &nbsp;&middot;&nbsp;
           span class='tip_count' = pluralize(@photo.num_tips, 'tip')
           br
-          small class='created_at' title=@photo.created_at.strftime("%d %B %Y, %H:%M%p") = @photo.created_at.strftime("%d %B %Y")
+          small class='created_at' title=@photo.created_at.strftime("%d %B %Y, %H:%M%p") 
+            = link_to "#{@date.strftime("%d %B %Y")} &rarr;".html_safe, photos_by_date_path(@date)
 
       div class='clearfix'
       - if @photo.winner?

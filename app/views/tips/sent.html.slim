@@ -1,24 +1,25 @@
 div class='container standalone-container'
 
   div class='jumbotron'
-    h1 = t(:your_tips)
-    p = t(:youve_received_a_total_of_tips, tips: to_mbtc(current_user.total_tips))
+    h1 = t(:your_sent_tips)
+    p = t(:youve_sent_a_total_of_tips, tips: to_mbtc(current_user.total_tips_sent))
 
   div class='row'  
     div class='col-md-8'
+    
       div.tips-table-container
-        - if @received_tips.any?
-          table.tips.received_tips
+        - if @sent_tips.any?
+          table.tips.sent_tips
             tr.header
-              td.from From
+              td.from To
               td.amount Amount
               td.message Message
               td.date Date
-            = render @received_tips
+            = render @sent_tips
 
         - else
           p
-            | You haven't received any tips yet.
+            | You haven't tipped anyone yet.
 
     div class='col-md-4'
       div class='panel'

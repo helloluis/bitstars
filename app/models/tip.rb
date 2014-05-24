@@ -55,6 +55,7 @@ class Tip < ActiveRecord::Base
                               transaction_hash: hash[:transaction_hash])
     self.update_attributes(:actual_amount_in_sats => total_payments)
     self.success!
+    self.sender.calculate_total_tips_sent!
     self.recipient.calculate_total_earnings!
   end
 

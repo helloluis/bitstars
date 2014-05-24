@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140521080310) do
+ActiveRecord::Schema.define(version: 20140524015420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(version: 20140521080310) do
     t.string   "postal_code"
     t.boolean  "payout_to_charity",      default: false
     t.text     "charity",                default: "t"
+    t.float    "total_tips_sent",        default: 0.0
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree

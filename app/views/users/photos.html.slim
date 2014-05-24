@@ -6,21 +6,14 @@
       });
     });
 
-header class='nav navbar-default user-nav'
-  div class='container'
-    
-    div class='navbar-left'
-      h1 = t(:your_photos)
-    ul class='nav navbar-nav navbar-right'
-      li = link_to "#{t(:tips)} (#{to_mbtc(current_user.total_tips)})".html_safe, tips_path, class: 'default-font active', title: to_btc(current_user.total_tips)
-      li = link_to "#{t(:winnings)} (#{to_mbtc(current_user.total_winnings)})".html_safe, winnings_path, class: 'default-font', title: to_btc(current_user.total_winnings)
-      li 
-        p.navbar-text 
-          span = t(:total_earnings)
-          | &nbsp;
-          strong class='default-font' title=to_btc(current_user.total_earnings) = "#{to_mbtc(current_user.total_earnings)}"
+div class='container standalone-container'
+  div class='jumbotron'
+    h1 = t(:your_selfies)
+    p 
+      = t(:youve_submitted_num_selfies, num: current_user.photos.count)
+      | &nbsp;
+      = link_to t(:submit_more_selfies), "/select_your_entries"
 
-div class='container'
   - unless current_user.has_completed_profile?
     div class='alert alert-warning'
       strong 

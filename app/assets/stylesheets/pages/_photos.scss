@@ -176,10 +176,21 @@
 }
 
 .select_photos_header.affix {
-  background:#fff;
-  z-index:2;
+  z-index:3;
   width:100%;
   top:0px;
+  .jumbotron {
+    padding: 12px 60px;
+    h1 {
+      font-size:rem-calc(36px);
+    }
+    p {
+      font-size:rem-calc(16px);
+    }
+    .btn-lg {
+      margin-top:10px;
+    }
+  }
 }
 
 .panel-heading p {
@@ -274,10 +285,11 @@
   }
 }
 
-@media (max-width:960px) {
+@media (min-width:481px) and (max-width:960px) {
   .standalone-image .heart-container {
     a, span.glyphicon-heart {
-      font-size:rem-calc(12px);
+      font-size:rem-calc(20px);
+      line-height:36px;
     }
   }
 }

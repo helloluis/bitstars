@@ -38,9 +38,6 @@ div class='container standalone-container'
   div class='jumbotron'
     h1 
       | Edit Your Profile 
-      small
-        | or 
-        a href="/your_entries" go back to Your Stuff ...
     p Fill in all the fields below in order to be eligible for contest winnings and tips 
 
   = simple_form_for @user, html: { class: 'form-horizontal' } do |f|

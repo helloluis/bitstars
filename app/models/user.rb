@@ -137,6 +137,12 @@ class User < ActiveRecord::Base
     save
   end
 
+  def calculate_total_tips_sent!
+    tips = self.sent_tips.map(&:final_amount_in_sats).sum
+    self.total_tips_sent = tips
+    save
+  end
+
   def total_earnings_in_mbtc
     total_earnings/10000
   end

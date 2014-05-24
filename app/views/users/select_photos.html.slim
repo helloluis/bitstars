@@ -14,23 +14,21 @@ form action=batch_create_photos_path method='post' class='select_photos'
 
     
   header data-spy="affix" data-offset-top="100" class='select_photos_header'
-    div class='container'
-      h1 
-        = t(:select_your_photos)
-        | &nbsp;
-        small 
-          | or 
-          = link_to "go back to Your Stuff", "/your_entries"
-      p 
-        - if App.max_submissions_per_day>1
-          = t(:select_selfies_to_submit)
-        - else
-          = t(:select_one_selfie_to_submit)
-        | &nbsp;
-        span class='selected_photos_count' = current_user.photos.today.length
-        | /#{App.max_submissions_per_day} selected
-      p
-        input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-large'
+    div class='container standalone-container'
+      div class='jumbotron'
+        div class='pull-left'
+          h1 
+            = t(:select_your_photos)
+          p 
+            - if App.max_submissions_per_day>1
+              = t(:select_selfies_to_submit)
+            - else
+              = t(:select_one_selfie_to_submit)
+            | &nbsp;
+            span class='selected_photos_count' = current_user.photos.today.length
+            | /#{App.max_submissions_per_day} selected
+        div class='pull-right'
+          input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-lg'
 
   div class='container'  
     - if @retrieved_photos && @retrieved_photos.any?

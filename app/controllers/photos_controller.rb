@@ -17,6 +17,7 @@ class PhotosController < ApplicationController
 
   def show
     @photo.view!
+    @date = @photo.created_at
     @next_photo = @photo.next_photo
   end
 

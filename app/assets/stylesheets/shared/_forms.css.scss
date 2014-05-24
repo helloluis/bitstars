@@ -52,13 +52,25 @@ select {
   max-width:600px;
 }
 
+div.tips-table-container {
+  padding:5px;
+  border:1px solid #bbb;
+  border-bottom:4px solid #bbb;
+  @include border-radius(3px);
+  background:#eee;
+  margin-bottom:50px;
+}
+
 table.tips {
   width:100%;
-  margin-bottom:50px;
+  
   tr {
     border-bottom:1px solid #ddd;
     margin-bottom:10px;
     font-size:14px;
+    td {
+      padding:5px;
+    }
     td.amount {
       width:25%;
       text-align:left;
@@ -67,9 +79,13 @@ table.tips {
       width:15%;
       font-size:12px;
     }
+    td.from {
+      padding-left:10px;
+    }
     td.from_user, td.to_user {
       width:23%;
       font-size:13px;
+      padding-left:10px;
     }
     td.message {
       font-size:12px;
