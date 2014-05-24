@@ -19,3 +19,4 @@
 //= require imagesloaded
 //= require accounting
 //= require underscore
+//= require jquery.form-validator

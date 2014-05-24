@@ -31,6 +31,7 @@
         show_charity($(this).find("option:selected"));
       });
       toggle_fields();
+      $.validate();
     });
 
 div class='container standalone-container'
@@ -76,12 +77,12 @@ div class='container standalone-container'
     div.form-group
       label.col-sm-2.control-label First Name
       div.col-sm-10
-        = f.input_field :first_name, class: 'form-control'
+        = f.input_field :first_name, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
 
     div.form-group
       label.col-sm-2.control-label Last Name
       div.col-sm-10
-        = f.input_field :last_name, class: 'form-control'
+        = f.input_field :last_name, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
 
     div.form-group
       label.col-sm-2.control-label Gender
@@ -91,7 +92,7 @@ div class='container standalone-container'
     div.form-group
       label.col-sm-2.control-label Email
       div.col-sm-10
-        = f.input_field :email, class: 'form-control'
+        = f.input_field :email, class: 'form-control', "data-validation".to_sym => 'email'
 
     div.form-group
       label.col-sm-2.control-label Phone
@@ -101,12 +102,12 @@ div class='container standalone-container'
     div.form-group
       label.col-sm-2.control-label Address
       div.col-sm-10
-        = f.input_field :address, class: 'form-control'
+        = f.input_field :address, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min4"
 
     div.form-group
       label.col-sm-2.control-label City
       div.col-sm-10
-        = f.input_field :city, class: 'form-control'
+        = f.input_field :city, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
 
     div.form-group
       label.col-sm-2.control-label Country
@@ -116,7 +117,7 @@ div class='container standalone-container'
     div.form-group
       label.col-sm-2.control-label Postal Code
       div.col-sm-10
-        = f.input_field :postal_code, class: 'form-control'
+        = f.input_field :postal_code, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min4"
     
     div.form-group
       div class="col-sm-offset-2 col-sm-10"

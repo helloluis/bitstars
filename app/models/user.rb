@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   def self.find_for_instagram_oauth(auth, signed_in_resource=nil)
 
     unless user = User.where(provider: auth.provider, uid: auth.uid).first
-      user = User.new(provider: auth.provider, uid: auth.uid, password: Devise.friendly_token[0,20], email: "#{auth.uid}@instagram.com")
+      user = User.new(provider: auth.provider, uid: auth.uid, password: Devise.friendly_token[0,20], email: "#{auth.uid}@instagram")
       user.save  
     end
 
