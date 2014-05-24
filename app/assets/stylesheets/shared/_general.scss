@@ -1,8 +1,7 @@
 html, body {
   font-size:$main-font-size;
   font-weight:200;
-  background: #FFF;
-  @include background-size(contain);
+  background: #e8e6d3 image-url('ticks_yellow.png');
   @include fontstack('body');
   color:#666;
 
@@ -181,14 +180,16 @@ p {
   @include border-radius(5px);
 }
 
-.qr_code {
+#invoice {
   border:1px solid #ccc;
   padding:20px;
   margin: 0 auto;
-  text-align:center;
-  img {
-    margin: 0 auto 10px;
-    border:1px solid $primary-color;
+  .modal-body {
+    text-align:center;
+    img {
+      margin: 0 auto 10px;
+      border:1px solid $primary-color;
+    }
   }
 }
 
@@ -270,7 +271,7 @@ dl {
 }
 
 footer {
-  background-color:#ddd;
+  background-color:#ccb;
   font-size:rem-calc(13px);
   padding-top:rem-calc(20px);
   ul{
@@ -320,7 +321,7 @@ img.flag {
 
 .panel {
   .avatar {
-    width:120px;
+    width:80px;
     height:auto;
     margin-right:10px;
     padding:3px;
@@ -329,7 +330,11 @@ img.flag {
   .user-well {
     overflow:hidden;
     margin-bottom:20px;
-    font-size:13px;
+    font-size:14px;
+    p {
+      margin:0px;
+      padding:0px;
+    }
   }
 }
 
@@ -436,3 +441,90 @@ header.user-header {
   }
 }
 
+
+@media (max-width:480px) {
+  #branding {
+    .navbar-brand {
+      float:none!important;
+    }
+    .navbar-header {
+      padding:10px 0px 0px 0px;
+      margin:0px;
+      width:100%;
+      clear:both;
+      text-align:center;
+    }
+    h1.logo {
+      width:150px;
+      height:40px;
+      margin-left:70px;
+      float:none!important;
+    }
+    .tagline {
+      margin-top:0px;
+      font-size:rem-calc(10px);
+      display:block;
+      float:none!important;
+      width:100%;
+    }
+    .main-nav.navbar-right {
+      border-top:1px solid rgba(255,255,255,0.2);
+      float:none!important;
+      padding-bottom:10px;
+      margin:0px 0px 15px 0px;
+      ul {
+        margin-left:10px;
+      }
+      ul > li {
+        font-size:rem-calc(9px);
+        a {
+          font-weight:normal;
+        }
+      }
+    }
+  }
+}
+
+
+@media (min-width:481px) and (max-width:960px) {
+  #branding {
+    .navbar-brand {
+      width:auto;
+    }
+    h1.logo {
+      margin-left:0px;
+      float:none!important;
+    }
+    .tagline {
+      margin-top:10px;
+      font-size:rem-calc(10px);
+    }
+    .main-nav.navbar-right {
+      float:none!important;
+      margin: 0px 0px 0px -50px;
+      ul {
+        margin:0px;
+        li {
+          font-size:rem-calc(9px);
+        }
+      } 
+    }
+  }
+}
+@media (max-width:960px) {
+  h1 {
+    font-size:rem-calc(12px);
+  }
+  h2, h3, h4 {
+    font-size:rem-calc(10px);
+  }
+  p, label, th, td, a {
+    font-size:rem-calc(8px);
+  }
+  .alert {
+    font-size:rem-calc(9px);
+    button {
+      font-size:rem-calc(11px);
+    }
+  }
+}

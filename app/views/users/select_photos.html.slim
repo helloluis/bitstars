@@ -3,7 +3,7 @@
 - content_for :page_scripts do
   javascript:
     $(function(){
-      Selector.initialize();
+      Selector.initialize(#{App.max_submissions_per_day});
     });
 
 
@@ -22,10 +22,13 @@ form action=batch_create_photos_path method='post' class='select_photos'
           | or 
           = link_to "go back to Your Stuff", "/your_entries"
       p 
-        = t(:select_selfies_to_submit)
+        - if App.max_submissions_per_day>1
+          = t(:select_selfies_to_submit)
+        - else
+          = t(:select_one_selfie_to_submit)
         | &nbsp;
         span class='selected_photos_count' = current_user.photos.today.length
-        | /3 selected
+        | /#{App.max_submissions_per_day} selected
       p
         input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-large'
 

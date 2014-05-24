@@ -34,7 +34,7 @@ App.max_submissions_per_day = 3
 
 App.winner_lockout = 1.week
 
-App.minimum_tip = 0.00005
+App.minimum_tip = 0.0005
 
 App.maximum_tip = 2.0
 

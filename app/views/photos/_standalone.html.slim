@@ -74,12 +74,15 @@ div class='col-md-4'
       p class='submitted' 
         | Submitted by 
         = link_to @photo.user.username, user_path(@photo.user)
+        | &nbsp;
+        small
+          | (
+          = link_to "#{@photo.user.provider.titleize}", @photo.user.provider_link
+          | )
         - unless @photo.user.location.blank?
           br
           small = @photo.user.location
-        br
-        small
-          = link_to "Follow #{@photo.user.username} on #{@photo.user.provider.titleize}", @photo.user.provider_link
+        
 
       = render :partial => "photos/admin_tools"
 
@@ -93,7 +96,7 @@ div class='col-md-4'
       h2.panel-title Like this selfie?
       - if @photo.user.has_completed_profile? && @photo.user.payout_to_charity?
         p
-          | <strong>#{@photo.user.username}</strong> has opted to donate all their #{App.name} tips and winning to charity.  
+          | <strong>#{@photo.user.username}</strong> has opted to donate all their #{App.name} tips and winnings to charity.  
           small 
             | (
             a href="/rules#giving_tips" How Does This Work?

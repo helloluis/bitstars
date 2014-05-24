@@ -103,6 +103,9 @@ section {
 }
 
 .landing-panel {
+  &.affix {
+    top:10px;
+  }
   .btn.btn-large {
     font-size: rem-calc(20px);
   }
@@ -114,34 +117,37 @@ section {
   }
 }
 
-@media (max-width:1080px) {
-  #branding {
-    .navbar-brand {
-      float:none!important;
-    }
-    .navbar-header {
-      padding-top:10px;
-      width:100%;
-      clear:both;
-    }
-    .tagline {
-      font-size:rem-calc(14px);  
-    }
-    .main-nav.navbar-right {
-      float:none!important;
-      margin:0px 0px 10px -30px;
-      ul > li {
-        width:20%;
-        &.dot {
-          width:5%;
-        }
+@media (max-width:720px) {
+  .main h1 {
+    font-size:rem-calc(13px);
+  }
+  .main h2 {
+    font-size:rem-calc(11px);
+  }
+  .main {
+    h1, h2 {
+      small {
+        display:block;
       }
     }
   }
-  .main h1 {
-    font-size:rem-calc(24px);
+  .btn-lg {
+    font-size:rem-calc(10px);
   }
-  .main h2 {
-    font-size:rem-calc(20px);
+  .sidebar .panel {
+    .btn-huge {
+      font-size:rem-calc(10px);
+    }
+    .or {
+      font-size:rem-calc(8px);
+    }
+    .panel-nav {
+      .btn-primary, .btn-info, .btn-default {
+        font-size:rem-calc(7px) !important;
+      }
+    }
+  }
+  footer {
+    font-size:rem-calc(8px);
   }
 }
