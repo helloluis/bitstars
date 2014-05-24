@@ -19,7 +19,13 @@ ul class='user-earnings-nav nolist'
     | &nbsp;
     strong class='default-font' title=to_btc(current_user.total_earnings) = "#{to_mbtc(current_user.total_earnings)}"
   li 
-    - if current_user.has_withdrawable_funds?
-      a class='btn btn-success btn-lg request_withdrawal_funds' href=request_withdrawal_tips_path Request Withdrawal
+    - if current_user.payout_to_charity?
+      button class='btn btn-default btn-lg' title="You've chosen to donate your earnings to charity, so this button is disabled." 
+        | Request Withdrawal
     - else
-      button class='btn btn-default btn-lg' title="You don't have enough earnings to withdraw yet. Minimum amount: #{App.minimum_withdrawal}" Request Withdrawal
+      - if current_user.has_withdrawable_funds?
+        a class='btn btn-success btn-lg request_withdrawal_funds' href=request_withdrawal_tips_path 
+          | Request Withdrawal
+      - else
+        button class='btn btn-default btn-lg' title="You don't have enough earnings to withdraw yet. Minimum amount: #{App.minimum_withdrawal}" 
+          | Request Withdrawal
