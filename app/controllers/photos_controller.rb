@@ -13,7 +13,7 @@ class PhotosController < ApplicationController
   def index
     @random = true
     @photo = Photo.random(params[:view_count], params[:like_count], params[:today])
-    @date = @photo.created_at
+    @date = @photo.created_at if @photo
   end
 
   def show
