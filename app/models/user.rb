@@ -95,7 +95,7 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    email && App.emails.values.include?(email)
+    email && (App.emails.values.include?(email) || App.admin_emails.include?(email))
   end
 
   def has_completed_profile?
