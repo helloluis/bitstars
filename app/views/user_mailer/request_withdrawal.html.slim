@@ -1,7 +1,7 @@
 p
   a href=user_url(@user) 
     = @user.full_name
-  | is requesting to withdraw their funds to their wallet address 
+  |  is requesting to transfer their earnings to their wallet address:
 
 p
   strong 
@@ -9,4 +9,8 @@ p
 
 p
   strong
-    = @user.total_earnings
+    = to_mbtc(@user.total_earnings)
+  br
+  small = to_btc(@user.total_earnings)
+  br
+  small = @user.total_earnings.to_i
