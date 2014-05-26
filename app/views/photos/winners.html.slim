@@ -1,3 +1,13 @@
+- content_for :page_scripts do 
+  javascript:
+    $(function(){
+      PHOTOS = #{@photos.to_json.html_safe};
+      $(".photos").imagesLoaded(function(){
+        $(".photos").masonry({ itemSelector: ".photo" });
+      });
+      Heart.initialize(PHOTOS);
+    });
+
 div class='container standalone-container'
   div class='jumbotron'
     h1 Hall of Fame
