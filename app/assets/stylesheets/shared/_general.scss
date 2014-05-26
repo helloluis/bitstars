@@ -115,9 +115,13 @@ a {
         float:left;
         margin-right:10px;
         color:#ccf;
+        text-shadow:2px 2px 0px #004056;
         a {
           font-weight:bold;
           color:#fff;
+        }
+        b {
+          text-shadow:2px 2px 0px #004056;
         }
         .dropdown-menu {
           background:#002532;
