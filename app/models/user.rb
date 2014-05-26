@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :photos do 
     def today
-      where(["entered_at>=? AND disqualified=false", Time.now.in_time_zone.beginning_of_day])
+      where(["entered_at>=? AND disqualified=false", Time.now.in_time_zone.beginning_of_day]).order("created_at DESC")
     end
 
     def winners
@@ -19,13 +19,15 @@ class User < ActiveRecord::Base
     end
 
     def qualified
-      where(["disqualified=false"])
+      where(["disqualified=false"]).order("created_at DESC")
     end
   end
 
   has_many :likes 
 
   has_many :liked_photos, class_name: "Photo", through: :likes, source: :photo
+
+  has_many :payouts
 
   has_many :prizes do 
     def confirmed
@@ -159,6 +161,39 @@ class User < ActiveRecord::Base
 
   def location
     [ city, country ].reject{|r|r.blank?}.join(", ")
+  end
+
+  def request_withdrawal!
+    if requesting_withdrawal? 
+      if (requested_withdrawal_on && requested_withdrawal_on < 1.day.ago)
+
+      else
+        UserMailer.request_withdrawal(self).deliver
+      end
+    else
+      update_attributes(requesting_withdrawal: true, requested_withdrawal_on: Time.now)
+      UserMailer.request_withdrawal(self).deliver
+    end
+  end
+
+  def payout!
+    #Yajl::Parser.parse(open("https://blockchain.info/api/"))
+    payout = payouts.create(
+      amount_in_sats:     total_earnings,
+      payout_to_charity:  payout_to_charity,
+      charity:            charity,
+      earnings_breakdown: {
+        total_earnings:   total_earnings,
+        total_winnings:   total_winnings,
+        total_tips:       total_tips
+        })
+
+    update_attributes(requesting_withdrawal: false, 
+                      requested_withdrawal_on: nil, 
+                      total_earnings: 0.0, 
+                      total_winnings: 0.0, 
+                      total_tips: 0.0)
+
   end
 
 end

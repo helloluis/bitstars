@@ -39,7 +39,7 @@ class TipsController < ApplicationController
 
   def request_withdrawal
     if current_user.has_withdrawable_funds?
-      UserMailer.request_withdrawal(current_user).deliver
+      current_user.request_withdrawal!
       flash[:notice] = "Your withdrawal request has been received and will be reviewed within 24 hours."
     else
       flash[:alert] = "You don't have enough funds to withdraw yet."

@@ -9,7 +9,7 @@
     });
 
 div class='container'
-  header class='user-header'
+  header class='row user-header'
     div class='pull-left'
       img src=@user.avatar class='avatar'
     div class='pull-left'
@@ -19,6 +19,14 @@ div class='container'
         small = @user.full_name
       p 
         = link_to "Follow #{@user.username} on #{@user.provider}", @user.provider_link
+    div class='pull-right'
+      - if user_is_admin? && @user.requesting_withdrawal?
+        small
+          = "#{@user.full_name} is requesting to withdraw funds."
+          br
+          = link_to "Send Payout (#{to_mbtc(@user.total_earnings)}) &rarr;".html_safe, payout_user_path(@user)
+
+
   div class='clearfix'
   div class='row'
     = render :partial => "photos/list", locals: { photos: @photos }

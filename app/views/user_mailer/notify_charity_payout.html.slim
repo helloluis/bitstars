@@ -1,0 +1,19 @@
+h1
+  | Your donation to #{@user.charity} is now being processed and will be forwarded within the next 24 hours.
+
+table
+  tr
+    td
+      p Total Tips:
+    td
+      p = @breakdown[:total_tips]
+  tr
+    td
+      p Total Winnings:
+    td
+      p = @breakdown[:total_winnings]
+  tr
+    td
+      p Total Earnings:
+    td
+      p = @breakdown[:total_earnings]

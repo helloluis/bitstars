@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524015420) do
+ActiveRecord::Schema.define(version: 20140526084303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 20140524015420) do
 
   add_index "likes", ["photo_id", "created_at"], name: "index_daily_likes", using: :btree
   add_index "likes", ["photo_id", "user_id"], name: "index_likes_on_user_photos", using: :btree
+
+  create_table "payouts", force: true do |t|
+    t.integer  "user_id"
+    t.boolean  "payout_to_charity"
+    t.text     "charity"
+    t.float    "amount_in_sats"
+    t.text     "earnings_breakdown"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
@@ -133,16 +143,16 @@ ActiveRecord::Schema.define(version: 20140524015420) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "full_name"
-    t.string   "email",                  default: "",    null: false
+    t.string   "email",                   default: "",    null: false
     t.string   "avatar"
     t.date     "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "encrypted_password",      default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",           default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -161,23 +171,25 @@ ActiveRecord::Schema.define(version: 20140524015420) do
     t.string   "wallet_address"
     t.text     "bio"
     t.text     "counts"
-    t.boolean  "banned",                 default: false
+    t.boolean  "banned",                  default: false
     t.datetime "banned_at"
-    t.boolean  "has_won",                default: false
-    t.boolean  "eligible",               default: true
+    t.boolean  "has_won",                 default: false
+    t.boolean  "eligible",                default: true
     t.datetime "last_won_on"
-    t.float    "total_tips",             default: 0.0
-    t.float    "total_winnings",         default: 0.0
-    t.float    "total_earnings",         default: 0.0
+    t.float    "total_tips",              default: 0.0
+    t.float    "total_winnings",          default: 0.0
+    t.float    "total_earnings",          default: 0.0
     t.string   "slug"
     t.string   "phone"
     t.string   "address"
     t.string   "city"
     t.string   "country"
     t.string   "postal_code"
-    t.boolean  "payout_to_charity",      default: false
-    t.text     "charity",                default: "t"
-    t.float    "total_tips_sent",        default: 0.0
+    t.boolean  "payout_to_charity",       default: false
+    t.text     "charity",                 default: "t"
+    t.float    "total_tips_sent",         default: 0.0
+    t.boolean  "requesting_withdrawal",   default: true
+    t.datetime "requested_withdrawal_on"
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree

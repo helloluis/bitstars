@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   before_filter :authenticate_user!, except: [ :show, :index ]
-
+  before_filter :authenticate_admin!, only: [ :payout ]
+  
   def index
 
   end
@@ -40,6 +41,11 @@ class UsersController < ApplicationController
   def show
     @user = User.friendly.find(params[:id]) #find_by_username(params[:id])
     @photos = @user.photos.qualified.page(params[:page]).per('20')
+  end
+
+  def payout
+    @user = User.friendly.find(params[:id])
+    @user.payout!
   end
 
 end

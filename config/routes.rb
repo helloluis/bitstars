@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users do 
     member do 
       get :callback_for_blockchain
+      get :payout
     end
   end
 
