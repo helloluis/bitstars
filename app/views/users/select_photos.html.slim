@@ -35,7 +35,7 @@ form action=batch_create_photos_path method='post' class='select_photos'
       div id='selectable_photos' class='row'
         - @retrieved_photos.each do |photo|
           div class='photo col-xs-6 col-md-3'
-            a href='#!' class='thumbnail select_photo #{already_entered?(photo)}'
+            a href='#!' class='thumbnail select_photo #{already_entered?(photo, current_user.provider)}'
               span class='glyphicon glyphicon-ok'
               img[  src       = photo[:low] 
                     data-id   = photo[:id]

@@ -254,6 +254,9 @@
 }
 
 @media (max-width:480px) {
+  .jumbotron {
+    padding:10px 15px;
+  }
   .photos .photo {
     width:99%;
     .caption {
@@ -267,6 +270,25 @@
     }
     .position {
       font-size:rem-calc(12px) !important;
+    }
+  }
+  .select_photos_header {
+    p {
+      font-size:rem-calc(14px);
+      padding-bottom:0px;
+      margin-bottom:0px;
+    }
+    #submit_btn {
+      font-size:rem-calc(16px);
+      margin-top:0px;
+    }
+  }
+  .select_photos_header.affix {
+    .jumbotron {
+      padding:10px 15px;
+      h1 {
+        display:none;
+      }
     }
   }
   .navbar-standalone-image {
@@ -297,11 +319,5 @@
 @media (min-width:481px) and (max-width:960px) {
   .photos .photo {
     width:49%;
-  }
-}
-
-.user-entries-container {
-  .user-entries {
-
   }
 }
