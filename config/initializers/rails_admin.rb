@@ -10,7 +10,6 @@ RailsAdmin.config do |config|
   ## == Cancan ==
   # config.authorize_with :cancan
   config.authorize_with do
-    logger.info "!! #{user_signed_in?} !!"
     if user_signed_in?
       redirect_to main_app.new_user_session_url unless App.emails.values.include?(current_user.email)
     else
