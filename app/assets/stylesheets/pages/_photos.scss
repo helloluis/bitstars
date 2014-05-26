@@ -278,6 +278,18 @@
   }
 }
 
+.date-nav {
+  overflow:hidden;
+  padding:0px 2% !important;
+  li {
+    float:left;
+    width:25%;
+    &.date-current {
+      width:46%;
+    }
+  }
+}
+
 @media (max-width:480px) {
   .jumbotron {
     padding:10px 15px;
