@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  has_many :likes 
+
+  has_many :liked_photos, class_name: "Photo", through: :likes, source: :photo
+
   has_many :prizes do 
     def confirmed
       where("revoked!=true")
@@ -92,6 +96,12 @@ class User < ActiveRecord::Base
       user.save
     end
     user
+  end
+
+  def has_liked_photos?(photo_ids=[])
+    return [] if photo_ids.empty?
+    liked_photos = Like.select(:photo_id).where('user_id=? AND photo_id IN (?)', id, photo_ids.map(&:to_i))
+    liked_photos.any? ? liked_photos.map(&:photo_id) : []
   end
 
   def is_admin?

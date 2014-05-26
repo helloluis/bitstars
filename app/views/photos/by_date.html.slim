@@ -21,10 +21,12 @@ div class='container standalone-image'
 
 - content_for :page_scripts do
   javascript:
+    PHOTOS = #{@photos.to_json.html_safe};
     $(function(){
       $("ul.photos").imagesLoaded(function(){
         $("ul.photos").masonry({
           itemSelector: ".photo"
         });
       });
+      Heart.initialize(PHOTOS);
     });

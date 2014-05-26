@@ -6,9 +6,13 @@ li class='photo'
       p class='author pull-left' 
         = link_to photo.user.username, user_path(photo.user)
         br
-        span class='likes'
-          span class='glyphicon glyphicon-heart' 
-          = photo.num_likes
+        span class='likes' data-id=photo.id 
+          span class='glyphicon glyphicon-heart'
+          span class='like_count' = photo.num_likes
+          | &nbsp;&nbsp;
+          a class='heart btn btn-xs btn-default' data-id=photo.id 
+            span class='heart-label' data-like="Like" data-unlike="Liked!" Like
+
       - if @with_position
         p class='position #{position_class(position)} pull-right'
           | #

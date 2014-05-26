@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       get :requalify
     end
     collection do 
+      get  :hearts
       post :batch_create
       get  :winners
       get  :not_found

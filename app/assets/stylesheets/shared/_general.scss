@@ -468,16 +468,16 @@ header.user-header {
       margin:0px;
       width:100%;
       clear:both;
-      text-align:center;
+      //text-align:center;
     }
     h1.logo {
       width:150px;
       height:40px;
-      margin-left:70px;
+      //margin-left:70px;
       float:none!important;
     }
     .tagline {
-      margin-top:0px;
+      margin:0px 0px 0px 5px;
       font-size:rem-calc(10px);
       display:block;
       float:none!important;
@@ -497,6 +497,11 @@ header.user-header {
           font-weight:normal;
         }
       }
+    }
+  }
+  footer {
+    p {
+      font-size:rem-calc(12px);
     }
   }
 }

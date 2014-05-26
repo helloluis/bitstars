@@ -48,6 +48,8 @@ class CurrencyExchangeRates < ActiveRecord::Base
   def self.get_latest!
     hash = Yajl::Parser.parse(open("http://openexchangerates.org/latest.json?app_id=#{App.services.open_exchange.app_id}"))
     return hash['rates']
+    rescue
+      self.get_rates
   end
 
   def self.all_to_js

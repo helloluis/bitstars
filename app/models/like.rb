@@ -16,8 +16,10 @@ class Like < ActiveRecord::Base
   end
 
   def self.unlike!(photo, user)
-    photo.likes.where("user_id=?",user.id).first.delete
-    photo.decrement!(:num_likes)
+    if like_record = photo.likes.where("user_id=?",user.id).first
+      like_record.delete
+      photo.decrement!(:num_likes)
+    end
   end
 
   def self.ignore!(photo, user)

@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
 
   include ApplicationHelper
 
-  before_filter :get_photo, :except => [ :index, :by_date, :batch_create, :not_found, :winners ]
+  before_filter :get_photo, :except => [ :index, :by_date, :batch_create, :not_found, :winners, :hearts ]
 
   before_filter :authenticate_user!, :except => [ :index, :show, :by_date, :not_found, :winners  ]
 
@@ -45,6 +45,13 @@ class PhotosController < ApplicationController
     end
     respond_to do |format|
       format.json { render :json => { photos: photos, errors: photo_errors } }
+    end
+  end
+
+  def hearts
+    @hearted_photos = current_user.has_liked_photos?(params[:photo_ids])
+    respond_to do |format|
+      format.json { render :json => { ids: @hearted_photos } }
     end
   end
 
