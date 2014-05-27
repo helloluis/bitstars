@@ -6,15 +6,15 @@ form class='form-inline tip-form' role='form' action="/tips.json" method="post"
 
   label class='control-label' title="Bitcoin"
     | &#3647;
-  input id='tip_amount_in_btc' name='tip[amount_in_btc]' type='number' min=App.minimum_tip max=App.maximum_tip class='form-control input-lg' placeholder='0.01' value='0.01' step='0.0001'
+  input id='tip_amount_in_btc' name='tip[amount_in_btc]' type='number' min=App.minimum_tip max=App.maximum_tip class='form-control input-lg' placeholder='0.01' value='0.001' step='0.0001'
   p class='converter' 
     small
       | In Philippine Peso, that's 
-      span class='value_in_php' == number_to_currency(CurrencyExchangeRates.convert(0.01, 'BTC', 'PHP'),unit:'&#8369;'.html_safe)
+      span class='value_in_php' == number_to_currency(CurrencyExchangeRates.convert(0.001, 'BTC', 'PHP'),unit:'&#8369;'.html_safe)
       | .
       br
       | In US$, that's 
-      span class='value_in_usd' == number_to_currency(CurrencyExchangeRates.convert(0.01, 'BTC', 'USD'))
+      span class='value_in_usd' == number_to_currency(CurrencyExchangeRates.convert(0.001, 'BTC', 'USD'))
       | .
 
   textarea name='tip[message]' class='form-control' placeholder="Include a short message ..."
