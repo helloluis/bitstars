@@ -392,3 +392,29 @@
     }
   }
 }
+
+@media (max-width:960px) {
+  .input-lg {
+    font-size:rem-calc(16px);
+  }
+  #invoice {
+    padding:0px;
+    h1 {
+      font-size:rem-calc(12px);
+    }
+    p, label {
+      font-size:rem-calc(8px);
+      line-height:1.1;
+      padding-bottom:5px;
+      margin-bottom:5px;
+    }
+    #invoice_address {
+      max-width:280px;
+      height:120px;
+      font-size:rem-calc(10px);
+    }
+    .modal-body {
+      padding:2px;
+    }
+  }
+}

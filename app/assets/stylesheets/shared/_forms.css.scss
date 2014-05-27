@@ -47,9 +47,12 @@ select {
 }
 
 #invoice.modal .modal-lg {
-  min-width:360px;
-  width: 50% !important;
+  //min-width:360px;
   max-width:600px;
+  #invoice_address{
+    width:100%;
+    max-width:400px;
+  }
 }
 
 div.tips-table-container {

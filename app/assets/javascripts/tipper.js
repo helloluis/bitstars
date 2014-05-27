@@ -64,7 +64,17 @@ var Tipper = {
   display_invoice: function(invoice_address_with_amount, remittance_id){
     var that = this;
     $("#qr_code").attr( 'src', $("#qr_code").attr('data-src')+escape(invoice_address_with_amount) );
-    $("#invoice_address").val(invoice_address_with_amount);
+    $("#invoice_address").
+      bind('focus',function(){
+        var el = this;
+        el.select();
+        $(el).bind('mouseup', function(){
+          // Prevent further mouseup intervention
+          el.onmouseup = null;
+          return false;
+        });
+      }).
+      val(invoice_address_with_amount);
     $("#invoice").modal();
     $('#invoice').on('hidden.bs.modal', function (e) {
       $("#qr_code").attr('src','');

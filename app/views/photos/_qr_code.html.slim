@@ -11,10 +11,11 @@ div id='invoice' class='modal fade' role='dialog'
       p = t(:tip_instructions)
       
     div class='modal-body'
-      img id='qr_code' data-src='https://chart.googleapis.com/chart?chld=Q&chs=300x300&cht=qr&chl=' width='300' height='300'
+      img id='qr_code' data-src='https://chart.googleapis.com/chart?chld=Q&chs=280x280&cht=qr&chl=' width='280' height='280'
       br
       label = t(:tip_address)
-      input type='text' id='invoice_address' value='0'
+      br
+      textarea id='invoice_address' value='0'
 
 
     div class="modal-footer"

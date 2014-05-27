@@ -63,3 +63,5 @@ en:
   if_you_have_questions_about_claiming_your_winnings_send_us_an_email_at: "If you have any questions about claiming your winnings, please send us an email at <a href='mailto:%{email}'>%{email}</a>."
   your_earnings_are_now_being_donated_to_your_selected_charity: "Your earnings are being donated to your selected charity"
   your_earnings_have_been_sent_to_your_wallet_address: "Your earnings have been sent to your wallet address." 
+  close_this_dialog: "Close"
+  tip: "Tip"

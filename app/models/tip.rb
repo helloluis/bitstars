@@ -1,3 +1,7 @@
+require 'open-uri'
+require 'yajl'
+include ERB::Util
+
 class Tip < ActiveRecord::Base
 
   serialize :payment_details, Array
