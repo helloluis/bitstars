@@ -366,16 +366,29 @@
 }
 
 @media (min-width:481px) and (max-width:960px) {
+  .photos .photo {
+    width:49%;
+  }
   .standalone-image .heart-container {
     a, span.glyphicon-heart {
       font-size:rem-calc(20px);
       line-height:36px;
     }
   }
-}
-
-@media (min-width:481px) and (max-width:960px) {
-  .photos .photo {
-    width:49%;
+  .select_photos_header {
+    p {
+      font-size:rem-calc(14px);
+      padding-bottom:0px;
+      margin-bottom:0px;
+    }
+    #submit_btn {
+      font-size:rem-calc(16px);
+      margin-top:0px;
+    }
+  }
+  .select_photos_header.affix {
+    .jumbotron {
+      padding:10px 15px;
+    }
   }
 }
