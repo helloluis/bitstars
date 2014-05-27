@@ -161,9 +161,8 @@ class User < ActiveRecord::Base
 
   def request_withdrawal!
     if requesting_withdrawal? 
-      if (requested_withdrawal_on && requested_withdrawal_on < 1.day.ago)
-
-      else
+      update_attributes(requesting_withdrawal: true, requested_withdrawal_on: Time.now)
+      unless (requested_withdrawal_on && requested_withdrawal_on > 1.day.ago)
         UserMailer.request_withdrawal(self).deliver
       end
     else

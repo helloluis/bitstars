@@ -44,7 +44,7 @@ class TipsController < ApplicationController
     else
       flash[:alert] = "You don't have enough funds to withdraw yet."
     end
-    redirect_to users_path and return
+    redirect_to "/tips" and return
   end
 
 end

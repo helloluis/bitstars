@@ -21,7 +21,7 @@ ul class='user-earnings-nav nolist'
   li 
     - if current_user.payout_to_charity?
       - if current_user.has_withdrawable_funds?
-        button class='btn btn-success btn-lg request_withdrawal_funds' 
+        a class='btn btn-success btn-lg request_withdrawal_funds' href=request_withdrawal_tips_path 
           | Request Charity Payout
         p.hint
           small Now that your earnings have exceeded the minimum payout, you may request that we transfer funds to your selected charity. (Or you may choose to wait until more funds have been donated.)

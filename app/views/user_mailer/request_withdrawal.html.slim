@@ -1,7 +1,12 @@
 p
   a href=user_url(@user) 
     = @user.full_name
-  |  is requesting to transfer their earnings to their wallet address:
+  - if @user.payout_to_charity?
+    |  is requesting to transfer their earnings to their selected charity:
+    br
+    strong == charity_info(@user.charity)
+  - else
+    |  is requesting to transfer their earnings to their wallet address:
 
 p
   strong 
