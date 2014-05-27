@@ -34,14 +34,14 @@ div class='col-md-4'
       
       div class='heart-container clearfix'
         div class='pull-left'
-          a class='heart btn btn-large #{liked?(@photo) ? 'btn-danger' : 'btn-default'} btn-block' data-id=@photo.id title="#{liked?(@photo) ? "You liked this" : ""}"
+          a class='heart btn btn-lg #{liked?(@photo) ? 'btn-danger' : 'btn-default'} btn-block' data-id=@photo.id title="#{liked?(@photo) ? "You liked this" : ""}"
             span class='glyphicon glyphicon-heart #{liked?(@photo)}'
             span class='heart-label' data-like="Like" data-unlike="Liked!" = liked?(@photo) ? "Liked!" : "Like"
 
         - if @next_photo
           div class='pull-right'
             p
-              a href=photo_path(@next_photo) class='btn btn-large btn-info next-photo'
+              a href=(@next_photo.is_a?(Photo) ? photo_path(@next_photo) : photos_path) class='btn btn-lg btn-info next-photo'
                 | Next &rarr;
       
       div.clearfix

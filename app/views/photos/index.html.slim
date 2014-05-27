@@ -1,24 +1,28 @@
 nav class='navbar navbar-default navbar-responsive navbar-standalone-image'
   div class='container'
-    div class='col-md-offset-1 col-md-10'
-      form action="/photos" class='navbar-form'
-        div class='form-group'
-          label
-            | Only show me selfies with
-        div class='form-group'
-          label
-            | <input type='checkbox' name='view_count' value='10' #{params[:view_count] ? "checked='checked'" : ''}/>
-            | More than 10 views
-        div class='form-group'
-          label
-            | <input type='checkbox' name='like_count' value='10' #{params[:like_count] ? "checked='checked'" : ''} />
-            | More than 10 likes
-        div class='form-group'
-          label
-            <input type='checkbox' name='today' value='true' #{params[:today] ? "checked='checked'" : ''} />
-            | From Today
-        div class='form-group'
-          input type='submit' class='btn navbar-btn btn-large btn-primary' value='Next!'
+    - if @next_photo
+      div class='col-md-offset-1 col-md-10'
+        p class='text-center'
+          a href=(@next_photo.is_a?(Photo) ? photo_path(@next_photo) : photos_path) class='btn btn-lg btn-info next-photo'
+            | See Another Selfie &rarr;
+      / form action="/photos" class='navbar-form'
+      /   div class='form-group'
+      /     label
+      /       | Only show me selfies with
+      /   div class='form-group'
+      /     label
+      /       | <input type='checkbox' name='view_count' value='10' #{params[:view_count] ? "checked='checked'" : ''}/>
+      /       | More than 10 views
+      /   div class='form-group'
+      /     label
+      /       | <input type='checkbox' name='like_count' value='10' #{params[:like_count] ? "checked='checked'" : ''} />
+      /       | More than 10 likes
+      /   div class='form-group'
+      /     label
+      /       <input type='checkbox' name='today' value='true' #{params[:today] ? "checked='checked'" : ''} />
+      /       | From Today
+      /   div class='form-group'
+      /     input type='submit' class='btn navbar-btn btn-large btn-primary' value='Next!'
 
 div class='container standalone-image'
   div class='row'

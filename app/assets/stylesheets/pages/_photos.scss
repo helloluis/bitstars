@@ -335,12 +335,33 @@
     .form-group {
       line-height:1;
     }
+    p {
+      margin-bottom:0px;
+      padding-bottom:5px;
+    }
   }
   .caption p {
     font-size:rem-calc(10px);
   }
   .panel {
     font-size:rem-calc(9px);
+    .panel-heading p {
+      font-size:rem-calc(9px);
+    }
+  }
+  .standalone-image {
+    .heart-container {
+      .btn-lg {
+        font-size:rem-calc(11px);
+        line-height:1;
+        span {
+          font-size:rem-calc(11px);
+        }
+      }
+    }
+    .btn, .photo-stats, .submitted, .text-center, .converter, h4, table th, table td {
+      font-size:rem-calc(9px);
+    }
   }
 }
 

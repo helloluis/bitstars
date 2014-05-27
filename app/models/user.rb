@@ -1,7 +1,3 @@
-require 'open-uri'
-require 'yajl'
-include ERB::Util
-
 class User < ActiveRecord::Base
 
   include SocialNetworks
@@ -177,7 +173,7 @@ class User < ActiveRecord::Base
   end
 
   def payout!
-    #Yajl::Parser.parse(open("https://blockchain.info/api/"))
+    
     payout = payouts.create(
       amount_in_sats:     total_earnings,
       payout_to_charity:  payout_to_charity,

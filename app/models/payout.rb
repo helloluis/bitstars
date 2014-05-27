@@ -1,3 +1,7 @@
+require 'open-uri'
+require 'yajl'
+include ERB::Util
+
 class Payout < ActiveRecord::Base
 
   belongs_to :user
@@ -5,6 +9,10 @@ class Payout < ActiveRecord::Base
   serialize :earnings_breakdown
 
   after_create :notify
+
+  def send_payment
+    #Yajl::Parser.parse(open("https://blockchain.info/merchant/$guid/payment?password=$main_password&second_password=$second_password&to=$address&amount=$amount&from=$from&shared=$shared&fee=$fee¬e=$note"))
+  end
 
   def notify
     if user.payout_to_charity?

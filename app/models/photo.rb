@@ -37,8 +37,9 @@ class Photo < ActiveRecord::Base
     order("num_likes DESC, num_views DESC")
   end
 
-  def self.random(like_count=0, view_count=0, today=false)
+  def self.random(not_id=nil, like_count=0, view_count=0, today=false)
     sql = ["disqualified!=true"]
+    sql[0] += " AND id!=#{not_id}" if not_id
     sql[0] += " AND num_likes>=#{like_count.to_i}" if like_count && like_count.to_i>0
     sql[0] += " AND num_views>=#{view_count.to_i}" if view_count && view_count.to_i>0
     if today
