@@ -8,3 +8,9 @@
     }
   }
 }
+
+@media (max-width:960px) {
+  .table td {
+    font-size:rem-calc(9px);
+  } 
+}

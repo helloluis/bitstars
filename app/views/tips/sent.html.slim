@@ -7,14 +7,9 @@ div class='container standalone-container'
   div class='row'  
     div class='col-md-8'
     
-      div.tips-table-container
+      div.tips-table-container.responsive-table
         - if @sent_tips.any?
-          table.tips.sent_tips
-            tr.header
-              td.from To
-              td.amount Amount
-              td.message Message
-              td.date Date
+          ul.tips.nolist
             = render @sent_tips
 
         - else

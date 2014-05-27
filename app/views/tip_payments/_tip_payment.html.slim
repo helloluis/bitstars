@@ -1,14 +1,26 @@
-tr class='tip'
-  td.from_user
-    = link_to tip_payment.sender.full_name, user_path(tip_payment.sender)
-  td.to_user
-    = link_to tip_payment.recipient.full_name, user_path(tip_payment.recipient)
-  td.amount.default-font
-    /= tip_payment.final_amount_in_sats
-    = number_with_precision(tip_payment.in_mbtc,precision:2)
-    | &nbsp;
-    span title='milli-bitcoin' mBTC
-  td.message
-    = tip_payment.tip.message
-  td.date 
-    small == tip_payment.created_at.strftime("%d %B %Y<br />%H:%M")
+li class='tip'
+  dl
+    dt.from_user 
+      small From
+    dd.from_user = link_to tip_payment.sender.full_name, user_path(tip_payment.sender)
+  dl
+    dt.to_user 
+      small To
+    dd.to_user = link_to tip_payment.recipient.full_name, user_path(tip_payment.recipient)
+  dl
+    dt 
+      small Tip
+    dd.amount.default-font 
+      = number_with_precision(tip_payment.in_mbtc,precision:2)
+      | &nbsp;
+      span title='milli-bitcoin' mBTC
+  dl
+    dt.message 
+      small Message
+    dd.message 
+      = tip_payment.tip.message.blank? ? "-" : tip_payment.tip.message
+  dl
+    dt.date 
+      small Date
+    dd.date
+      small == tip_payment.created_at.strftime("%d %B %Y, %H:%M")

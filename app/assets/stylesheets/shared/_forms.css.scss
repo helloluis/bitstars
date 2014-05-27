@@ -61,48 +61,58 @@ div.tips-table-container {
   margin-bottom:50px;
 }
 
-table.tips {
+ul.tips {
   width:100%;
-  
-  tr {
+  li {
     border-bottom:1px solid #ddd;
-    margin-bottom:10px;
-    font-size:14px;
-    td {
-      padding:5px;
-    }
-    td.amount {
-      width:25%;
-      text-align:left;
-    }
-    td.date {
-      width:15%;
-      font-size:12px;
-    }
-    td.from {
-      padding-left:10px;
-    }
-    td.from_user, td.to_user {
-      width:23%;
-      font-size:13px;
-      padding-left:10px;
-    }
-    td.message {
-      font-size:12px;
-      font-style:italic;
-    }
-    &.header {
-      td {
-        font-size:14px;
-        font-weight:normal;
-        &.message {
-          font-style:normal;
+    padding-bottom:15px;
+    margin-bottom:15px;
+    font-size:rem-calc(14px);
+    dl {
+      overflow:hidden;
+      margin-bottom:0px;
+      dt {
+        width:15%;
+        margin-right:5%;
+        text-align:right;
+        float:left;
+        small {
+          font-size:rem-calc(13px);
+        }
+      }
+      dd {
+        width:70%;
+        float:left;
+        font-size:rem-calc(16px);
+        margin-bottom:5px;
+        &.amount {
+          font-weight:bold;
         }
       }
     }
+    
   }
-  &.received_tips td.to_user { display:none; }
-  &.sent_tips td.from_user { display:none; }
+  &.received_tips .to_user { display:none; }
+  &.sent_tips .from_user { display:none; }
+}
+
+@media (max-width:960px) {
+  ul.tips li {
+    dl {
+      margin-bottom:5px;
+      padding-left:10px;
+      dt, dd {
+        text-align:left;
+        float:none; 
+        display:block;
+        width:100%;  
+        font-size:rem-calc(10px);
+      }
+      dt {
+        font-size:rem-calc(8px);
+      }
+    }
+  }
 }
 
 .control-label-left {
