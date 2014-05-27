@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
   end
 
   def has_liked_photos?(photo_ids=[])
-    return [] if photo_ids.empty?
+    return [] if photo_ids.nil? || photo_ids.empty?
     liked_photos = Like.select(:photo_id).where('user_id=? AND photo_id IN (?)', id, photo_ids.map(&:to_i))
     liked_photos.any? ? liked_photos.map(&:photo_id) : []
   end
