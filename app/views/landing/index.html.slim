@@ -12,6 +12,8 @@
       lineJustify();
     };
     
+    PHOTOS = #{(@photos+@photos_yesterday).to_json.html_safe};
+
     $(function(){
       
       prep_for_justify();
@@ -23,6 +25,8 @@
       $(window).resize(_.throttle(justify,100));
       
       justify();
+
+      Heart.initialize(PHOTOS);
 
     });
 
