@@ -28,6 +28,8 @@ App.admin_emails = ["helloluis@me.com", "lbuenaventura2@gmail.com", "sabina@sci.
 
 # App.emails.support = "luis@bitmarket.ph"
 
+App.development_status = 'alpha'
+
 App.timezone = "GMT+8"
 
 App.max_submissions_per_day = 3

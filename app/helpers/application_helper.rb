@@ -117,4 +117,9 @@ module ApplicationHelper
     number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "PHP")
   end
 
+  def development_status
+    if App.development_status!='final'
+      image_tag "#{App.development_status}.png", class: 'development_status', title: "We're still in #{App.development_status}! Please forgive the clutter!"
+    end
+  end
 end
