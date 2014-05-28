@@ -11,7 +11,14 @@ class Payout < ActiveRecord::Base
   after_create :notify
 
   def send_payment
-    #Yajl::Parser.parse(open("https://blockchain.info/merchant/$guid/payment?password=$main_password&second_password=$second_password&to=$address&amount=$amount&from=$from&shared=$shared&fee=$fee¬e=$note"))
+    #$main_password&second_password=$second_password&to=$address&amount=$amount&from=$from&shared=$shared&fee=$fee¬e=$note
+    hash = {
+      password: ENV['wallet_password']
+      to: user.wallet_address,
+      amount: user.total_earnings,
+      note: "#{App.name} Payout!"
+    }
+    Yajl::Parser.parse(open("https://blockchain.info/merchant/#{App.wallet_guid}/payment?password=#{hash.to_params}"))
   end
 
   def notify
