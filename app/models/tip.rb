@@ -43,7 +43,7 @@ class Tip < ActiveRecord::Base
   end
 
   def invoice_address_with_amount
-    "bitcoin:#{invoice_address}?amount=#{amount_in_btc}"
+    "bitcoin:#{invoice_address}?amount=#{amount_in_btc}&#{App.wallet_address_params}"
   end
 
   def total_payments

@@ -10,6 +10,7 @@ App.secondary_tagline = "Make money from your selfies every single day"
 App.description = ""
 App.url = Rails.env.development? ? "bitstars.xxx" : "bitstars.ph"
 App.email_url = "bitstars.ph"
+App.wallet_address_params="label=bitstars+tip"
 # email domains also need to be set up in production.rb
 
 
