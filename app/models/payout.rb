@@ -16,7 +16,7 @@ class Payout < ActiveRecord::Base
       password: ENV['WALLET_PASSWORD'],
       to:       user.wallet_address,
       amount:   (Rails.env.development? ? 50000 : user.total_earnings.to_i),
-      note:     "#{App.name} Payout!"
+      note:     "#{App.url.titleize} Payout!"
     }
     # logger.info "https://blockchain.info/merchant/#{App.wallet_guid}/payment?#{hash.to_param}"
     

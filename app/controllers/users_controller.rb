@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def payout
     @user = User.friendly.find(params[:id])
     if @payout = @user.payout!
-      if @payout.errors
+      if @payout.errors && @payout.errors.full_messages.any?
         flash[:alert] = @payout.errors.full_messages.join(" ")
       else
         flash[:notice] = "Payout sent!"
