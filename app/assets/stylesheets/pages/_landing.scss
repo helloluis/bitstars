@@ -161,8 +161,9 @@ section {
     .intro-snippet-group {
       width:300px;
       p.intro-amount {
-        font-size: rem-calc(54px);
-        letter-spacing: -2px;
+        font-size: rem-calc(60px);
+        letter-spacing: rem-calc(-5px);
+        margin-right: rem-calc(5px);
       }
       p.intro-pesos {
         font-size: rem-calc(14px);
