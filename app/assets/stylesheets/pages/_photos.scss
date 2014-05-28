@@ -114,6 +114,10 @@
 
 .standalone-image {
   margin-top:20px;
+  .thumbnail .img-responsive {
+    width:100%;
+    height:auto;
+  }
   .likes_and_views p {
     font-size:rem-calc(20px);
     line-height:1;
@@ -166,6 +170,9 @@
       font-size:rem-calc(28px);
       color:#c30;
     }
+  }
+  .caption {
+    background:#e1e1e1;
   }
 }
 
@@ -352,8 +359,10 @@
       padding-bottom:5px;
     }
   }
-  .caption p {
-    font-size:rem-calc(8px);
+  .caption {
+    p {
+      font-size:rem-calc(8px);
+    }
   }
   .panel {
     font-size:rem-calc(9px);
