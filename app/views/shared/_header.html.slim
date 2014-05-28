@@ -20,13 +20,9 @@ header id="branding" class="navbar navbar-default"
         li
           a href="/photos"
             = t(:browse)
-        / li.dot
-        /   | &middot;
         li
           a href='/rules' 
-            = t(:rules)
-        / li.dot
-        /   | &middot;
+            = t(:how_it_works)
         - if user_signed_in?
           li class="dropdown"
             a href="#" class="dropdown-toggle" data-toggle="dropdown"
