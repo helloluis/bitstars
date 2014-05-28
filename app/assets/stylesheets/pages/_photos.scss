@@ -64,7 +64,7 @@
         &.position {
           background-color:#999;
           padding:5px;
-          margin:5px -5px -5px 0px;
+          margin:20px -5px -5px 0px;
           color:#fff;
           @extend .body_fontstack;
           font-size:16px;
@@ -131,6 +131,12 @@
       display:block;
       cursor:pointer;
       font-size:rem-calc(24px);
+      &.heart {
+        padding:9px 16px;
+        span.heart-label {
+          line-height:1.5;
+        }
+      }
       &:hover {
         .glyphicon-heart {
           color:#610;
@@ -172,6 +178,12 @@
   }
   .form-group {
     margin-right:15px;
+  }
+}
+
+@media (min-width:480px) {
+  .navbar-standalone-image {
+    display:none;
   }
 }
 
@@ -341,7 +353,7 @@
     }
   }
   .caption p {
-    font-size:rem-calc(10px);
+    font-size:rem-calc(8px);
   }
   .panel {
     font-size:rem-calc(9px);
@@ -362,6 +374,33 @@
     .btn, .photo-stats, .submitted, .text-center, .converter, h4, table th, table td {
       font-size:rem-calc(9px);
     }
+  }
+}
+
+@media (max-width:720px) {
+  .tip-amount-label, #tip_amount_in_btc {
+    float:left;
+  }
+  .tip-amount-label {
+    width:15%;
+    font-size:rem-calc(14px);
+    line-height:rem-calc(24px);
+  }
+  .converter {
+    line-height:1.1;
+    padding-bottom:0px;
+    margin-bottom:15px;
+  }
+  #tip_amount_in_btc {
+    width:80%;
+    font-size:rem-calc(14px);
+    height:rem-calc(28px);
+    line-height:1.1;
+    padding:5px;
+  }
+  #tip_message {
+    font-size:rem-calc(9px);
+    height:rem-calc(50px);
   }
 }
 
@@ -394,9 +433,6 @@
 }
 
 @media (max-width:960px) {
-  .input-lg {
-    font-size:rem-calc(16px);
-  }
   #invoice {
     padding:0px;
     h1 {
@@ -418,3 +454,7 @@
     }
   }
 }
+
+// #fbcomments, .fb_iframe_widget, .fb_iframe_widget > span, .fb_iframe_widget[style], .fb_iframe_widget iframe[style], #fbcomments iframe[style] {
+//   width: 100% !important;
+// }

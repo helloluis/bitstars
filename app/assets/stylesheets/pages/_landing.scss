@@ -90,15 +90,118 @@ section {
   }
 }//.sidebar
 
-.intro {
-  .intro-1, .intro-2, .intro-3, .intro-4, .intro-5 {
-    display:block;
-    line-height:1;
+.panel .panel-heading .intro {
+  width:100%;
+  min-width:260px;
+  max-width:360px;
+  margin:0 auto;
+  .intro-snippet-group {
+    margin: 0 auto;
+    width:260px;
+    overflow:hidden;
+  }
+  p.intro-snippet {
     color: #158cba;
   }
-  .intro-3 {
-    color: #28b62c;
+  p.intro-first {
+    margin-bottom:5px;
+  }
+  p.intro-first, p.intro-everyday {
+    font-size:rem-calc(20px);
     font-weight:bold;
+    text-align:center;
+  }
+  p.intro-everyday {
+    clear:both;
+    font-size:rem-calc(36px);
+    letter-spacing: 1px;
+    margin-top:0px;
+    color: $primary-color;
+  }
+  p.intro-btc {
+    font-style:italic;
+    line-height:0.9;
+    padding:0px;
+    margin:0px;
+    float:left;
+    font-size:rem-calc(20px);
+    color: $primary-color;
+    max-width:85px;
+  }
+  p.intro-amount {
+    @extend .primary_fontstack;
+    float:left;
+    color: $emphasize-color;
+    text-shadow: 0px 4px 0px $emphasize-shadow-color;
+    font-weight:bold;
+    font-size:rem-calc(132px);
+    line-height:0.8;
+    margin:0px 4px 0px -4px;
+    letter-spacing:-4px;
+  }
+  p.intro-pesos {
+    text-transform: uppercase;
+    font-weight:bold;
+    font-size:rem-calc(30px);
+    color: $emphasize-color;
+    text-shadow: 0px 2px 0px $emphasize-shadow-color;
+    border-bottom:5px solid $emphasize-color;
+    float:left;
+    margin: 5px 0px 4px 0px;
+    padding-bottom:4px;
+    line-height:0.9;
+  }
+}
+
+@media (max-width:480px) {
+  .panel .panel-heading .intro {
+    p.intro-first {
+      font-size:rem-calc(9px);
+    }
+    p.intro-everyday {
+      font-size: rem-calc(12px);
+      letter-spacing: 2px;
+    }
+    .intro-snippet-group {
+      width:300px;
+      p.intro-amount {
+        font-size: rem-calc(54px);
+      }
+      p.intro-pesos {
+        font-size: rem-calc(12px);
+      }
+      p.intro-btc {
+        font-size: rem-calc(9px);
+        max-width: 100px;
+      }
+    }
+  }
+  .panel .user-well p {
+    font-size: rem-calc(9px);
+  }
+}
+
+@media (min-width:1280px) {
+  .intro {
+    .intro-first {
+      font-size:rem-calc(24px);
+    }
+    .intro-everyday {
+      letter-spacing: 5px;
+    }
+    .intro-snippet-group {
+      width:300px;
+      .intro-amount {
+        font-size: rem-calc(144px);
+      }
+      .intro-pesos {
+        font-size: rem-calc(36px);
+      }
+      .intro-btc {
+        font-size: rem-calc(24px);
+        max-width: 100px;
+      }
+    }
   }
 }
 

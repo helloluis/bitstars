@@ -16,15 +16,15 @@
 
     $(function(){
       
-      prep_for_justify();
+      //prep_for_justify();
 
       $(".photos").imagesLoaded(function(){
         $(".photos").masonry({ itemSelector: ".photo" });
       });
       
-      $(window).resize(_.throttle(justify,100));
+      //$(window).resize(_.throttle(justify,100));
       
-      justify();
+      //justify();
 
       Heart.initialize(PHOTOS);
 
@@ -73,15 +73,16 @@ div class="container"
         
         div class='panel-heading'
           div class='intro'
-            p class='intro-1' 
-              | Submit your selfies
-            p class='intro-2' 
-              | and win up to
-            p class='intro-3' 
-              == number_to_currency(App.daily_prize_in_php,unit:"&#8369;".html_safe)
-            p class='intro-4' 
-              | (that's 0.02 Bitcoin)
-            p class='intro-5' 
+            p class='intro-snippet intro-first' 
+              | Submit your selfies and win up to
+            div class='intro-snippet-group'
+              p class='intro-snippet intro-amount' 
+                == App.daily_prize_in_php
+              p class='intro-snippet intro-pesos'
+                | pesos
+              p class='intro-snippet intro-btc' 
+                | That's 0.02 Bitcoin!
+            p class='intro-snippet intro-everyday' 
               | every single day!
 
         div class='panel-body'
