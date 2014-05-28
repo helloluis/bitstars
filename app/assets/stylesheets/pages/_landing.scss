@@ -105,21 +105,19 @@ section {
   }
   p.intro-first {
     margin-bottom:5px;
+    letter-spacing:-1px;
   }
   p.intro-first, p.intro-everyday {
-    font-size:rem-calc(20px);
-    font-weight:bold;
+    font-size:rem-calc(24px);
     text-align:center;
   }
   p.intro-everyday {
     clear:both;
-    font-size:rem-calc(36px);
-    letter-spacing: 1px;
+    font-size:rem-calc(40px);
     margin-top:0px;
     color: $primary-color;
   }
   p.intro-btc {
-    font-style:italic;
     line-height:0.9;
     padding:0px;
     margin:0px;
@@ -141,14 +139,13 @@ section {
   }
   p.intro-pesos {
     text-transform: uppercase;
-    font-weight:bold;
-    font-size:rem-calc(30px);
+    font-size:rem-calc(34px);
     color: $emphasize-color;
-    text-shadow: 0px 2px 0px $emphasize-shadow-color;
+    //text-shadow: 0px 2px 0px $emphasize-shadow-color;
     border-bottom:5px solid $emphasize-color;
     float:left;
     margin: 5px 0px 4px 0px;
-    padding-bottom:4px;
+    padding:4px 0px;
     line-height:0.9;
   }
 }
@@ -156,22 +153,22 @@ section {
 @media (max-width:480px) {
   .panel .panel-heading .intro {
     p.intro-first {
-      font-size:rem-calc(9px);
+      font-size:rem-calc(10px);
     }
     p.intro-everyday {
-      font-size: rem-calc(12px);
-      letter-spacing: 2px;
+      font-size: rem-calc(18px);
     }
     .intro-snippet-group {
       width:300px;
       p.intro-amount {
         font-size: rem-calc(54px);
+        letter-spacing: -2px;
       }
       p.intro-pesos {
-        font-size: rem-calc(12px);
+        font-size: rem-calc(14px);
       }
       p.intro-btc {
-        font-size: rem-calc(9px);
+        font-size: rem-calc(8px);
         max-width: 100px;
       }
     }
