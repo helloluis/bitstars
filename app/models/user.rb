@@ -173,7 +173,7 @@ class User < ActiveRecord::Base
 
   def payout!
     
-    payout = payouts.create(
+    if payout = payouts.create(
       amount_in_sats:     total_earnings,
       payout_to_charity:  payout_to_charity,
       charity:            charity,
@@ -183,12 +183,14 @@ class User < ActiveRecord::Base
         total_tips:       total_tips
         })
 
-    update_attributes(requesting_withdrawal: false, 
-                      requested_withdrawal_on: nil, 
-                      total_earnings: 0.0, 
-                      total_winnings: 0.0, 
-                      total_tips: 0.0)
-
+      update_attributes(requesting_withdrawal: false, 
+                        requested_withdrawal_on: nil, 
+                        total_earnings: 0.0, 
+                        total_winnings: 0.0, 
+                        total_tips: 0.0)
+      return payout
+      
+    end
   end
 
 end

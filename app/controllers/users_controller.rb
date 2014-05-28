@@ -45,7 +45,16 @@ class UsersController < ApplicationController
 
   def payout
     @user = User.friendly.find(params[:id])
-    @user.payout!
+    if @payout = @user.payout!
+      if @payout.errors
+        flash[:alert] = @payout.errors.full_messages.join(" ")
+      else
+        flash[:notice] = "Payout sent!"
+      end
+    else
+      flash[:alert] = "Couldn't create payout record."
+    end
+    return redirect_to user_path(@user)
   end
 
 end

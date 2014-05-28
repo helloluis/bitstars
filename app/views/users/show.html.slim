@@ -20,11 +20,18 @@ div class='container'
       p 
         = link_to "Follow #{@user.username} on #{@user.provider}", @user.provider_link
     div class='pull-right'
-      - if user_is_admin? && @user.requesting_withdrawal?
-        small
-          = "#{@user.full_name} is requesting to withdraw funds."
-          br
-          = link_to "Send Payout (#{to_mbtc(@user.total_earnings)}) &rarr;".html_safe, payout_user_path(@user)
+      - if user_is_admin? && @user.requesting_withdrawal? 
+        div class='admin_tools requesting_withdrawal' title='admin_tools'
+          - if @user.payout_to_charity?
+            small
+              == "#{@user.full_name} is requesting to payout earnings to #{charity_info(@user.charity,true)}."
+              br
+              = to_mbtc(@user.total_earnings)
+          - else
+            small
+              = "#{@user.full_name} is requesting to withdraw funds."
+              br
+              = link_to "Send Payout (#{to_mbtc(@user.total_earnings)}) &rarr;".html_safe, payout_user_path(@user)
 
 
   div class='clearfix'
