@@ -42,7 +42,7 @@ App.minimum_tip = 0.0005
 
 App.maximum_tip = 2.0
 
-App.minimum_withdrawal = 0.025
+App.minimum_withdrawal = 2500000 # in satoshis
 
 App.daily_prize_in_php = 500
 
