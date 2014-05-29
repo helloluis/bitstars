@@ -1,11 +1,11 @@
 class TipsController < ApplicationController
 
   def index
-    @received_tips = current_user.received_tips
+    @received_tips = current_user.received_tips.order("created_at DESC")
   end
 
   def sent
-    @sent_tips = current_user.sent_tips
+    @sent_tips = current_user.sent_tips.order("created_at DESC")
   end
 
   def create
