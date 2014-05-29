@@ -1,18 +1,29 @@
-dl {
-  dt {
+.faqs {
+  .question {
     h4 {
-      font-size:32px;
+      font-size:rem-calc(24px);
       font-weight:bold;
       color:$primary-color;
     }
   }
-  dd {
-    font-size:16px;
-    font-weight:normal;
+  .answer {
+    font-size:rem-calc(16px);
     margin-bottom:20px;
     p {
+      font-weight:normal;
       margin-bottom:5px;
       padding-bottom:10px;
+    }
+  }
+}
+
+@media (max-width:720px) {
+  .faqs {
+    .question h4 {
+      font-size:rem-calc(12px);
+    }
+    .answer p {
+      font-size:rem-calc(8px);
     }
   }
 }

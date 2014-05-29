@@ -1,4 +1,6 @@
 h1
+  | Congratulations!  
+p
   | Your #{App.name} earnings have been forwarded to your provided wallet address. It should become available within the next 10 minutes.
 
 table
@@ -6,14 +8,14 @@ table
     td
       p Total Tips:
     td
-      p = @breakdown[:total_tips]
+      p = to_mbtc(@breakdown[:total_tips])
   tr
     td
       p Total Winnings:
     td
-      p = @breakdown[:total_winnings]
+      p = to_mbtc(@breakdown[:total_winnings])
   tr
     td
       p Total Earnings:
     td
-      p = @breakdown[:total_earnings]
+      p = to_mbtc(@breakdown[:total_earnings])

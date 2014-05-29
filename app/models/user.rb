@@ -136,12 +136,27 @@ class User < ActiveRecord::Base
     total_earnings > App.minimum_withdrawal
   end
 
-  def calculate_total_earnings!
-    tips                = self.received_tips.map(&:final_amount_in_sats).sum
-    prizes              = self.prizes.confirmed.map(&:amount_in_sats).sum
-    self.total_tips     = tips
-    self.total_winnings = prizes
-    self.total_earnings = tips + prizes
+  def calculate_total_earnings!(new_tip=0, new_winning=0)
+    
+    self.total_tips        = self.total_tips+(new_tip||0)
+    self.total_winnings    = self.total_winnings+(new_winning||0)
+    self.total_earnings    = self.total_earnings+(new_tip||0)+(new_winning||0)
+
+    calculate_lifetime_earnings
+
+    save
+  end
+
+  def calculate_lifetime_earnings
+    tips                   = self.received_tips.map(&:final_amount_in_sats).sum
+    prizes                 = self.prizes.confirmed.map(&:amount_in_sats).sum
+    self.lifetime_tips     = tips
+    self.lifetime_winnings = prizes
+    self.lifetime_earnings = tips + prizes
+  end
+
+  def calculate_lifetime_earnings!
+    calculate_lifetime_earnings
     save
   end
 
@@ -173,7 +188,7 @@ class User < ActiveRecord::Base
 
   def payout!
     
-    payout = payouts.create(
+    if payout = payouts.create(
       amount_in_sats:     total_earnings,
       payout_to_charity:  payout_to_charity,
       charity:            charity,
@@ -183,12 +198,14 @@ class User < ActiveRecord::Base
         total_tips:       total_tips
         })
 
-    update_attributes(requesting_withdrawal: false, 
-                      requested_withdrawal_on: nil, 
-                      total_earnings: 0.0, 
-                      total_winnings: 0.0, 
-                      total_tips: 0.0)
-
+      update_attributes(requesting_withdrawal: false, 
+                        requested_withdrawal_on: nil, 
+                        total_earnings: 0.0, 
+                        total_winnings: 0.0, 
+                        total_tips: 0.0)
+      return payout
+      
+    end
   end
 
 end

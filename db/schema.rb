@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526084303) do
+ActiveRecord::Schema.define(version: 20140529015116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,9 @@ ActiveRecord::Schema.define(version: 20140526084303) do
     t.text     "earnings_breakdown"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "transaction_message"
+    t.string   "transaction_hash"
+    t.string   "transaction_notice"
   end
 
   create_table "photos", force: true do |t|
@@ -186,10 +189,13 @@ ActiveRecord::Schema.define(version: 20140526084303) do
     t.string   "country"
     t.string   "postal_code"
     t.boolean  "payout_to_charity",       default: false
-    t.text     "charity",                 default: "t"
+    t.string   "charity",                 default: ""
     t.float    "total_tips_sent",         default: 0.0
-    t.boolean  "requesting_withdrawal",   default: true
+    t.boolean  "requesting_withdrawal",   default: false
     t.datetime "requested_withdrawal_on"
+    t.float    "lifetime_tips",           default: 0.0
+    t.float    "lifetime_winnings",       default: 0.0
+    t.float    "lifetime_earnings",       default: 0.0
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree

@@ -36,14 +36,14 @@ class Tip < ActiveRecord::Base
   def generate_invoice_address!(force=false)
     if invoice_address.blank? || force==true
       callback_url = url_encode("http://#{App.url}/tips/#{id}/callback_for_blockchain")
-      if resp = Yajl::Parser.parse(open("https://blockchain.info/api/receive?method=create&address=#{App.wallet}&callback=#{callback_url}"))
+      if resp = Yajl::Parser.parse(open("https://blockchain.info/api/receive?method=create&address=#{App.wallet_address}&callback=#{callback_url}"))
         self.invoice_address = resp['input_address']
       end
     end
   end
 
   def invoice_address_with_amount
-    "bitcoin:#{invoice_address}?amount=#{amount_in_btc}"
+    "bitcoin:#{invoice_address}?amount=#{amount_in_btc}&#{App.wallet_address_params}"
   end
 
   def total_payments
@@ -53,14 +53,14 @@ class Tip < ActiveRecord::Base
 
   def add_payment_details!(hash)
     return false if self.tip_payments.where(transaction_hash: hash[:transaction_hash]).exists?
-    self.tip_payments.create( sender: sender, 
-                              recipient: recipient, 
-                              payment_details: hash, 
-                              transaction_hash: hash[:transaction_hash])
+    payment = self.tip_payments.create( sender: sender, 
+                                        recipient: recipient, 
+                                        payment_details: hash, 
+                                        transaction_hash: hash[:transaction_hash])
     self.update_attributes(:actual_amount_in_sats => total_payments)
     self.success!
     self.sender.calculate_total_tips_sent!
-    self.recipient.calculate_total_earnings!
+    self.recipient.calculate_total_earnings!(payment.final_amount_in_sats)
   end
 
   def pending?

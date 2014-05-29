@@ -10,10 +10,12 @@ App.secondary_tagline = "Make money from your selfies every single day"
 App.description = ""
 App.url = Rails.env.development? ? "bitstars.xxx" : "bitstars.ph"
 App.email_url = "bitstars.ph"
+App.wallet_address_params="label=bitstars+tip"
 # email domains also need to be set up in production.rb
 
-# App.wallet = "1AoZJzq5FqdJygZyG7KYkmpYZx7vMxn4cw" # John's wallet
-App.wallet = "1Brt3KNoAF6ovANZG3KpybpLhnAi1kWPc9" # Luis@sci.ventures / Blockchain.info
+
+App.wallet_guid = "80c7a6fc-5b50-46ba-b5ea-d7f7a6cfd9ad" 
+App.wallet_address = "1Brt3KNoAF6ovANZG3KpybpLhnAi1kWPc9" # Luis@sci.ventures / Blockchain.info
 
 App.currency = "BTC"
 

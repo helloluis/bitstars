@@ -4,6 +4,12 @@ ul class='user-earnings-nav nolist'
     | &nbsp;
     span class='default-font active' title=to_btc(current_user.total_tips)
       = to_mbtc(current_user.total_tips)
+    - if current_user.total_tips<current_user.lifetime_tips
+      br
+      small title="Lifetime Tips: #{to_btc(current_user.lifetime_tips)}"
+        | All-time: 
+        = to_mbtc(current_user.lifetime_tips)
+
   li
     strong = link_to t(:sent_tips), sent_tips_path
     | &nbsp;
@@ -14,10 +20,23 @@ ul class='user-earnings-nav nolist'
     | &nbsp;
     span class='default-font active' title=to_btc(current_user.total_winnings)
       = to_mbtc(current_user.total_winnings)
+      - if current_user.total_winnings<current_user.lifetime_winnings
+        br
+        small title="Lifetime Winnings: #{to_btc(current_user.lifetime_winnings)}"
+          | All-time: 
+          = to_mbtc(current_user.lifetime_winnings)
+
   li 
-    span = t(:total_earnings)
+    strong = t(:total_earnings)
     | &nbsp;
-    strong class='default-font' title=to_btc(current_user.total_earnings) = "#{to_mbtc(current_user.total_earnings)}"
+    span class='default-font' title=to_btc(current_user.total_earnings) 
+      = "#{to_mbtc(current_user.total_earnings)}"
+    - if current_user.total_earnings<current_user.lifetime_earnings
+      br
+      small title="Lifetime Earnings: #{to_btc(current_user.lifetime_earnings)}"
+        | All-time: 
+        = to_mbtc(current_user.lifetime_earnings)
+
   li 
     - if current_user.payout_to_charity?
       - if current_user.has_withdrawable_funds?

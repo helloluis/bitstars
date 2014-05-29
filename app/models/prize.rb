@@ -19,14 +19,22 @@ class Prize < ActiveRecord::Base
   end
 
   def calculate_user_totals
-    self.user.calculate_total_earnings!
+    self.user.calculate_total_earnings!(0,self.amount_in_sats)
   end
 
   def revoke!
+    
     update_attributes(revoked: false)
+    
     current_total_winnings = self.user.total_winnings
     current_total_earnings = self.user.total_earnings
-    self.user.update_attributes(total_winnings: current_total_winnings-amount_in_sats, total_earnings: current_total_earnings-amount_in_sats)
+
+    self.user.update_attributes(
+      total_winnings: current_total_winnings-amount_in_sats, 
+      total_earnings: current_total_earnings-amount_in_sats,
+      lifetime_winnings: current_total_winnings-amount_in_sats,
+      lifetime_earnings: current_total_earnings-amount_in_sats)
+    
   end
 
 end

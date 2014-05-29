@@ -6,6 +6,7 @@ class CreatePayouts < ActiveRecord::Migration
       t.text    :charity
       t.float   :amount_in_sats
       t.text    :earnings_breakdown
+      t.text    :transaction_hash
       t.timestamps
     end
   end

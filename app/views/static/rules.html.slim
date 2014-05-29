@@ -11,22 +11,22 @@ div class='container standalone-container'
   div class='row'
     div class='col-md-8'
       div class='jumbotron jumbotron-selfies'
-        h1 #{App.name} Contest Rules
+        h1 How Does #{App.name} Work?
         p 
           | Greetings from the Selfie Capital of the World!
           br
           | Please read through this page before joining our daily contest.
       
-      dl id="questions"
-        dt id='join'
+      dl id="questions" class='faqs'
+        dt class='question' id='join'
           h4 How Do I Join #{App.name}?
-        dd
+        dd class='answer'
           p 
             | To join #{App.name}, all you need is an Instagram or Facebook account that contains photos of yourself (those are called "selfies," but we're sure you already knew that!). Just login using your Instagram or Facebook account and you'll be able to pick out recent photos from your feed to enter into the daily contest.
 
-        dt id='types'
+        dt class='question' id='types'
           h4 What Types of Selfies Do You Accept?
-        dd
+        dd class='answer'
           p
             | Please note that the selfies you upload must be <strong>primarily of you</strong>! If we discover that you are using someone else's images without their consent or permission, we may revoke your winnings (if any) and ban you from future contests.
           p
@@ -34,56 +34,56 @@ div class='container standalone-container'
           p
             | What you had for breakfast today is allowed only if your face is also in the image. The same goes for your babies, your pets, or your new yacht.
 
-        dt id='win'
+        dt class='question' id='win'
           h4 How Do I Win the Daily Contest?
-        dd
+        dd class='answer'
           p
             | Once you've submitted your selfies, it's time to start getting votes! Invite your friends to sign up and vote for your photo. The selfie with the most votes at the end of each 24-hour period will be awarded the prize money for that day.
 
-        dt id='receive_winnings'
+        dt class='question' id='receive_winnings'
           h4 How Do I Receive My Winnings?
-        dd
+        dd class='answer'
           p
             | After winning one of our daily contests, your prize money will be reflected in your user profile page. This prize money is in <a href="https://bitcoin.org/en/">Bitcoin</a>, a new Internet currency that allows us to send money to you without incurring heavy transfer fees. You can either create a personal Bitcoin wallet (<a href="http://coinjar.com">Coinjar.com</a> is a good place) where we can forward the money to you, or you can choose to have the money remitted to your personal bank account. (If you choose the latter option, we will need to deduct a transfer fee from your winnings.)
 
-        dt id='donate_charity'
+        dt class='question' id='donate_charity'
           h4 How Do I Donate My Winnings to Charity?
-        dd
+        dd class='answer'
           p
             | If you would like to donate your earnings to charity, all you need to do is pick a supported charity from the "Edit Profile" page. We will donate your winnings on your behalf whenever you reach at least PhP500.00 worth of Bitcoin.
 
-        dt id='charity_options'
+        dt class='question' id='charity_options'
           h4 
             | The Charity I Want to Support Isn't Listed!
-        dd
+        dd class='answer'
           p
             | Send us an email at <a href='mailto:admin@bitstars.ph'>admin@bitstars.ph</a> and once we've verified the charity, we'll add it to the list of options.
 
-        dt id='wallet'
+        dt class='question' id='wallet'
           h4 How Do I Create a Bitcoin Wallet?
-        dd
+        dd class='answer'
           p
             | A Bitcoin wallet can exist on your Android phone, on your personal computer, or in the cloud. Some good cloud wallets include <a href="http://blockchain.info">Blockchain.info</a>, <a href="http://coinjar.com">CoinJar</a>, or <a href="http://bitgo.com">Bitgo</a>. 
 
-        dt id='receive_tips'
+        dt class='question' id='receive_tips'
           h4 How Do I Receive Tips?
-        dd
+        dd class='answer'
           p
-            | One other way of earning money from your selfies is to receive tips from fans. Each selfie page on #{App.name} has a QR code at the bottom right, which people with Bitcoin wallets can take a photo of and use to send you some money. We'll notify you whenever you receive a tip from another user. You'll be able to withdraw your tip money once it has reached at least 0.025 Bitcoin in value (that's roughly PhP500.00 or $20.00).
+            | One other way of earning money from your selfies is to receive tips from fans. Each selfie page on #{App.name} has a tip form and QR code at the bottom right, which people with Bitcoin wallets can scan with their cameras and use to send you some money. We'll notify you whenever you receive a tip from another user. You'll be able to withdraw your tip money once it has reached at least 0.025 Bitcoin in value (that's roughly PhP500.00 or $20.00).
           p
             | Please also note that #{App.name} charges a small service fee of #{App.transaction_fee_percentage*100}% for each tip received.
 
-        dt id='giving_tips'
+        dt class='question' id='giving_tips'
           h4 How Do I Give Tips?
-        dd
+        dd class='answer'
           p
-            | If you're a Bitcoin user, you probably already know the answer to this, but here's the basic process. Once you've found a selfie that you like, all you need to do is enter the amount you want to tip in the bottom right of the page, then take a shot of the QR code that we generate. We'll manage the rest of the process and communicate with the owner of the selfie about how they can receive the money.
+            | If you're a Bitcoin user, you probably already know the answer to this, but here's the basic process. Once you've found a selfie that you like, all you need to do is enter the amount you want to tip in the bottom right of the page, then scan the QR code that we generate. We'll manage the rest of the process and communicate with the owner of the selfie about how they can receive the money. You can optionally send a short message to the recipient that they can see once your tip has been confirmed.
           p
             | If you don't see a tip form anywhere on the page, it probably means that the user hasn't filled out all their information. We require that users fill out their address and mobile number, which will allow us to verify their identities.
 
-        dt id='about'
+        dt class='question' id='about'
           h4 Who Came Up With This Awesome Idea?
-        dd
+        dd class='answer'
           p
             | #{App.name} is a product of <a href="http://sci.ventures">Satoshi Citadel Industries</a>, a startup based in Makati City, Philippines.
 

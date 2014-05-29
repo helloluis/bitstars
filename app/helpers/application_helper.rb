@@ -76,11 +76,15 @@ module ApplicationHelper
     "<a href='http://plus.google.com/#{App.services.googleplus.username}' style='text-decoration: none;  line-height:4;vertical-align:middle; display:inline-block;padding-right:10px;padding-left:10px; font-size:13px; color:#fff; text-transform: uppercase;' class='#{css_class}' title='Kreyos on Google+'>#{img}Google+</a>"
   end
 
-  def charity_info(charity_slug)
+  def charity_info(charity_slug, name_only=false)
     if charity = App.charities.find{|c| c[:slug]==charity_slug }
-      str = ""
-      str << content_tag(:h3, link_to(charity.name, charity.url), class: 'charity-name' )
-      str << content_tag(:p, charity.description, class: 'charity-description')
+      if name_only
+        str = link_to(charity.name, charity.url)
+      else
+        str = ""
+        str << content_tag(:h3, link_to(charity.name, charity.url), class: 'charity-name' )
+        str << content_tag(:p, charity.description, class: 'charity-description') 
+      end
       str
     end
   end
