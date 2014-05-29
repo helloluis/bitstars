@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528082254) do
+ActiveRecord::Schema.define(version: 20140529015116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,6 +193,9 @@ ActiveRecord::Schema.define(version: 20140528082254) do
     t.float    "total_tips_sent",         default: 0.0
     t.boolean  "requesting_withdrawal",   default: false
     t.datetime "requested_withdrawal_on"
+    t.float    "lifetime_tips",           default: 0.0
+    t.float    "lifetime_winnings",       default: 0.0
+    t.float    "lifetime_earnings",       default: 0.0
   end
 
   add_index "users", ["access_token"], name: "index_users_on_access_token", using: :btree

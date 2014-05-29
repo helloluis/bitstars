@@ -53,14 +53,14 @@ class Tip < ActiveRecord::Base
 
   def add_payment_details!(hash)
     return false if self.tip_payments.where(transaction_hash: hash[:transaction_hash]).exists?
-    self.tip_payments.create( sender: sender, 
-                              recipient: recipient, 
-                              payment_details: hash, 
-                              transaction_hash: hash[:transaction_hash])
+    payment = self.tip_payments.create( sender: sender, 
+                                        recipient: recipient, 
+                                        payment_details: hash, 
+                                        transaction_hash: hash[:transaction_hash])
     self.update_attributes(:actual_amount_in_sats => total_payments)
     self.success!
     self.sender.calculate_total_tips_sent!
-    self.recipient.calculate_total_earnings!
+    self.recipient.calculate_total_earnings!(payment.final_amount_in_sats)
   end
 
   def pending?
