@@ -11,9 +11,7 @@ li class='tip'
     dt 
       small Tip
     dd.amount.default-font 
-      = number_with_precision(tip_payment.in_mbtc,precision:2)
-      | &nbsp;
-      span title='milli-bitcoin' mBTC
+      = to_mbtc(tip_payment.final_amount_in_sats)
   dl
     dt.message 
       small Message

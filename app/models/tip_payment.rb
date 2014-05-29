@@ -27,7 +27,7 @@ class TipPayment < ActiveRecord::Base
   end
 
   def in_mbtc
-    final_amount_in_sats/10000
+    final_amount_in_sats/100000
   end
 
   def in_btc

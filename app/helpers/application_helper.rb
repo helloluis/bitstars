@@ -103,7 +103,7 @@ module ApplicationHelper
 
   def to_mbtc(satoshis, no_unit=false)
     if no_unit
-      number_with_precision(satoshis.to_i.to_f/100000)
+      number_with_precision(satoshis.to_i.to_f/100000, precision: 2)
     else
       [number_with_precision(satoshis.to_i.to_f/100000, precision: 2),"mBTC"].join(" ")
     end
