@@ -48,7 +48,7 @@ var Tipper = {
           if (data.errors) {
             that.show_error(data.errors);
           } else {
-            that.display_invoice(data.invoice_address_with_amount, data.id);
+            that.display_invoice(data.invoice_address_with_amount, data.invoice_address, data.id);
           }
         },
         complete : function(x,s) {
@@ -61,7 +61,7 @@ var Tipper = {
     
   },
 
-  display_invoice: function(invoice_address_with_amount, remittance_id){
+  display_invoice: function(invoice_address_with_amount, naked_invoice_address, remittance_id){
     var that = this;
     $("#qr_code").attr( 'src', $("#qr_code").attr('data-src')+escape(invoice_address_with_amount) );
     $("#invoice_address").
@@ -69,12 +69,11 @@ var Tipper = {
         var el = this;
         el.select();
         $(el).bind('mouseup', function(){
-          // Prevent further mouseup intervention
           el.onmouseup = null;
           return false;
         });
       }).
-      val(invoice_address_with_amount);
+      val(naked_invoice_address);
     $("#invoice").modal();
     $('#invoice').on('hidden.bs.modal', function (e) {
       $("#qr_code").attr('src','');
