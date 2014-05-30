@@ -52,6 +52,9 @@ App.services = {
   :open_exchange => {
     app_id: "1ba3c1a8bab6490daf5dcc7dbc3149ec"
   },
+  :analytics => {
+    id: "UA-51490145-1"
+  },
   :ses => {
     access_key:         "",
     secret_access_key:  ""
