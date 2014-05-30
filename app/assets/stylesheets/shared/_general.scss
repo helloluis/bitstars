@@ -509,7 +509,10 @@ header.user-header {
   }
   footer {
     p {
-      font-size:rem-calc(12px);
+      font-size:rem-calc(8px);
+    }
+    .logo-sci {
+      margin-bottom:10px;
     }
   }
   p, label, th, td {

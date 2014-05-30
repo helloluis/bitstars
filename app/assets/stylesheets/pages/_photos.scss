@@ -387,6 +387,13 @@
 }
 
 @media (max-width:720px) {
+  .date-nav {
+    .date-prev, .date-next {
+      h3 {
+        font-size:rem-calc(7px);  
+      }
+    }
+  }
   .tip-amount-label, #tip_amount_in_btc {
     float:left;
   }
