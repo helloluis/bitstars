@@ -17,6 +17,22 @@
       width:100%;
       height:auto;
     }
+    .author {
+      line-height:24px;
+      margin-bottom:3px;
+      .avatar {
+        width:24px;
+        height:24px;
+        margin-right:5px;
+        background-size:cover;
+        border:1px solid #ccc;
+        @include border-radius(12px);
+      }
+      a {
+        font-size:rem-calc(14px);
+        font-weight:bold;
+      }
+    }
     .likes {
       background:transparent !important;
       .glyphicon, .like_count {
@@ -64,7 +80,7 @@
         &.position {
           background-color:#999;
           padding:5px;
-          margin:20px -5px -5px 0px;
+          margin:0px -5px -5px 0px;
           color:#fff;
           @extend .body_fontstack;
           font-size:16px;
@@ -155,6 +171,13 @@
         color:#fff;
       }
     }
+  }
+  .avatar {
+    width:50px;
+    height:50px;
+    margin-right:10px;
+    background-size:cover;
+    @include border-radius(25px);
   }
   .next-photo {
     font-size:rem-calc(28px);
@@ -315,17 +338,27 @@
   }
   .photos .photo {
     width:99%;
-    .caption {
-      .author {
-        a {
-          font-size:rem-calc(9px) !important;
-        }
-        font-size:rem-calc(10px) !important;
-        line-height:1.1;
-      }  
+    .author {
+      margin-bottom:6px;
+      a {
+        font-size:rem-calc(9px) !important;
+      }
+      font-size:rem-calc(9px) !important;
+    }
+    .likes {
+      line-height:1;
+      .glyphicon, .like_count, .heart-label {
+        font-size:rem-calc(8px) !important;
+      }
+      .heart.btn-xs {
+        line-height:1;
+        padding-top:rem-calc(2px);
+        padding-bottom:rem-calc(2px);
+        font-size:rem-calc(8px) !important
+      }
     }
     .position {
-      font-size:rem-calc(12px) !important;
+      font-size:rem-calc(9px) !important;
     }
   }
   .select_photos_header {
@@ -380,8 +413,22 @@
         }
       }
     }
-    .btn, .photo-stats, .submitted, .text-center, .converter, h4, table th, table td {
-      font-size:rem-calc(9px);
+    .caption {
+      font-size:rem-calc(8px) !important;
+    }
+    .avatar {
+      width:50px;
+      height:50px;
+      margin-right:10px;
+      background-size:cover;
+      @include border-radius(25px);
+    }
+    .btn, .photo-stats, .submitted, .text-center, .converter, h4, table th, table td, p.position {
+      font-size:rem-calc(8px);
+    }
+    p {
+      padding-bottom:5px;
+      margin-bottom:10px;
     }
   }
 }

@@ -57,7 +57,7 @@ div class='col-md-4'
           small class='created_at' title=@photo.created_at.strftime("%d %B %Y, %H:%M%p") 
             = link_to "#{@date.strftime("%d %B %Y")} &rarr;".html_safe, photos_by_date_path(@date)
 
-      div class='clearfix'
+      div.clearfix
       - if @photo.winner?
         p class='winner'
           = image_tag "winner.png"
@@ -72,17 +72,20 @@ div class='col-md-4'
         p class='disqualified'
           | This photo is DISQUALIFIED.
 
-      p class='submitted' 
-        | Submitted by 
-        = link_to @photo.user.username, user_path(@photo.user)
-        | &nbsp;
-        small
-          | (
-          = link_to "#{@photo.user.provider.titleize}", @photo.user.provider_link
-          | )
-        - unless @photo.user.location.blank?
-          br
-          small = @photo.user.location
+      div.clearfix
+        a href=user_path(@photo.user)
+          span class='pull-left avatar' style='background-image:url(#{@photo.user.avatar})'
+        p class='pull-left submitted' 
+          | Submitted by 
+          = link_to @photo.user.username, user_path(@photo.user)
+          | &nbsp;
+          small
+            | (
+            = link_to "#{@photo.user.provider.titleize}", @photo.user.provider_link
+            | )
+          - unless @photo.user.location.blank?
+            br
+            small = @photo.user.location
         
 
       = render :partial => "photos/admin_tools"
