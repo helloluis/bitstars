@@ -332,9 +332,10 @@
   }
 }
 
-@media (max-width:480px) {
+@media (max-width:640px) {
   .jumbotron {
     padding:10px 15px;
+    margin-bottom:10px;
   }
   .photos .photo {
     width:99%;
@@ -362,17 +363,30 @@
     }
   }
   .select_photos_header {
+    h1 {
+      margin:0px;
+      padding:0px;
+      font-size:rem-calc(11px) !important;
+    }
     p {
-      font-size:rem-calc(14px);
+      font-size:rem-calc(8px) !important;
       padding-bottom:0px;
       margin-bottom:0px;
     }
-    #submit_btn {
-      font-size:rem-calc(16px);
-      margin-top:0px;
+    .pull-right {
+      float:none;
+      width:100%;
+      #submit_btn {
+        font-size:rem-calc(8px) !important;
+        width:100%;
+        margin-top:0px;
+      }
     }
   }
   .select_photos_header.affix {
+    .standalone-container {
+      margin-top:0px;
+    }
     .jumbotron {
       padding:10px 15px;
       h1 {
