@@ -134,8 +134,6 @@ module ApplicationHelper
   end
 
   def development_status
-    if App.development_status!='final'
-      link_to image_tag("#{App.development_status}.png", class: 'development_status', title: "We're still in #{App.development_status}! Please forgive the clutter!").html_safe, "http://facebook.com/#{App.services.facebook.username}"
-    end
+    link_to(image_tag("alpha.png", class: 'development_status', alt: "We're still in alpha! Please forgive the clutter!"), "http://facebook.com/#{App.services.facebook.username}")
   end
 end
