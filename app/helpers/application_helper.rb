@@ -3,6 +3,14 @@ module ApplicationHelper
     "BITST&#10029;RS - #{@page_title || App.tagline}"
   end
 
+  def daily_prize(photo_count)
+    if tier = App.prize_tiers.find{|pt| pt.first.include?(photo_count)}
+      number_to_currency(tier.last,unit: "&#8369;".html_safe)
+    else
+      number_to_currency(App.prize_tiers.last.last,unit: "&#8369;".html_safe)
+    end
+  end
+
   def page_open_graph_tags
     str = ""
     if @photo
@@ -119,6 +127,10 @@ module ApplicationHelper
 
   def to_php(satoshis)
     number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "PHP")
+  end
+
+  def php_to_satoshis(php)
+    CurrencyExchangeRates.convert(php,'PHP','BTC')*100000000
   end
 
   def development_status

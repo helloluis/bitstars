@@ -96,11 +96,17 @@ class PhotosController < ApplicationController
     @date_after  = @date+1.day
     @date_before = @date-1.day
     @photos      = Photo.by_date(@date).page(params[:page]).per(30)
+    @photo_count = Photo.by_date(@date).count
   end
 
   def set_winner
-    @photo.win!
-    return redirect_to photo_path(@photo)
+    if @prize = daily_prize(Photo.by_date(@photo.created_date).count)
+      @photo.win!(php_to_satoshis(@prize))
+      return redirect_to photo_path(@photo)
+    else
+      flash[:alert] = "Couldn't compute prize."
+      return redirect_to photo_path(@photo)
+    end
   end
 
   def unset_winner

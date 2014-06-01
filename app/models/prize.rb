@@ -24,7 +24,7 @@ class Prize < ActiveRecord::Base
 
   def revoke!
     
-    update_attributes(revoked: false)
+    update_attributes(revoked: true)
     
     current_total_winnings = self.user.total_winnings
     current_total_earnings = self.user.total_earnings

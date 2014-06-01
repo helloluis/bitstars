@@ -8,6 +8,9 @@ div class='container standalone-image'
             = @date_after.strftime("%d %B")
       li.date-current
         h1.text-center = @date.strftime("%d %B %Y")
+        p.text-center 
+          | Today's Jackpot: 
+          strong = daily_prize(@photo_count)
       li.date-next
         h3.text-right
           a href=photos_by_date_path(@date_before)

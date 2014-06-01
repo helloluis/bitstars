@@ -1,3 +1,4 @@
+include ApplicationHelper
 class Photo < ActiveRecord::Base
   
   belongs_to :user
@@ -50,6 +51,10 @@ class Photo < ActiveRecord::Base
     self.where(sql).order("RANDOM()").first
   end
 
+  def created_date
+    created_at.strftime("%Y-%m-%d")
+  end
+
   def position_today
     time = Time.now.in_time_zone
     if num_likes > 0 && created_at>=time.beginning_of_day
@@ -65,7 +70,7 @@ class Photo < ActiveRecord::Base
     errors.add(:base, "You can only submit #{App.max_submissions_per_day} per day.") if user.photos.today.length >= App.max_submissions_per_day
   end
 
-  def win!
+  def win!(override_prize=nil)
     if user.has_won_recently?
       
       errors.add(:base, "This user has won already within the last #{App.winner_lockout/86400} days and can't be awarded again.") 
@@ -78,7 +83,7 @@ class Photo < ActiveRecord::Base
       
       self.update_attributes(winner: true)
 
-      Prize.create(user: user, photo: self)
+      Prize.create(user: user, amount_in_satoshis: (override_prize || App.daily_prize_in_php), photo: self)
       
       user.update_attributes(last_won_on: Time.now, has_won: true)
       
@@ -87,6 +92,7 @@ class Photo < ActiveRecord::Base
 
   def unwin!
     self.update_attributes(winner: false)
+    self.prize.revoke! if self.prize
   end
 
   def disqualify!
