@@ -12,9 +12,11 @@ var Tipper = {
     var that = this,
         tip_field = $("#tip_amount_in_btc"),
         convert = function(){
-          var amount = tip_field.val();
-          $(".value_in_php").html( accounting.formatMoney( (amount * that.rates['PHP']),'&#8369;' ) );
-          $(".value_in_usd").html( accounting.formatMoney( (amount * that.rates['USD']),'$' ) );
+          var btc  = tip_field.val(),
+              pesos   = (btc/that.rates['BTC']) * that.rates['PHP'],
+              dollars = (btc/that.rates['BTC']);
+          $(".value_in_php").html( accounting.formatMoney( pesos,'&#8369;' ) );
+          $(".value_in_usd").html( accounting.formatMoney( dollars,'$' ) );
         };
 
     tip_field.change(convert).keyup(convert);
