@@ -116,6 +116,8 @@ App.currencies = [
   { symbol: "HK$",     slug: "HKD", name: "Hong Kong Dollar" }
 ]
 
+App.exchange_rates = false
+
 App.flag_reasons = [
   { slug: :not_selfie, description: "This is not a selfie" },
   { slug: :nsfw,       description: "This contains nudity" },

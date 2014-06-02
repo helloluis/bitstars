@@ -14,14 +14,15 @@ class CurrencyExchangeRates < ActiveRecord::Base
           currency.update_attributes(:rate => new_rate) 
         end
       end
+      App.exchange_rates = CurrencyExchangeRates.all.entries
     end
     
-    return to_js ? self.all_to_js : self.all
+    return to_js ? self.all_to_js : App.exchange_rates
   end
 
   def self.get_rates
     rates = {}
-    self.all.each do |r|
+    (App.exchange_rates||self.all).each do |r|
       rates[r.currency] = r.rate
     end
     rates
@@ -46,6 +47,7 @@ class CurrencyExchangeRates < ActiveRecord::Base
   end
 
   def self.get_latest!
+    App.exchange_rates = false
     hash = Yajl::Parser.parse(open("http://openexchangerates.org/latest.json?app_id=#{App.services.open_exchange.app_id}"))
     return hash['rates']
     rescue
@@ -54,7 +56,7 @@ class CurrencyExchangeRates < ActiveRecord::Base
 
   def self.all_to_js
     js = {}
-    self.all.each do |record|
+    (App.exchange_rates||self.all).each do |record|
       js[record.currency] = record.rate
     end
     js

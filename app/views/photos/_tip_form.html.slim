@@ -38,7 +38,7 @@ form class='form-inline tip-form' role='form' action="/tips.json" method="post"
           th
             = image_tag "flags/#{cur.downcase}.png", class: 'flag' 
             = cur
-          td = number_to_currency(rate,unit:"")
+          td = number_with_precision(CurrencyExchangeRates.convert(1,'BTC',cur), precision: 2, delimiter: ',')
 
   - content_for :page_scripts do
     javascript:

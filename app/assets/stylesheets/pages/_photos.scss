@@ -489,6 +489,9 @@
     a, span.glyphicon-heart {
       font-size:rem-calc(20px);
       line-height:36px;
+      &.next-photo {
+        line-height:22px;
+      }
     }
   }
   .select_photos_header {

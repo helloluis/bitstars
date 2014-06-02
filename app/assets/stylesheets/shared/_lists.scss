@@ -35,10 +35,13 @@
 }
 
 .jumbotron-selfies {
-  background:image-url('bg.jpg');
+  background:image-url('bg2.jpg');
   h1, p { 
-    color:#222; 
-    text-shadow: 2px 2px 1px #fff;
+    color:#fff; 
+    text-shadow: 2px 2px 1px #123;
   }
   p { font-weight:bold; }
+  a {
+    color:#ffc;
+  }
 }
