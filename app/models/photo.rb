@@ -71,19 +71,21 @@ class Photo < ActiveRecord::Base
   end
 
   def win!(override_prize=nil)
+    prize = override_prize ? override_prize : php_to_satoshis(Prize.daily_prize_amount(created_date))
+    
     if user.has_won_recently?
       
       errors.add(:base, "This user has won already within the last #{App.winner_lockout/86400} days and can't be awarded again.") 
 
+    elsif Photo.where("winner=true AND created_at>=? AND created_at<?", created_at.beginning_of_day, created_at+1.day).exists?
+
+      errors.add(:base, "A winner has already been selected for #{created_date}.")
+
     else
       
-      date_of_photo = self.created_at
-      
-      Photo.where("winner=true AND created_at>=? AND created_at<?", date_of_photo.beginning_of_day, date_of_photo+1.day).update_all(winner: false)
-      
       self.update_attributes(winner: true)
-
-      Prize.create(user: user, amount_in_satoshis: (override_prize || App.daily_prize_in_php), photo: self)
+      
+      self.create_prize(user: user, amount_in_sats: prize)
       
       user.update_attributes(last_won_on: Time.now, has_won: true)
       

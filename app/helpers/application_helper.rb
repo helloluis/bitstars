@@ -4,11 +4,8 @@ module ApplicationHelper
   end
 
   def daily_prize(photo_count)
-    if tier = App.prize_tiers.find{|pt| pt.first.include?(photo_count)}
-      number_to_currency(tier.last,unit: "&#8369;".html_safe)
-    else
-      number_to_currency(App.prize_tiers.last.last,unit: "&#8369;".html_safe)
-    end
+    prize = Prize.daily_prize_amount_from_count(photo_count)
+    number_to_currency(prize,unit: "&#8369;".html_safe)
   end
 
   def page_open_graph_tags
@@ -125,8 +122,12 @@ module ApplicationHelper
     end
   end
 
-  def to_php(satoshis)
-    number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "PHP")
+  def to_php(satoshis, no_unit=false)
+    if no_unit
+      number_with_precision(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'))
+    else
+      number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "PHP")
+    end
   end
 
   def php_to_satoshis(php)

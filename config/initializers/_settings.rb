@@ -40,7 +40,7 @@ App.winner_lockout = 1.week
 
 App.minimum_tip = 0.0005
 
-App.maximum_tip = 2.0
+App.maximum_tip = 1.0
 
 App.minimum_withdrawal = 2500000 # in satoshis
 
@@ -50,7 +50,7 @@ App.prize_tiers = [
   [0..50, 200],
   [51..75, 300],
   [76..100, 400],
-  [101..10000, 500]
+  [101..100000, 500]
 ]
 
 App.transaction_fee_percentage = 0.01

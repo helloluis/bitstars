@@ -9,9 +9,9 @@ class CurrencyExchangeRates < ActiveRecord::Base
       @latest = self.get_latest! 
       App.currencies.each do |cur|
         currency = self.where(currency: cur.slug).first_or_create
-        if currency.rate.blank? || currency.updated_at < 1.hour.ago
-          new_rate = self.get_rate(@latest, App.currency, cur.slug)
-          currency.update_attributes(:rate => new_rate)
+        if currency.rate.blank? || currency.updated_at < 1.hour.ago || force==true
+          new_rate = self.get_rate(@latest, "USD", cur.slug)
+          currency.update_attributes(:rate => new_rate) 
         end
       end
     end
