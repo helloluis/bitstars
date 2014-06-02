@@ -23,6 +23,14 @@
   } 
 }
 
+@media (min-width:1280px) {
+  .user-header {
+    min-height:200px;
+    .container {
+      padding-top:40px;
+    }
+  }
+}
 .user-header {
   background:#333 image-url('bg2.jpg') 50% 50% no-repeat;
   background-size:cover;
