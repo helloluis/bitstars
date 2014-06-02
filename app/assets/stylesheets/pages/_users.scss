@@ -1,10 +1,18 @@
-@media (max-width:720px) {
+@media (max-width:640px) {
   .user-header {
+    .container {
+      margin:10px 20px;
+    }
     h1 {
-      font-size:rem-calc(12px);
+      font-size:rem-calc(11px);
+      small {
+        display:block;
+      }
     }
     p {
-      font-size:rem-calc(8px);
+      margin-top:10px;
+      font-size:rem-calc(7px);
+      line-height:1;
     }
   }
 }
@@ -13,4 +21,29 @@
   .table td {
     font-size:rem-calc(9px);
   } 
+}
+
+.user-header {
+  background:#333 image-url('bg2.jpg') 50% 50% no-repeat;
+  background-size:cover;
+  position:relative;
+  .overlay {
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background:rgba(0,20,40,0.7);
+    z-index:1;
+  }
+  .container {
+    position:relative;
+    z-index:2;
+  }
+  h1 {
+    color:#fff;
+  }
+  a {
+    color:$highlight-color;
+  }
 }

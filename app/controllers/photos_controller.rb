@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 
   before_filter :authenticate_admin!, :only => [ :set_winner, :unset_winner, :disqualify, :requalify ]
 
-  before_filter :get_rates, :only => [ :index, :show, :by_date ]
+  before_filter :get_rates, :only => [ :index, :show ]
 
   def index
     @random = true

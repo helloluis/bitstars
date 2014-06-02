@@ -8,8 +8,9 @@
       Heart.initialize(PHOTOS);
     });
 
-div class='container'
-  header class='row user-header'
+header class='row user-header' style=(@best ? "background-image:url(#{@best.images[:standard]})" : "")
+  div class='overlay'
+  div class='container'
     div class='pull-left'
       img src=@user.avatar class='avatar'
     div class='pull-left'
@@ -34,6 +35,8 @@ div class='container'
               = link_to "Send Payout (#{to_mbtc(@user.total_earnings)}) &rarr;".html_safe, payout_user_path(@user)
 
 
+div class='container'
+  
   div class='clearfix'
   div class='row'
     = render :partial => "photos/list", locals: { photos: @photos }
