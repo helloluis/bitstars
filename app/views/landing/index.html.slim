@@ -15,13 +15,7 @@
     PHOTOS = #{(@photos+@photos_yesterday).to_json.html_safe};
 
     $(function(){
-
-      $(".photos").imagesLoaded(function(){
-        $(".photos").masonry({ itemSelector: ".photo" });
-      });
-
       Heart.initialize(PHOTOS);
-
     });
 
 div class="container"

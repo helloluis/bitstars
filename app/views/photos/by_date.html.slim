@@ -36,10 +36,5 @@ div class='container standalone-image'
   javascript:
     PHOTOS = #{@photos.to_json.html_safe};
     $(function(){
-      $("ul.photos").imagesLoaded(function(){
-        $("ul.photos").masonry({
-          itemSelector: ".photo"
-        });
-      });
       Heart.initialize(PHOTOS);
     });
