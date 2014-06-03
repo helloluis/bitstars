@@ -90,9 +90,7 @@ class Photo < ActiveRecord::Base
     else
       
       self.update_attributes(winner: true)
-      
       self.create_prize(user: user, amount_in_sats: prize)
-      
       user.update_attributes(last_won_on: Time.now, has_won: true)
       
     end

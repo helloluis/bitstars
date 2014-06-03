@@ -14,14 +14,14 @@
     $(function(){
       Heart.initialize();
       $(".caption > p").tweetLinkify({ hashtagTarget: 'blank', hyperlinkClass: 'instagram-url' });
-      $(".thumbnail img").css('opacity',0).imagesLoaded(function(){
+      $(".thumbnail img").imagesLoaded(function(){
         $(".thumbnail img").fadeTo(1000,1);
       });
     });
 
 div class='col-md-8'
   div class='thumbnail #{@photo.winner? ? 'thumbnail-winner' : ''}'
-    = image_tag @photo.images[:standard], class: 'img-responsive'
+    = image_tag @photo.images[:standard], class: 'img-responsive', style: 'opacity:0'
     div class='caption'
       p = @photo.description
 
