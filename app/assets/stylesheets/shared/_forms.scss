@@ -71,6 +71,15 @@ ul.tips {
     padding-bottom:15px;
     margin-bottom:15px;
     font-size:rem-calc(14px);
+    .avatar {
+      width:24px;
+      height:24px;
+      background-position: center center;
+      background-size:cover;
+      @include border-radius(12px);
+      float:left;
+      margin-right:5px;
+    }
     dl {
       overflow:hidden;
       margin-bottom:0px;

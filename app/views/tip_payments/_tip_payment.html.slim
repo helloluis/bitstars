@@ -2,11 +2,17 @@ li class='tip'
   dl
     dt.from_user 
       small From
-    dd.from_user = link_to tip_payment.sender.full_name, user_path(tip_payment.sender)
+    dd.from_user
+      div class='avatar' style='background-image:url(#{tip_payment.sender.avatar})' 
+      /= link_to image_tag(tip_payment.sender.avatar, class: 'avatar'), user_path(tip_payment.sender)
+      = link_to tip_payment.sender.full_name, user_path(tip_payment.sender)
   dl
     dt.to_user 
       small To
-    dd.to_user = link_to tip_payment.recipient.full_name, user_path(tip_payment.recipient)
+    dd.to_user 
+      div class='avatar' style='background-image:url(#{tip_payment.recipient.avatar})' 
+      /= link_to image_tag(tip_payment.recipient.avatar, class: 'avatar'), user_path(tip_payment.recipient)
+      = link_to tip_payment.recipient.full_name, user_path(tip_payment.recipient)
   dl
     dt 
       small Tip
