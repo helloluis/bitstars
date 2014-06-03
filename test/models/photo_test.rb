@@ -22,21 +22,21 @@ class PhotoTest < ActiveSupport::TestCase
     assert @max_photos.length==App.max_submissions_per_day, "#{@max_photos.length} of max #{App.max_submissions_per_day} photos created"
   end
 
-  test "should increment user total winnings if photo wins" do 
+  test "should increment user total winnings by #{App.prize_tiers.first.last} if photo wins" do 
     @prev_winnings = @user.total_winnings
     @photo.win!
-    assert @user.total_winnings > @prev_winnings, "CURRENT: #{@user.total_winnings} PREVIOUS: #{@prev_winnings}"
+    assert @user.total_winnings == App.prize_tiers.first.last, "CURRENT: #{@user.total_winnings} PREVIOUS: #{@prev_winnings}"
   end
 
   test "should only award #{App.prize_tiers.first.last} pesos if there are fewer than #{App.prize_tiers.first.first.max} submissions today" do
-    10.times.each do |i|
+    App.prize_tiers.first.first.min.times.each do |i|
       FactoryGirl.create(:photo)
     end
     assert Prize.daily_prize_amount(Time.now.strftime("%Y-%m-%d"))==App.prize_tiers.first.last, "Prize: #{Prize.daily_prize_amount(Time.now.strftime("%Y-%m-%d"))}"
   end
 
   test "should award #{App.prize_tiers[1].last} pesos if there are more than #{App.prize_tiers.first.first.max} submissions today" do
-    51.times.each do |i|
+    App.prize_tiers.first.first.max.times.each do |i|
       FactoryGirl.create(:photo)
     end
     assert Prize.daily_prize_amount(Time.now.strftime("%Y-%m-%d"))==App.prize_tiers[1].last, "Prize: #{Prize.daily_prize_amount(Time.now.strftime("%Y-%m-%d"))}"
