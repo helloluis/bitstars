@@ -60,6 +60,7 @@ class Tip < ActiveRecord::Base
     self.update_attributes(:actual_amount_in_sats => total_payments)
     self.success!
     self.sender.calculate_total_tips_sent!
+    self.recipient.increment!(:num_tips)
     self.recipient.calculate_total_earnings!(payment.final_amount_in_sats)
   end
 
