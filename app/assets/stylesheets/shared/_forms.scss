@@ -100,6 +100,9 @@ ul.tips {
         font-weight:normal;
         &.amount {
           font-weight:bold;
+          small {
+            font-weight:normal;
+          }
         }
       }
     }

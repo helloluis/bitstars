@@ -126,7 +126,7 @@ module ApplicationHelper
     if no_unit
       number_with_precision(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'))
     else
-      number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "PHP")
+      number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "&#8369;".html_safe)
     end
   end
 

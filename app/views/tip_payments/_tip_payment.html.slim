@@ -18,6 +18,8 @@ li class='tip'
       small Tip
     dd.amount.default-font 
       = to_mbtc(tip_payment.final_amount_in_sats)
+      small
+        |  (#{to_php(tip_payment.final_amount_in_sats)})
   dl
     dt.message 
       small Message
