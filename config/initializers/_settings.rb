@@ -88,7 +88,7 @@ App.services = {
     secret:   ""
   },
   :pinterest => {
-    username: ""
+    username: "bitstars"
   },
   :googleplus => {
     username: "",
