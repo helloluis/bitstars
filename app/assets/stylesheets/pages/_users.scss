@@ -3,6 +3,10 @@
     .container {
       margin:10px 20px;
     }
+    .avatar {
+      width:50px;
+      height:50px;
+    }
     h1 {
       font-size:rem-calc(11px);
       small {
@@ -27,14 +31,22 @@
   .user-header {
     min-height:200px;
     .container {
-      padding-top:40px;
+      padding-top:30px;
     }
   }
 }
+
 .user-header {
   background:#333 image-url('bg2.jpg') 50% 50% no-repeat;
   background-size:cover;
   position:relative;
+  .avatar {
+    width:80px;
+    height:80px;
+    margin:25px 20px 0px 0px;
+    border:1px solid #ccc;
+    padding:2px;
+  }
   .overlay {
     position:absolute;
     top:0px;
@@ -50,8 +62,30 @@
   }
   h1 {
     color:#fff;
+    margin-bottom:5px;
+    padding-bottom:0px;
   }
   a {
     color:$highlight-color;
+  }
+  p {
+    color:#fff;
+    font-size:rem-calc(12px);
+  }
+  .user-counters {
+    overflow:hidden;
+    min-width:300px;
+    margin-bottom:5px;
+    li {
+      float:left;
+      color:#fff;
+      font-size:rem-calc(12px);
+      padding-right:10px;
+      margin-right:10px;
+      border-right:1px solid #555;
+      &:last-child {
+        border-right:0px;
+      }
+    }
   }
 }

@@ -99,10 +99,12 @@ class Photo < ActiveRecord::Base
 
   def disqualify!
     self.update_attributes(disqualified: true, winner: false)
+    self.user.decrement!(:num_photos)
   end
 
   def requalify!
     self.update_attributes(disqualified: false)
+    self.user.increment!(:num_photos)
   end
 
   def nsfw=(boolean)
