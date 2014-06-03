@@ -61,7 +61,7 @@ App.services = {
     app_id: "1ba3c1a8bab6490daf5dcc7dbc3149ec"
   },
   :analytics => {
-    id: "UA-51490145-1"
+    id: "UA-50380579-2"
   },
   :ses => {
     access_key:         "",
