@@ -246,16 +246,22 @@
   z-index:3;
   width:100%;
   top:0px;
+  .container {
+    margin-top:-5px;
+  }
   .jumbotron {
     padding: 12px 60px;
     h1 {
       font-size:rem-calc(36px);
+      margin:5px 0px 0px 0px;
     }
     p {
       font-size:rem-calc(16px);
+      margin-bottom:10px;
+      padding-bottom:0px;
     }
-    .btn-lg {
-      margin-top:10px;
+    #submit_btn {
+      margin-top:15px;
     }
   }
 }
@@ -335,7 +341,7 @@
     width:25%;
     min-height:50px;
     &.date-current {
-      width:46%;
+      width:49%;
       h1 {
         color:#fff;
       }
@@ -408,6 +414,15 @@
       padding:10px 15px;
       h1 {
         display:none;
+      }
+      p {
+        font-size:rem-calc(6px) !important;
+        margin-bottom:0px;
+      }
+      #submit_btn {
+        margin-top:0px;
+        font-size:rem-calc(6px) !important;
+        padding:6px 12px;
       }
     }
   }
