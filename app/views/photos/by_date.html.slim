@@ -10,7 +10,7 @@ header class='date-nav-header' style=winning_photo_as_bg(@winning_photo)
               = @date_after.strftime("%d %B")
       li.date-current
         h1.text-center = @date.strftime("%d %B %Y")
-        p.text-center 
+        p.text-center.daily-jackpot 
           | Today's Jackpot: 
           strong = daily_prize(@photo_count)
       li.date-next

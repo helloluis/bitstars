@@ -351,6 +351,12 @@
     }
     a {
       color:$highlight-color;
+      font-size:rem-calc(18px);
+    }
+  }
+  .daily-jackpot {
+    strong {
+      color:#ffc;
     }
   }
 }
