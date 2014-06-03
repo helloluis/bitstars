@@ -141,4 +141,8 @@ module ApplicationHelper
   def user_avatar(user)
     user.provider=='facebook' ? "#{user.avatar}?redirect=1&height=100&type=normal&width=100" : user.avatar
   end
+
+  def winning_photo_as_bg(photo)
+    "background-image:url('#{photo.images[:standard]}')" if photo
+  end
 end

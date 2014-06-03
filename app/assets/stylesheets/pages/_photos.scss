@@ -320,14 +320,31 @@
   }
 }
 
-.date-nav {
+.date-nav-header {
   overflow:hidden;
   padding:0px 2% !important;
+  background:#222 image-url('bg2.jpg') 50% 50% no-repeat;
+  background-size:cover;
+  position:relative;
+  .container {
+    position:relative;
+    z-index:2;
+  }
   li {
     float:left;
     width:25%;
+    min-height:50px;
     &.date-current {
       width:46%;
+      h1 {
+        color:#fff;
+      }
+      p {
+        color:#aaa;
+      }
+    }
+    a {
+      color:$highlight-color;
     }
   }
 }
@@ -534,6 +551,7 @@
     }
   }
 }
+
 
 // #fbcomments, .fb_iframe_widget, .fb_iframe_widget > span, .fb_iframe_widget[style], .fb_iframe_widget iframe[style], #fbcomments iframe[style] {
 //   width: 100% !important;

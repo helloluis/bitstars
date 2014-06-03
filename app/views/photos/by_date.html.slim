@@ -1,11 +1,13 @@
-div class='container standalone-image'
-  div class='row'
+header class='date-nav-header' style=winning_photo_as_bg(@winning_photo)
+  div.overlay
+  div.container
     ul.date-nav.nolist
       li.date-prev
-        h3 
-          a href=photos_by_date_path(@date_after) 
-            | &larr; 
-            = @date_after.strftime("%d %B")
+        - if @date_after
+          h3 
+            a href=photos_by_date_path(@date_after) 
+              | &larr; 
+              = @date_after.strftime("%d %B")
       li.date-current
         h1.text-center = @date.strftime("%d %B %Y")
         p.text-center 
@@ -17,6 +19,7 @@ div class='container standalone-image'
             = @date_before.strftime("%d %B")
             | &rarr;
 
+div class='container standalone-image'
   div.row
     div.col-md-12
       = render :partial => "photos/list", locals: { photos: @photos }

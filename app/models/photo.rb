@@ -38,6 +38,10 @@ class Photo < ActiveRecord::Base
     order("num_likes DESC, num_views DESC")
   end
 
+  def self.winner_by_date(date)
+    where(["disqualified!=true AND created_at>=? AND created_at<? AND winner=true",date.in_time_zone,date.in_time_zone+1.day]).first
+  end
+
   def self.random(not_id=nil, like_count=0, view_count=0, today=false)
     sql = ["disqualified!=true"]
     sql[0] += " AND id!=#{not_id}" if not_id

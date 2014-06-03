@@ -11,6 +11,10 @@ class PhotosController < ApplicationController
   before_filter :get_rates, :only => [ :index, :show ]
 
   def index
+    redirect_to "/photos/#{Time.now.strftime("%Y/%m/%d")}"
+  end
+
+  def random
     @random = true
     @photo = Photo.random
     @next_photo = "random"
@@ -93,10 +97,11 @@ class PhotosController < ApplicationController
 
   def by_date
     @date        = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
-    @date_after  = @date+1.day
+    @date_after  = @date+1.day unless @date==Time.now.in_time_zone.to_date
     @date_before = @date-1.day
     @photos      = Photo.by_date(@date).page(params[:page]).per(30)
     @photo_count = Photo.by_date(@date).count
+    @winning_photo = Photo.winner_by_date(@date)
   end
 
   def set_winner
