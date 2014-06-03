@@ -56,12 +56,12 @@ select {
 }
 
 div.tips-table-container {
-  padding:5px;
+  padding:15px 5px 5px 5px;
   border:1px solid #bbb;
   border-bottom:4px solid #bbb;
   @include border-radius(3px);
-  background:#eee;
   margin-bottom:50px;
+  background:#fff;
 }
 
 ul.tips {
@@ -88,6 +88,7 @@ ul.tips {
         float:left;
         font-size:rem-calc(16px);
         margin-bottom:5px;
+        font-weight:normal;
         &.amount {
           font-weight:bold;
         }

@@ -13,6 +13,8 @@ class Photo < ActiveRecord::Base
   validate :check_already_entered, on: :create
   validate :check_max_submission, on: :create
 
+  after_create :notify_admin
+
   def self.winners
     where(["disqualified!=true AND winner=true"]).order("created_at DESC")
   end
@@ -151,6 +153,10 @@ class Photo < ActiveRecord::Base
 
   def prev_photo
     self.class.unscoped.where("disqualified!=true AND id<?", id).order("created_at ASC").first
+  end
+
+  def notify_admin
+    UserMailer.notify_admin(self).deliver
   end
 
 end

@@ -125,11 +125,13 @@
 }
 
 .thumbnail.thumbnail-winner {
-  border:1px solid $primary-color;
+  border:1px solid #f60;
+  border-right:4px solid #f60;
+  border-bottom:4px solid #f60;
   &:hover {
-    border-color:#f60;
-    border-right:4px solid #f60;
-    border-bottom:4px solid #f60;
+    border:1px solid #f90;
+    border-right:4px solid #f90 !important;
+    border-bottom:4px solid #f90 !important;
   }
 }
 
@@ -192,18 +194,22 @@
     line-height:32px;
     font-weight:normal;
   }
-  .winner {
-    line-height:60px;
-    img {
-      margin-right:5px;
-    }
-    strong {
-      font-size:rem-calc(28px);
-      color:#c30;
-    }
-  }
   .caption {
     background:#e1e1e1;
+  }
+}
+
+.winner {
+  line-height:60px;
+  color:$secondary-color;
+  strong {
+    font-size:rem-calc(28px);
+    padding-top:10px;
+  }
+  .winner-badge {
+    width:60px;
+    height:60px;
+    margin-right:10px;
   }
 }
 

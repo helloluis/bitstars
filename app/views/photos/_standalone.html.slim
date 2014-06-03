@@ -63,7 +63,7 @@ div class='col-md-4'
       div.clearfix
       - if @photo.winner?
         p class='winner'
-          = image_tag "winner.png"
+          = image_tag "winner.png", class: 'winner-badge'
           strong WINNER!
       - elsif @photo.position_today
         p class='position' 
