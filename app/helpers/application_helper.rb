@@ -137,4 +137,8 @@ module ApplicationHelper
   def development_status
     link_to(image_tag("alpha.png", class: 'development_status', alt: "We're still in alpha! Please forgive the clutter!"), "http://facebook.com/#{App.services.facebook.username}")
   end
+
+  def user_avatar(user)
+    user.provider=='facebook' ? "#{user.avatar}?redirect=1&height=100&type=normal&width=100" : user.avatar
+  end
 end

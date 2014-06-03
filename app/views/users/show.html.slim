@@ -12,7 +12,7 @@ header class='row user-header' style=(@best ? "background-image:url(#{@best.imag
   div class='overlay'
   div class='container'
     div class='pull-left'
-      img src=@user.avatar class='avatar'
+      img src=user_avatar(@user) class='avatar'
     div class='pull-left'
       h1 
         = @user.username

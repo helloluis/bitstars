@@ -126,6 +126,7 @@ class Photo < ActiveRecord::Base
 
   def view!
     increment!(:num_views)
+    user.increment!(:num_views)
   end
 
   def self.already_entered?(user_id, provider, photo_id)
