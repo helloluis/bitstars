@@ -47,9 +47,9 @@ App.minimum_withdrawal = 2500000 # in satoshis
 App.daily_prize_in_php = 500
 
 App.prize_tiers = [
-  [0..50, 200],
-  [51..75, 300],
-  [76..100, 400],
+  [0..50, 0],
+  [51..75, 200],
+  [76..100, 300],
   [101..100000, 500]
 ]
 

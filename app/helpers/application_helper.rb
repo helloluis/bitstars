@@ -145,4 +145,8 @@ module ApplicationHelper
   def winning_photo_as_bg(photo)
     "background-image:url('#{photo.images[:standard]}')" if photo
   end
+
+  def is_today?(date)
+    date==Time.now.to_date
+  end
 end
