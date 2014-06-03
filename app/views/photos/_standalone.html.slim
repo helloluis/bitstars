@@ -14,6 +14,9 @@
     $(function(){
       Heart.initialize();
       $(".caption > p").tweetLinkify({ hashtagTarget: 'blank', hyperlinkClass: 'instagram-url' });
+      $(".thumbnail img").css('opacity',0).imagesLoaded(function(){
+        $(".thumbnail img").fadeTo(1000,1);
+      });
     });
 
 div class='col-md-8'
