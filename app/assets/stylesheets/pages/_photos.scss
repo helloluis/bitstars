@@ -112,6 +112,10 @@
   }
 }
 
+.thumbnail {
+  background:#fff image-url('loader_small.gif') 50% 50% no-repeat;
+}
+
 .thumbnail, .panel {
   border-color:#ccc;
   &:hover {
@@ -130,9 +134,12 @@
 
 .standalone-image {
   margin-top:20px;
-  .thumbnail .img-responsive {
-    width:100%;
-    height:auto;
+  .thumbnail {
+    background:#fff image-url('loader_big.gif') 50% 50% no-repeat;
+    .img-responsive {
+      width:100%;
+      height:auto;
+    }
   }
   .likes_and_views p {
     font-size:rem-calc(20px);
