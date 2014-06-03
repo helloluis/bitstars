@@ -80,7 +80,16 @@ ul.tips {
       float:left;
       margin-right:5px;
     }
+    .thumbnail {
+      width:100px;
+      height:100px;
+      overflow:hidden;
+      display:block;
+      background-size:cover;
+    }
     dl {
+      min-width:480px;
+      max-width:600px;
       overflow:hidden;
       margin-bottom:0px;
       dt {
@@ -112,8 +121,12 @@ ul.tips {
   &.sent_tips .from_user { display:none; }
 }
 
-@media (max-width:960px) {
+@media (max-width:640px) {
   ul.tips li {
+    .pull-right, .thumbnail {
+      width:100%;
+      max-height:80px;
+    }
     dl {
       margin-bottom:5px;
       padding-left:10px;
@@ -124,7 +137,7 @@ ul.tips {
         width:100%;  
         font-size:rem-calc(10px);
       }
-      dt {
+      dt small {
         font-size:rem-calc(8px);
       }
     }

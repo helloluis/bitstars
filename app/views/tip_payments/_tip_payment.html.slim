@@ -1,32 +1,34 @@
-li class='tip'
-  dl
-    dt.from_user 
-      small From
-    dd.from_user
-      div class='avatar' style='background-image:url(#{tip_payment.sender.avatar})' 
-      /= link_to image_tag(tip_payment.sender.avatar, class: 'avatar'), user_path(tip_payment.sender)
-      = link_to tip_payment.sender.full_name, user_path(tip_payment.sender)
-  dl
-    dt.to_user 
-      small To
-    dd.to_user 
-      div class='avatar' style='background-image:url(#{tip_payment.recipient.avatar})' 
-      /= link_to image_tag(tip_payment.recipient.avatar, class: 'avatar'), user_path(tip_payment.recipient)
-      = link_to tip_payment.recipient.full_name, user_path(tip_payment.recipient)
-  dl
-    dt 
-      small Tip
-    dd.amount.default-font 
-      = to_mbtc(tip_payment.final_amount_in_sats)
-      small
-        |  (#{to_php(tip_payment.final_amount_in_sats)})
-  dl
-    dt.message 
-      small Message
-    dd.message 
-      = tip_payment.tip.message.blank? ? "-" : tip_payment.tip.message
-  dl
-    dt.date 
-      small Date
-    dd.date
-      small == tip_payment.created_at.strftime("%d %B %Y, %H:%M")
+li class='tip clearfix'
+  div class='pull-right'
+    a href=photo_path(tip_payment.tip.photo)
+      div class='thumbnail' style="background-image:url(#{tip_payment.tip.photo.images[:thumbnail]})" 
+  div class='pull-left'
+    dl
+      dt.from_user 
+        small From
+      dd.from_user
+        div class='avatar' style='background-image:url(#{tip_payment.sender.avatar})' 
+        = link_to tip_payment.sender.full_name, user_path(tip_payment.sender)
+    dl
+      dt.to_user 
+        small To
+      dd.to_user 
+        div class='avatar' style='background-image:url(#{tip_payment.recipient.avatar})' 
+        = link_to tip_payment.recipient.full_name, user_path(tip_payment.recipient)
+    dl
+      dt 
+        small Tip
+      dd.amount.default-font 
+        = to_mbtc(tip_payment.final_amount_in_sats)
+        small
+          |  (#{to_php(tip_payment.final_amount_in_sats)})
+    dl
+      dt.message 
+        small Message
+      dd.message 
+        = tip_payment.tip.message.blank? ? "-" : tip_payment.tip.message
+    dl
+      dt.date 
+        small Date
+      dd.date
+        small == tip_payment.created_at.strftime("%d %B %Y, %H:%M")
