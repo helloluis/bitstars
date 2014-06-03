@@ -76,13 +76,7 @@ div class='col-md-4'
         a href=user_path(@photo.user)
           span class='pull-left avatar' style='background-image:url(#{@photo.user.avatar})'
         p class='pull-left submitted' 
-          | Submitted by 
           = link_to @photo.user.username, user_path(@photo.user)
-          | &nbsp;
-          small
-            | (
-            = link_to "#{@photo.user.provider.titleize}", @photo.user.provider_link
-            | )
           - unless @photo.user.location.blank?
             br
             small = @photo.user.location
