@@ -139,6 +139,8 @@
   margin-top:20px;
   .thumbnail {
     background:#fff image-url('loader_big.gif') 50% 50% no-repeat;
+    min-height:300px;
+    margin:0 auto;
     .img-responsive {
       width:100%;
       height:auto;
@@ -156,13 +158,12 @@
     font-style:italic;
   }
   .heart-container {
-    margin-right:10px;
     a {
       display:block;
       cursor:pointer;
       font-size:rem-calc(24px);
       &.heart {
-        padding:9px 16px;
+        padding:9px 15px;
         span.heart-label {
           line-height:1.5;
         }

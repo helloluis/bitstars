@@ -11,12 +11,46 @@
 
 - content_for :page_scripts do
   javascript:
+    
+    var prep_image = function(img){
+      $(img).data({ width: img.width, height: img.height });
+    },
+    resize_image = function(){
+      var w  = $(window), 
+          st = w.scrollTop();
+      if (w.width()>640) {
+        var img = $(".standalone-image .thumbnail img"),
+            off = Math.max(0, img.offset().top-w.scrollTop()),
+            w_h = w.height();
+        if (w_h<img.data('height') && w.scrollTop()<img.offset().top) {
+          var new_w = (img.data('width')*(w_h/(img.data('height')+off)));
+          img.animate({ width: new_w });
+        } else {
+          img.animate({ width: img.data('width') });
+        }
+      }
+    };
+    
     $(function(){
+      
       Heart.initialize();
+      
       $(".caption > p").tweetLinkify({ hashtagTarget: 'blank', hyperlinkClass: 'instagram-url' });
-      $(".thumbnail img").imagesLoaded(function(){
-        $(".thumbnail img").fadeTo(1000,1);
-      });
+      
+      $(".thumbnail img").
+        imagesLoaded().
+        progress(function(inst, loaded_img){
+          prep_image(loaded_img.img);
+          $(loaded_img.img).fadeTo(1000,1);
+          resize_image();
+
+          $(window).
+            resize(_.throttle(resize_image,500)).
+            scroll(_.throttle(resize_image,500));
+        });
+
+      
+
     });
 
 div class='col-md-8'
