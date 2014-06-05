@@ -150,7 +150,7 @@
   .likes_and_views {
     font-size:rem-calc(20px);
     line-height:1;
-    margin-bottom:0px;
+    margin:15px 0px 0px 0px;
     padding-bottom:5px;
     .created_at {
       font-size:rem-calc(13px);
@@ -206,6 +206,10 @@
       &.liked {
         color:#fff;
       }
+    }
+    p {
+      margin-bottom:0px;
+      padding-bottom:0px;
     }
   }
   .avatar {
