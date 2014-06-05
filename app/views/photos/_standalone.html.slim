@@ -107,9 +107,9 @@ div class='col-md-4'
       
       div.clearfix
         p.photo-stats.likes_and_views
-          span class='like_count'
-            a href="#!" class='toggle_likers'
-              strong = @photo.num_likes
+          a href="#!" class='toggle_likers'
+            strong
+              span class='like_count' = @photo.num_likes
               |  likes
           | &nbsp;&middot;&nbsp;
           span class='view_count' = pluralize(@photo.num_views,'view')
