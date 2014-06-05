@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     member do 
       get :heart
       get :unheart
+      get :likes
       post :flag
       post :unflag
       get :set_winner

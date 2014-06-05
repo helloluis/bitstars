@@ -4,6 +4,7 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   has_many :tips
   has_many :likes
+  has_many :likers, class_name: "User", through: :likes, source: :user
   has_one :prize
 
   make_flaggable :not_selfie, :nsfw, :fake

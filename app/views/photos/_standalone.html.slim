@@ -12,24 +12,48 @@
 - content_for :page_scripts do
   javascript:
     
-    var prep_image = function(img){
-      $(img).data({ width: img.width, height: img.height });
-    },
-    resize_image = function(){
-      var w  = $(window), 
-          st = w.scrollTop();
-      if (w.width()>640) {
-        var img = $(".standalone-image .thumbnail img"),
-            off = Math.max(0, img.offset().top-w.scrollTop()),
-            w_h = w.height();
-        if (w_h<img.data('height') && w.scrollTop()<img.offset().top) {
-          var new_w = (img.data('width')*(w_h/(img.data('height')+off)));
-          img.animate({ width: new_w });
-        } else {
-          img.animate({ width: img.data('width') });
-        }
-      }
-    };
+    var photo_id     = #{@photo.id},
+        prep_image   = function(img){
+          $(img).data({ width: img.width, height: img.height });
+        },
+        resize_image = function(){
+          var w  = $(window), 
+              st = w.scrollTop();
+          if (w.width()>640) {
+            var img = $(".standalone-image .thumbnail img"),
+                off = Math.max(0, img.offset().top-w.scrollTop()),
+                w_h = w.height();
+            if (w_h<img.data('height') && w.scrollTop()<img.offset().top) {
+              var new_w = (img.data('width')*(w_h/(img.data('height')+off)));
+              img.animate({ width: new_w });
+            } else {
+              img.animate({ width: img.data('width') });
+            }
+          }
+        },
+        toggle_likers = function(){
+          var list = $(".likers-list");
+          
+          if (!list.hasClass('hidden')) {
+            list.addClass('hidden');
+          } else {
+            if (!list.hasClass("checked")) {
+              $.ajax({
+                url: "/photos/" + photo_id + "/likes.json",
+                type: "GET",
+                success: function(data) {
+                  _.each(data, function(liker){
+                    var li = $("<li class='liker'><a href='/users/" + liker.slug + "' title='" + liker.full_name + "'><img src='" + liker.avatar + "' /></a></li>");
+                    list.removeClass('hidden').addClass('checked').find(".likers").append(li);
+                  });
+                }
+              });
+            } else {
+              list.removeClass('hidden');
+            }
+          }
+          return false;
+        };
     
     $(function(){
       
@@ -37,6 +61,8 @@
       
       $(".caption > p").tweetLinkify({ hashtagTarget: 'blank', hyperlinkClass: 'instagram-url' });
       
+      $(".toggle_likers").click(toggle_likers);
+
       $(".thumbnail img").
         imagesLoaded().
         progress(function(inst, loaded_img){
@@ -48,8 +74,6 @@
             resize(_.throttle(resize_image,500)).
             scroll(_.throttle(resize_image,500));
         });
-
-      
 
     });
 
@@ -83,14 +107,20 @@ div class='col-md-4'
       
       div.clearfix
         p.photo-stats.likes_and_views
-          span class='like_count' 
-            strong = @photo.num_likes
-          |  likes
+          span class='like_count'
+            a href="#!" class='toggle_likers'
+              strong = @photo.num_likes
+              |  likes
           | &nbsp;&middot;&nbsp;
           span class='view_count' = pluralize(@photo.num_views,'view')
           | &nbsp;&middot;&nbsp;
           span class='tip_count' = pluralize(@photo.num_tips, 'tip')
-          br
+      
+      div.clearfix.hidden.likers-list
+        ul.likers.nolist
+
+      div.clearfix
+        p
           small class='created_at' title=@photo.created_at.strftime("%d %B %Y, %H:%M%p") 
             = link_to "#{@date.strftime("%d %B %Y")} &rarr;".html_safe, photos_by_date_path(@date)
 

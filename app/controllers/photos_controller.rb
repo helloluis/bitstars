@@ -27,6 +27,13 @@ class PhotosController < ApplicationController
     @next_photo = @photo.next_photo
   end
 
+  def likes
+    @likers = @photo.likers.page(params[:page]).per(20)
+    respond_to do |format|
+      format.json { render :json => @likers }
+    end
+  end
+
   def batch_create
     photos = []
     photo_errors = []

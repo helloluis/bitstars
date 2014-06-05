@@ -16,6 +16,7 @@
     img {
       width:100%;
       height:auto;
+      min-height:100px;
       opacity:0;
     }
     .author {
@@ -140,17 +141,41 @@
   .thumbnail {
     background:#fff image-url('loader_big.gif') 50% 50% no-repeat;
     min-height:300px;
-    margin:0 auto;
+    margin:0 auto 20px auto;
     .img-responsive {
       width:100%;
       height:auto;
     }
   }
-  .likes_and_views p {
+  .likes_and_views {
     font-size:rem-calc(20px);
     line-height:1;
+    margin-bottom:0px;
+    padding-bottom:5px;
     .created_at {
       font-size:rem-calc(13px);
+    }
+    a {
+      text-decoration:underline;
+    }
+  }
+  .likers {
+    overflow:hidden;
+    .liker {
+      float:left;
+      width:30px;
+      height:30px;
+      margin:0px 1px 1px 0px;
+      border:1px solid #ccc;
+      @include border-radius(3px);
+      overflow:hidden;
+      img {
+        width:100%;
+        height:auto;
+      }
+      &:hover {
+        border:1px solid #666;
+      }
     }
   }
   p.position {
