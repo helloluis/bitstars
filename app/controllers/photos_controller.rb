@@ -27,18 +27,22 @@ class PhotosController < ApplicationController
     photos = []
     photo_errors = []
     params[:photos].values.each do |p|
-      photo = Photo.new( user:         current_user,
-                    provider:     params[:provider], 
-                    original_id:  p['id'],
-                    description:  p['text'],
-                    images: { 
-                      standard:   p['standard'], 
-                      low:        p['low'],
-                      thumbnail:  p['thumbnail']
-                      },
-                    eligible: current_user.has_won_recently? )
-      if photo.valid? && photo.save
-        photos << photo 
+      photo = Photo.first_or_create(
+                user:         current_user,
+                provider:     params[:provider],
+                original_id:  p['id']
+                )
+      if photo.valid?
+        photo.update_attributes(
+            description: p['text'],
+            images: { 
+              standard:   p['standard'], 
+              low:        p['low'],
+              thumbnail:  p['thumbnail']
+            },
+            eligible: current_user.has_won_recently?
+          )
+        photos << photo
       else
         logger.info photo.errors.inspect
         photo_errors << photo.errors
