@@ -7,3 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 user = User.create(:email => "admin@bitstars.ph", password: "b1tst4rs", password_confirmation: "b1tst4rs")
+
+CurrencyExchangeRates.refresh!(false,false)

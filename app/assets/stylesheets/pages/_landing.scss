@@ -81,12 +81,11 @@ section {
   p.intro-first {
     margin-bottom:5px;
     letter-spacing:-1px;
-  }
-  p.intro-first, p.intro-everyday {
-    font-size:rem-calc(24px);
+    font-size:rem-calc(23px);
     text-align:center;
   }
   p.intro-everyday {
+    text-align:center;
     clear:both;
     font-size:rem-calc(40px);
     margin-top:0px;
@@ -125,6 +124,26 @@ section {
   }
 }
 
+.panel {
+  .avatar {
+    width:80px;
+    height:auto;
+    margin-right:10px;
+    padding:3px;
+    border:1px solid #ccc;
+  }
+  .user-well {
+    overflow:hidden;
+    margin-bottom:20px;
+    font-size:rem-calc(16px);
+    line-height:1.3;
+    p {
+      margin:0px;
+      padding:0px;
+    }
+  }
+}
+
 @media (max-width:480px) {
   .panel .panel-heading .intro {
     p.intro-first {
@@ -154,21 +173,24 @@ section {
   }
 }
 
-@media (min-width:1280px) {
+@media (min-width:1200px) {
   .intro {
     .intro-first {
-      font-size:rem-calc(24px);
+      font-size:rem-calc(28px) !important;
+    }
+    .intro-everyday {
+      font-size: rem-calc(50px) !important;
     }
     .intro-snippet-group {
-      width:300px;
+      width:320px !important;
       .intro-amount {
-        font-size: rem-calc(144px);
+        font-size: rem-calc(160px) !important;
       }
       .intro-pesos {
-        font-size: rem-calc(36px);
+        font-size: rem-calc(40px) !important;
       }
       .intro-btc {
-        font-size: rem-calc(24px);
+        font-size: rem-calc(22px) !important;
         max-width: 100px;
       }
     }

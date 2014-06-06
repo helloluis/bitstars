@@ -4,15 +4,9 @@ class Prize < ActiveRecord::Base
 
   belongs_to :photo
 
-  after_initialize :init_default_values
-
   after_create :calculate_user_totals
 
   after_create :notify
-
-  def init_default_values
-    self.amount_in_sats = CurrencyExchangeRates.convert(App.daily_prize_in_php, 'PHP', 'BTC') * 100000000
-  end
 
   def notify
     UserMailer.notify_winner(self.photo).deliver
@@ -24,7 +18,7 @@ class Prize < ActiveRecord::Base
 
   def revoke!
     
-    update_attributes(revoked: false)
+    update_attributes(revoked: true)
     
     current_total_winnings = self.user.total_winnings
     current_total_earnings = self.user.total_earnings
@@ -37,4 +31,16 @@ class Prize < ActiveRecord::Base
     
   end
 
+  def self.daily_prize_amount(date) # strftime("%Y-%m-%d")
+    photo_count = Photo.by_date(date).count
+    self.daily_prize_amount_from_count(photo_count)
+  end
+
+  def self.daily_prize_amount_from_count(photo_count)
+    if tier = App.prize_tiers.find{|pt| pt.first.include?(photo_count)}
+      tier.last
+    else
+      App.prize_tiers.last.last
+    end
+  end
 end

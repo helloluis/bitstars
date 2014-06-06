@@ -8,9 +8,13 @@ class PhotosController < ApplicationController
 
   before_filter :authenticate_admin!, :only => [ :set_winner, :unset_winner, :disqualify, :requalify ]
 
-  before_filter :get_rates, :only => [ :index, :show, :by_date ]
+  before_filter :get_rates, :only => [ :index, :show ]
 
   def index
+    redirect_to "/photos/#{Time.now.strftime("%Y/%m/%d")}"
+  end
+
+  def random
     @random = true
     @photo = Photo.random
     @next_photo = "random"
@@ -21,6 +25,13 @@ class PhotosController < ApplicationController
     @photo.view!
     @date = @photo.created_at
     @next_photo = @photo.next_photo
+  end
+
+  def likes
+    @likers = @photo.likers.page(params[:page]).per(20)
+    respond_to do |format|
+      format.json { render :json => @likers }
+    end
   end
 
   def batch_create
@@ -97,14 +108,21 @@ class PhotosController < ApplicationController
 
   def by_date
     @date        = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
-    @date_after  = @date+1.day
+    @date_after  = @date+1.day unless @date==Time.now.in_time_zone.to_date
     @date_before = @date-1.day
     @photos      = Photo.by_date(@date).page(params[:page]).per(30)
+    @photo_count = Photo.by_date(@date).count
+    @winning_photo = Photo.winner_by_date(@date)
   end
 
   def set_winner
-    @photo.win!
-    return redirect_to photo_path(@photo)
+    if @prize = daily_prize(Photo.by_date(@photo.created_date).count)
+      @photo.win!(php_to_satoshis(@prize))
+      return redirect_to photo_path(@photo)
+    else
+      flash[:alert] = "Couldn't compute prize."
+      return redirect_to photo_path(@photo)
+    end
   end
 
   def unset_winner

@@ -56,12 +56,12 @@ select {
 }
 
 div.tips-table-container {
-  padding:5px;
+  padding:15px 5px 5px 5px;
   border:1px solid #bbb;
   border-bottom:4px solid #bbb;
   @include border-radius(3px);
-  background:#eee;
   margin-bottom:50px;
+  background:#fff;
 }
 
 ul.tips {
@@ -71,7 +71,26 @@ ul.tips {
     padding-bottom:15px;
     margin-bottom:15px;
     font-size:rem-calc(14px);
+    .avatar {
+      width:24px;
+      height:24px;
+      background-position: center center;
+      background-size:cover;
+      @include border-radius(12px);
+      float:left;
+      margin-right:5px;
+    }
+    .thumbnail {
+      width:140px;
+      height:140px;
+      overflow:hidden;
+      display:block;
+      background-size:cover;
+      margin:0px 10px 0px 0px;
+    }
     dl {
+      min-width:480px;
+      max-width:600px;
       overflow:hidden;
       margin-bottom:0px;
       dt {
@@ -88,8 +107,12 @@ ul.tips {
         float:left;
         font-size:rem-calc(16px);
         margin-bottom:5px;
+        font-weight:normal;
         &.amount {
           font-weight:bold;
+          small {
+            font-weight:normal;
+          }
         }
       }
     }
@@ -99,8 +122,12 @@ ul.tips {
   &.sent_tips .from_user { display:none; }
 }
 
-@media (max-width:960px) {
+@media (max-width:640px) {
   ul.tips li {
+    .pull-right, .thumbnail {
+      width:100%;
+      max-height:80px;
+    }
     dl {
       margin-bottom:5px;
       padding-left:10px;
@@ -111,7 +138,7 @@ ul.tips {
         width:100%;  
         font-size:rem-calc(10px);
       }
-      dt {
+      dt small {
         font-size:rem-calc(8px);
       }
     }

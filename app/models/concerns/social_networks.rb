@@ -40,7 +40,8 @@ module SocialNetworks
           thumbnail:      photo['images'][2] ? photo['images'][2]['source'] : photo['images'][0]['source'],
           size_low:       photo['images'][1] ? [ photo['images'][1]['width'], photo['images'][1]['height'] ] : [ photo['width'], photo['height'] ],
           size_standard:  [ photo['width'], photo['height'] ],
-          size_thumbnail: photo['images'][2] ? [ photo['images'][2]['width'], photo['images'][2]['height'] ] : [ photo['width'], photo['height'] ]
+          size_thumbnail: photo['images'][2] ? [ photo['images'][2]['width'], photo['images'][2]['height'] ] : [ photo['width'], photo['height'] ],
+          created_at:     photo['created_time']
         }
       end
 
@@ -56,12 +57,13 @@ module SocialNetworks
           thumbnail:      photo['images'][2] ? photo['images'][2]['source'] : photo['images'][0]['source'],
           size_low:       photo['images'][1] ? [ photo['images'][1]['width'], photo['images'][1]['height'] ] : [ photo['width'], photo['height'] ],
           size_standard:  [ photo['width'], photo['height'] ],
-          size_thumbnail: photo['images'][2] ? [ photo['images'][2]['width'], photo['images'][2]['height'] ] : [ photo['width'], photo['height'] ]
+          size_thumbnail: photo['images'][2] ? [ photo['images'][2]['width'], photo['images'][2]['height'] ] : [ photo['width'], photo['height'] ],
+          created_at:     photo['created_time']
         }
       end
     end
     
-    normalized_photos
+    normalized_photos.sort{|a,b|b['created_at']<=>a['created_at']}
 
   end
 end

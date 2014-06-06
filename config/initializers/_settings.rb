@@ -40,17 +40,28 @@ App.winner_lockout = 1.week
 
 App.minimum_tip = 0.0005
 
-App.maximum_tip = 2.0
+App.maximum_tip = 1.0
 
-App.minimum_withdrawal = 0.025
+App.minimum_withdrawal = 2500000 # in satoshis
 
 App.daily_prize_in_php = 500
+
+App.prize_tiers = [
+  [0..3, 0],
+  [4..50, 100],
+  [51..75, 200],
+  [76..100, 300],
+  [101..100000, 500]
+]
 
 App.transaction_fee_percentage = 0.01
 
 App.services = {
   :open_exchange => {
     app_id: "1ba3c1a8bab6490daf5dcc7dbc3149ec"
+  },
+  :analytics => {
+    id: "UA-50380579-2"
   },
   :ses => {
     access_key:         "",
@@ -77,7 +88,7 @@ App.services = {
     secret:   ""
   },
   :pinterest => {
-    username: ""
+    username: "bitstars"
   },
   :googleplus => {
     username: "",
@@ -105,6 +116,8 @@ App.currencies = [
   { symbol: "SG$",      slug: "SGD", name: "Singaporean Dollar" },
   { symbol: "HK$",     slug: "HKD", name: "Hong Kong Dollar" }
 ]
+
+App.exchange_rates = false
 
 App.flag_reasons = [
   { slug: :not_selfie, description: "This is not a selfie" },

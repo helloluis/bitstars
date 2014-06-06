@@ -328,25 +328,6 @@ img.flag {
   font-size:22px;
 }
 
-.panel {
-  .avatar {
-    width:80px;
-    height:auto;
-    margin-right:10px;
-    padding:3px;
-    border:1px solid #ccc;
-  }
-  .user-well {
-    overflow:hidden;
-    margin-bottom:20px;
-    font-size:14px;
-    p {
-      margin:0px;
-      padding:0px;
-    }
-  }
-}
-
 .panel-nav {
   list-style-type:none;
   margin:20px 0px 0px 0px;
@@ -436,20 +417,6 @@ ul,ol {
   color:#900;
 }
 
-header.user-header {
-  .avatar {
-    width:50px;
-    height:50px;
-    margin:25px 20px 0px 0px;
-    border:1px solid #ccc;
-    padding:2px;
-  }
-  h1 {
-    margin-bottom:0px;
-    padding-bottom:0px;
-  }
-}
-
 .jumbotron {
   border-color:#ccb;
   overflow:hidden;
@@ -506,10 +473,19 @@ header.user-header {
         }
       }
     }
+    .navbar-info ul li {
+      margin-right:20px;
+      &.dropdown {
+        margin-right:0px;
+      }
+    }
   }
   footer {
     p {
-      font-size:rem-calc(12px);
+      font-size:rem-calc(8px);
+    }
+    .logo-sci {
+      margin-bottom:10px;
     }
   }
   p, label, th, td {
@@ -558,7 +534,7 @@ header.user-header {
     font-size:rem-calc(10px);
   }
   .alert {
-    font-size:rem-calc(11px);
+    font-size:rem-calc(9px);
     button {
       font-size:rem-calc(13px);
     }

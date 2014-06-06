@@ -1,0 +1,6 @@
+p
+  | A new selfie was submitted by 
+  a href=user_url(@photo.user) = @photo.user.full_name
+
+= link_to( image_tag(@photo.images[:low], width: 500), photo_url(@photo))
+

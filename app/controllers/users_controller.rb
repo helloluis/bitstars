@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   def show
     @user = User.friendly.find(params[:id]) #find_by_username(params[:id])
     @photos = @user.photos.qualified.page(params[:page]).per('20')
+    @best = @user.photos.best
   end
 
   def payout

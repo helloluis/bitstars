@@ -17,6 +17,10 @@ class User < ActiveRecord::Base
     def qualified
       where(["disqualified=false"]).order("created_at DESC")
     end
+
+    def best
+      where("disqualified=false").order("num_likes DESC").first
+    end
   end
 
   has_many :likes 

@@ -2,7 +2,7 @@ div class='container standalone-container'
 
   div class='jumbotron'
     h1 = t(:your_sent_tips)
-    p = t(:youve_sent_a_total_of_tips, tips: to_mbtc(current_user.total_tips_sent))
+    p == t(:youve_sent_a_total_of_tips, tips: "#{to_mbtc(current_user.total_tips_sent)} (#{to_php(current_user.total_tips_sent).html_safe})")
 
   div class='row'  
     div class='col-md-8'

@@ -3,6 +3,11 @@ module ApplicationHelper
     "BITST&#10029;RS - #{@page_title || App.tagline}"
   end
 
+  def daily_prize(photo_count)
+    prize = Prize.daily_prize_amount_from_count(photo_count)
+    number_to_currency(prize,unit: "&#8369;".html_safe)
+  end
+
   def page_open_graph_tags
     str = ""
     if @photo
@@ -103,9 +108,9 @@ module ApplicationHelper
 
   def to_mbtc(satoshis, no_unit=false)
     if no_unit
-      number_with_precision(satoshis.to_i.to_f/10000)
+      number_with_precision(satoshis.to_i.to_f/100000, precision: 2)
     else
-      [number_with_precision(satoshis.to_i.to_f/10000, precision: 2),"mBTC"].join(" ")
+      [number_with_precision(satoshis.to_i.to_f/100000, precision: 2),"mBTC"].join(" ")
     end
   end
 
@@ -117,13 +122,31 @@ module ApplicationHelper
     end
   end
 
-  def to_php(satoshis)
-    number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "PHP")
+  def to_php(satoshis, no_unit=false)
+    if no_unit
+      number_with_precision(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'))
+    else
+      number_to_currency(CurrencyExchangeRates.convert(to_btc(satoshis,true).to_f,'BTC','PHP'),unit: "&#8369;".html_safe)
+    end
+  end
+
+  def php_to_satoshis(php)
+    CurrencyExchangeRates.convert(php,'PHP','BTC')*100000000
   end
 
   def development_status
-    if App.development_status!='final'
-      link_to image_tag("#{App.development_status}.png", class: 'development_status', title: "We're still in #{App.development_status}! Please forgive the clutter!").html_safe, "http://facebook.com/#{App.services.facebook.username}"
-    end
+    link_to(image_tag("alpha.png", class: 'development_status', alt: "We're still in alpha! Please forgive the clutter!"), "http://facebook.com/#{App.services.facebook.username}")
+  end
+
+  def user_avatar(user)
+    user.provider=='facebook' ? "#{user.avatar}?redirect=1&height=100&type=normal&width=100" : user.avatar
+  end
+
+  def winning_photo_as_bg(photo)
+    "background-image:url('#{photo.images[:standard]}')" if photo
+  end
+
+  def is_today?(date)
+    date==Time.now.to_date
   end
 end

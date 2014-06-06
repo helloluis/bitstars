@@ -16,6 +16,24 @@
     img {
       width:100%;
       height:auto;
+      min-height:100px;
+      opacity:0;
+    }
+    .author {
+      line-height:24px;
+      margin-bottom:3px;
+      .avatar {
+        width:24px;
+        height:24px;
+        margin-right:5px;
+        background-size:cover;
+        border:1px solid #ccc;
+        @include border-radius(12px);
+      }
+      a {
+        font-size:rem-calc(14px);
+        font-weight:bold;
+      }
     }
     .likes {
       background:transparent !important;
@@ -64,7 +82,7 @@
         &.position {
           background-color:#999;
           padding:5px;
-          margin:20px -5px -5px 0px;
+          margin:0px -5px -5px 0px;
           color:#fff;
           @extend .body_fontstack;
           font-size:16px;
@@ -96,6 +114,10 @@
   }
 }
 
+.thumbnail {
+  background:#fff image-url('loader_small.gif') 50% 50% no-repeat;
+}
+
 .thumbnail, .panel {
   border-color:#ccc;
   &:hover {
@@ -104,25 +126,56 @@
 }
 
 .thumbnail.thumbnail-winner {
-  border:1px solid $primary-color;
+  border:1px solid #f60;
+  border-right:4px solid #f60;
+  border-bottom:4px solid #f60;
   &:hover {
-    border-color:#f60;
-    border-right:4px solid #f60;
-    border-bottom:4px solid #f60;
+    border:1px solid #f90;
+    border-right:4px solid #f90 !important;
+    border-bottom:4px solid #f90 !important;
   }
 }
 
 .standalone-image {
   margin-top:20px;
-  .thumbnail .img-responsive {
-    width:100%;
-    height:auto;
+  .thumbnail {
+    background:#fff image-url('loader_big.gif') 50% 50% no-repeat;
+    min-height:300px;
+    margin:0 auto 20px auto;
+    .img-responsive {
+      width:100%;
+      height:auto;
+    }
   }
-  .likes_and_views p {
+  .likes_and_views {
     font-size:rem-calc(20px);
     line-height:1;
+    margin:15px 0px 0px 0px;
+    padding-bottom:5px;
     .created_at {
       font-size:rem-calc(13px);
+    }
+    a {
+      text-decoration:underline;
+    }
+  }
+  .likers {
+    overflow:hidden;
+    .liker {
+      float:left;
+      width:30px;
+      height:30px;
+      margin:0px 1px 1px 0px;
+      border:1px solid #ccc;
+      @include border-radius(3px);
+      overflow:hidden;
+      img {
+        width:100%;
+        height:auto;
+      }
+      &:hover {
+        border:1px solid #666;
+      }
     }
   }
   p.position {
@@ -130,13 +183,12 @@
     font-style:italic;
   }
   .heart-container {
-    margin-right:10px;
     a {
       display:block;
       cursor:pointer;
       font-size:rem-calc(24px);
       &.heart {
-        padding:9px 16px;
+        padding:9px 15px;
         span.heart-label {
           line-height:1.5;
         }
@@ -155,24 +207,39 @@
         color:#fff;
       }
     }
+    p {
+      margin-bottom:0px;
+      padding-bottom:0px;
+    }
+  }
+  .avatar {
+    width:50px;
+    height:50px;
+    margin-right:10px;
+    background-size:cover;
+    @include border-radius(25px);
   }
   .next-photo {
     font-size:rem-calc(28px);
     line-height:32px;
     font-weight:normal;
   }
-  .winner {
-    line-height:60px;
-    img {
-      margin-right:5px;
-    }
-    strong {
-      font-size:rem-calc(28px);
-      color:#c30;
-    }
-  }
   .caption {
     background:#e1e1e1;
+  }
+}
+
+.winner {
+  line-height:60px;
+  color:$winner-color;
+  strong {
+    font-size:rem-calc(28px);
+    padding-top:10px;
+  }
+  .winner-badge {
+    width:60px;
+    height:60px;
+    margin-right:10px;
   }
 }
 
@@ -223,16 +290,22 @@
   z-index:3;
   width:100%;
   top:0px;
+  .container {
+    margin-top:-5px;
+  }
   .jumbotron {
     padding: 12px 60px;
     h1 {
       font-size:rem-calc(36px);
+      margin:5px 0px 0px 0px;
     }
     p {
       font-size:rem-calc(16px);
+      margin-bottom:10px;
+      padding-bottom:0px;
     }
-    .btn-lg {
-      margin-top:10px;
+    #submit_btn {
+      margin-top:15px;
     }
   }
 }
@@ -297,53 +370,109 @@
   }
 }
 
-.date-nav {
+.date-nav-header {
   overflow:hidden;
   padding:0px 2% !important;
+  background:#222 image-url('bg2.jpg') 50% 50% no-repeat;
+  background-size:cover;
+  position:relative;
+  .container {
+    position:relative;
+    z-index:2;
+  }
   li {
     float:left;
     width:25%;
+    min-height:50px;
     &.date-current {
-      width:46%;
+      width:49%;
+      h1 {
+        color:#fff;
+      }
+      p {
+        color:#aaa;
+      }
+    }
+    a {
+      color:$highlight-color;
+      font-size:rem-calc(18px);
+    }
+  }
+  .daily-jackpot {
+    strong {
+      color:#ffc;
     }
   }
 }
 
-@media (max-width:480px) {
+@media (max-width:640px) {
   .jumbotron {
     padding:10px 15px;
+    margin-bottom:10px;
   }
   .photos .photo {
     width:99%;
-    .caption {
-      .author {
-        a {
-          font-size:rem-calc(9px) !important;
-        }
-        font-size:rem-calc(10px) !important;
-        line-height:1.1;
-      }  
+    .author {
+      margin-bottom:6px;
+      a {
+        font-size:rem-calc(9px) !important;
+      }
+      font-size:rem-calc(9px) !important;
+    }
+    .likes {
+      line-height:1;
+      .glyphicon, .like_count, .heart-label {
+        font-size:rem-calc(8px) !important;
+      }
+      .heart.btn-xs {
+        line-height:1;
+        padding-top:rem-calc(2px);
+        padding-bottom:rem-calc(2px);
+        font-size:rem-calc(8px) !important
+      }
     }
     .position {
-      font-size:rem-calc(12px) !important;
+      font-size:rem-calc(9px) !important;
     }
   }
   .select_photos_header {
+    h1 {
+      margin:0px;
+      padding:0px;
+      font-size:rem-calc(11px) !important;
+    }
     p {
-      font-size:rem-calc(14px);
+      font-size:rem-calc(8px) !important;
       padding-bottom:0px;
       margin-bottom:0px;
     }
-    #submit_btn {
-      font-size:rem-calc(16px);
-      margin-top:0px;
+    .pull-right {
+      float:none;
+      width:100%;
+      #submit_btn {
+        font-size:rem-calc(8px) !important;
+        width:100%;
+        margin-top:0px;
+      }
     }
   }
   .select_photos_header.affix {
+    .standalone-container {
+      margin-top:0px;
+    }
     .jumbotron {
       padding:10px 15px;
       h1 {
         display:none;
+      }
+      p {
+        font-size:rem-calc(6px) !important;
+        margin-bottom:0px;
+      }
+      #submit_btn {
+        margin-top:0px;
+        font-size:rem-calc(6px) !important;
+        padding:6px 12px;
       }
     }
   }
@@ -380,13 +509,34 @@
         }
       }
     }
-    .btn, .photo-stats, .submitted, .text-center, .converter, h4, table th, table td {
-      font-size:rem-calc(9px);
+    .caption {
+      font-size:rem-calc(8px) !important;
+    }
+    .avatar {
+      width:50px;
+      height:50px;
+      margin-right:10px;
+      background-size:cover;
+      @include border-radius(25px);
+    }
+    .btn, .photo-stats, .submitted, .text-center, .converter, h4, table th, table td, p.position {
+      font-size:rem-calc(8px);
+    }
+    p {
+      padding-bottom:5px;
+      margin-bottom:10px;
     }
   }
 }
 
 @media (max-width:720px) {
+  .date-nav {
+    .date-prev, .date-next {
+      h3 {
+        font-size:rem-calc(7px);  
+      }
+    }
+  }
   .tip-amount-label, #tip_amount_in_btc {
     float:left;
   }
@@ -421,6 +571,9 @@
     a, span.glyphicon-heart {
       font-size:rem-calc(20px);
       line-height:36px;
+      &.next-photo {
+        line-height:22px;
+      }
     }
   }
   .select_photos_header {
@@ -463,6 +616,7 @@
     }
   }
 }
+
 
 // #fbcomments, .fb_iframe_widget, .fb_iframe_widget > span, .fb_iframe_widget[style], .fb_iframe_widget iframe[style], #fbcomments iframe[style] {
 //   width: 100% !important;

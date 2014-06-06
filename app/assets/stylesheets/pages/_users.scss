@@ -1,10 +1,24 @@
-@media (max-width:720px) {
+@media (max-width:640px) {
   .user-header {
-    h1 {
-      font-size:rem-calc(12px);
+    .container {
+      margin:10px 20px;
+      .user-counters li, p {
+        font-size:rem-calc(6px);
+      }
+      p {
+        margin-top:10px;
+        line-height:1;
+      }
     }
-    p {
-      font-size:rem-calc(8px);
+    .avatar {
+      width:50px;
+      height:50px;
+    }
+    h1 {
+      font-size:rem-calc(11px);
+      small {
+        display:block;
+      }
     }
   }
 }
@@ -13,4 +27,68 @@
   .table td {
     font-size:rem-calc(9px);
   } 
+}
+
+@media (min-width:1280px) {
+  .user-header {
+    min-height:200px;
+    .container {
+      padding-top:30px;
+    }
+  }
+}
+
+header .overlay {
+  position:absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  background:rgba(0,20,40,0.7);
+  z-index:1;
+}
+
+.user-header {
+  background:#333 image-url('bg2.jpg') 50% 50% no-repeat;
+  background-size:cover;
+  position:relative;
+  .avatar {
+    width:80px;
+    height:80px;
+    margin:25px 20px 0px 0px;
+    border:1px solid #ccc;
+    padding:2px;
+  }
+  .container {
+    position:relative;
+    z-index:2;
+  }
+  h1 {
+    color:#fff;
+    margin-bottom:5px;
+    padding-bottom:0px;
+  }
+  a {
+    color:$highlight-color;
+  }
+  p {
+    color:#fff;
+    font-size:rem-calc(12px);
+  }
+  .user-counters {
+    overflow:hidden;
+    min-width:300px;
+    margin-bottom:5px;
+    li {
+      float:left;
+      color:#fff;
+      font-size:rem-calc(12px);
+      padding-right:10px;
+      margin-right:10px;
+      border-right:1px solid #555;
+      &:last-child {
+        border-right:0px;
+      }
+    }
+  }
 }

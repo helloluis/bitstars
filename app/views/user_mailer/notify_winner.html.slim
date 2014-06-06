@@ -5,7 +5,7 @@ h3
 p
   | Congratulations! You've won Selfie of the Day for #{@photo.created_at.strftime("%d %B %Y")}.
 
-= image_tag @photo.images[:low], width: 500
+= image_tag(@photo.images[:low], width: 500) rescue ""
 
 p
   | Your winnings will be reflected in your #{App.name} account shortly. Please refer to our <a href="http://#{App.url}/rules#receive_winnings">Rules</a> section regarding withdrawals, or reply to this email if you have other questions.

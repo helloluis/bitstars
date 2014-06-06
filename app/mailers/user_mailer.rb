@@ -4,6 +4,11 @@ class UserMailer < ActionMailer::Base
   layout "mailer"
   helper :application
 
+  def notify_admin(photo)
+    @photo = photo
+    mail(to: App.emails.admin, subject: "New Selfie from #{@photo.user.full_name}!")
+  end
+
   def notify_winner(photo)
     @photo = photo
     mail(to: @photo.user.email, subject: t(:your_selfie_is_todays_winner))

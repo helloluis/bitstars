@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     member do 
       get :heart
       get :unheart
+      get :likes
       post :flag
       post :unflag
       get :set_winner
@@ -42,6 +43,7 @@ Rails.application.routes.draw do
       post :batch_create
       get  :winners
       get  :not_found
+      get  :random
       get  "/:year/:month/:day" => "photos#by_date"
     end
   end

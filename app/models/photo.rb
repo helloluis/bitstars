@@ -1,8 +1,10 @@
+include ApplicationHelper
 class Photo < ActiveRecord::Base
   
   belongs_to :user
   has_many :tips
   has_many :likes
+  has_many :likers, class_name: "User", through: :likes, source: :user
   has_one :prize
 
   make_flaggable :not_selfie, :nsfw, :fake
@@ -11,6 +13,8 @@ class Photo < ActiveRecord::Base
 
   validate :check_already_entered, on: :create
   validate :check_max_submission, on: :create
+
+  after_create :notify_admin
 
   def self.winners
     where(["disqualified!=true AND winner=true"]).order("created_at DESC")
@@ -37,6 +41,10 @@ class Photo < ActiveRecord::Base
     order("num_likes DESC, num_views DESC")
   end
 
+  def self.winner_by_date(date)
+    where(["disqualified!=true AND created_at>=? AND created_at<? AND winner=true",date.in_time_zone,date.in_time_zone+1.day]).first
+  end
+
   def self.random(not_id=nil, like_count=0, view_count=0, today=false)
     sql = ["disqualified!=true"]
     sql[0] += " AND id!=#{not_id}" if not_id
@@ -48,6 +56,10 @@ class Photo < ActiveRecord::Base
     end
 
     self.where(sql).order("RANDOM()").first
+  end
+
+  def created_date
+    created_at.strftime("%Y-%m-%d")
   end
 
   def position_today
@@ -65,21 +77,21 @@ class Photo < ActiveRecord::Base
     errors.add(:base, "You can only submit #{App.max_submissions_per_day} per day.") if user.photos.today.length >= App.max_submissions_per_day
   end
 
-  def win!
+  def win!(override_prize=nil)
+    prize = override_prize ? override_prize : php_to_satoshis(Prize.daily_prize_amount(created_date))
+    
     if user.has_won_recently?
       
       errors.add(:base, "This user has won already within the last #{App.winner_lockout/86400} days and can't be awarded again.") 
 
+    elsif Photo.where("winner=true AND created_at>=? AND created_at<?", created_at.beginning_of_day, created_at+1.day).exists?
+
+      errors.add(:base, "A winner has already been selected for #{created_date}.")
+
     else
       
-      date_of_photo = self.created_at
-      
-      Photo.where("winner=true AND created_at>=? AND created_at<?", date_of_photo.beginning_of_day, date_of_photo+1.day).update_all(winner: false)
-      
       self.update_attributes(winner: true)
-
-      Prize.create(user: user, photo: self)
-      
+      self.create_prize(user: user, amount_in_sats: prize)
       user.update_attributes(last_won_on: Time.now, has_won: true)
       
     end
@@ -87,14 +99,17 @@ class Photo < ActiveRecord::Base
 
   def unwin!
     self.update_attributes(winner: false)
+    self.prize.revoke! if self.prize
   end
 
   def disqualify!
     self.update_attributes(disqualified: true, winner: false)
+    self.user.decrement!(:num_photos)
   end
 
   def requalify!
     self.update_attributes(disqualified: false)
+    self.user.increment!(:num_photos)
   end
 
   def nsfw=(boolean)
@@ -116,6 +131,7 @@ class Photo < ActiveRecord::Base
 
   def view!
     increment!(:num_views)
+    user.increment!(:num_views)
   end
 
   def self.already_entered?(user_id, provider, photo_id)
@@ -136,6 +152,10 @@ class Photo < ActiveRecord::Base
 
   def prev_photo
     self.class.unscoped.where("disqualified!=true AND id<?", id).order("created_at ASC").first
+  end
+
+  def notify_admin
+    UserMailer.notify_admin(self).deliver
   end
 
 end

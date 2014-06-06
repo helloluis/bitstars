@@ -2,23 +2,28 @@
   javascript:
     $(function(){
       PHOTOS = #{@photos.to_json.html_safe};
-      $(".photos").imagesLoaded(function(){
-        $(".photos").masonry({ itemSelector: ".photo" });
-      });
       Heart.initialize(PHOTOS);
     });
 
-div class='container'
-  header class='row user-header'
+header class='row user-header' style=(@best ? "background-image:url(#{@best.images[:standard]})" : "")
+  div class='overlay'
+  div class='container'
     div class='pull-left'
-      img src=@user.avatar class='avatar'
+      img src=user_avatar(@user) class='avatar'
     div class='pull-left'
       h1 
         = @user.username
         | &nbsp;
         small = @user.full_name
+      
+      ul.user-counters.nolist
+        li = "#{number_to_human(@user.num_photos)} photos"
+        li = "#{number_to_human(@user.num_likes)} likes"
+        li = "#{number_to_human(@user.num_views)} views"
+        li = "#{number_to_human(@user.num_tips)} tips"
+
       p 
-        = link_to "Follow #{@user.username} on #{@user.provider}", @user.provider_link
+        = link_to "Follow #{@user.username} on #{@user.provider} &raquo;".html_safe, @user.provider_link
     div class='pull-right'
       - if user_is_admin? && @user.requesting_withdrawal? 
         div class='admin_tools requesting_withdrawal' title='admin_tools'
@@ -34,6 +39,8 @@ div class='container'
               = link_to "Send Payout (#{to_mbtc(@user.total_earnings)}) &rarr;".html_safe, payout_user_path(@user)
 
 
+div class='container'
+  
   div class='clearfix'
   div class='row'
     = render :partial => "photos/list", locals: { photos: @photos }
