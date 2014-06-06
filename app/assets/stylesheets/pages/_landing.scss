@@ -190,7 +190,7 @@ section {
   }
 }
 
-@media (max-width:720px) {
+@media (max-device-width:720px) {
   .main h1 {
     font-size:rem-calc(13px);
   }
