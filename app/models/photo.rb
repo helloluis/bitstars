@@ -14,6 +14,7 @@ class Photo < ActiveRecord::Base
   validate :check_already_entered, on: :create
   validate :check_max_submission, on: :create
 
+  after_create :increment_user_count
   after_create :notify_admin
 
   def self.winners
@@ -156,6 +157,10 @@ class Photo < ActiveRecord::Base
 
   def prev_photo
     self.class.unscoped.where("disqualified!=true AND id<?", id).order("entered_at ASC").first
+  end
+
+  def increment_user_count
+    user.increment!(:num_photos)
   end
 
   def notify_admin
