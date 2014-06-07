@@ -26,7 +26,7 @@ App.emails = {
   accounting: "support@bitstars.ph"
 }
 
-App.admin_emails = ["helloluis@me.com", "lbuenaventura2@gmail.com", "sabina@sci.ventures", "john@sci.ventures", "katha.myumi@gmail.com"]
+App.admin_emails = ["helloluis@me.com", "lbuenaventura2@gmail.com", "sabina@sci.ventures", "john@sci.ventures", "katha.myumi@gmail.com", "miguel@acehigh.com"]
 
 # App.emails.support = "luis@bitmarket.ph"
 

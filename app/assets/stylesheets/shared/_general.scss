@@ -88,7 +88,7 @@ b,strong {
   color:#fff;
 
   .navbar-brand {
-    margin: 0 10px 0 0;
+    margin: 0 5px 0 0;
     padding:5px 0px 0px 0px;
     height:auto;
     width:120px;
@@ -103,6 +103,7 @@ b,strong {
   .navbar-info {
     background-color:transparent;
     margin-top:12px;
+    margin-right:20px;
     ul {
       list-style-type:none;
       li {
@@ -133,7 +134,7 @@ b,strong {
 
   h1.logo {
     float:left;
-    margin:0px 10px 0px 0px;
+    margin:0px 5px 0px 0px;
     width:120px;
     height:35px;
     background:image-url('logo_on_dark.png');
@@ -143,7 +144,7 @@ b,strong {
 
   .tagline {
     color:rgba(255,255,255,0.7);
-    margin:13px 0px 0px 0px;
+    margin:14px 0px 0px 0px;
     float:left;
     display:block;
     font-size: rem-calc(16px);
@@ -508,6 +509,8 @@ ul,ol {
   #branding {
     .navbar-header {
       margin-right:10px !important;
+      float:left;
+      width:300px;
     }
     .navbar-brand {
       width:auto;
