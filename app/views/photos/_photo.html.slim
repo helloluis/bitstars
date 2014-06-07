@@ -3,7 +3,9 @@ li class='photo'
     div class='author'
       a href=user_path(photo.user)
         span class='pull-left avatar' style='background-image:url(#{photo.user.avatar})'
-      = link_to photo.user.username, user_path(photo.user)
+      a href=user_path(photo.user)
+        strong = photo.user.username
+      /= link_to photo.user.username, user_path(photo.user)
     a href=photo_path(photo) title=photo.images[:text]
       img src=photo.images[:low] data-standard=photo.images[:standard] data-thumbnail=photo.images[:thumbnail]
     div class='caption'
