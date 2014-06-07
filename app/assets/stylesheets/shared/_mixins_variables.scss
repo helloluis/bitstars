@@ -6,10 +6,10 @@ $main-font-size: 16px;
 }
 
 //BRANDING COLORS - DON'T PUT ACTUAL COLOR NAME AS VARIABLE NAME
-$primary-color : #5fc1e8;
-$highlight-color : #75caeb;
-$link-color: #004056;
-$secondary-color: #75caeb;
+$primary-color : #28356e;
+$secondary-color: #90008c;
+$highlight-color : lighten($secondary-color,30%);
+$link-color: #28356e;
 $screen-sm-max:768px;
 $headline-color: #28b62c;
 $emphasize-color: #00eb25;
