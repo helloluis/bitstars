@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def photos
     @page = (params[:page] || 1).to_i
-    @photos = current_user.photos.order("created_at DESC").page(params[:page]).per('30').group_by{|p| p.created_at.beginning_of_day}
+    @photos = current_user.photos.order("entered_at DESC").page(params[:page]).per('30').group_by{|p| p.entered_at.beginning_of_day}
   end
 
   def show

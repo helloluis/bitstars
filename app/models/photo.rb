@@ -17,32 +17,32 @@ class Photo < ActiveRecord::Base
   after_create :notify_admin
 
   def self.winners
-    where(["disqualified!=true AND winner=true"]).order("created_at DESC")
+    where(["disqualified!=true AND winner=true"]).order("entered_at DESC")
   end
 
   def self.todays_winner
-    where(["disqualified!=true AND winner=true AND created_at>=?",Time.now.in_time_zone.beginning_of_day])
+    where(["disqualified!=true AND winner=true AND entered_at>=?",Time.now.in_time_zone.beginning_of_day])
   end
 
   def self.today
-    where(["disqualified!=true AND created_at>=?",Time.now.in_time_zone.beginning_of_day]).
+    where(["disqualified!=true AND entered_at>=?",Time.now.in_time_zone.beginning_of_day]).
     order("num_likes DESC, num_views DESC")
   end
 
   def self.yesterday(limit=10)
     time = Time.now.in_time_zone
-    where(["disqualified!=true AND created_at>=? AND created_at<?",time.yesterday.beginning_of_day,time.beginning_of_day]).
+    where(["disqualified!=true AND entered_at>=? AND entered_at<?",time.yesterday.beginning_of_day,time.beginning_of_day]).
     order("num_likes DESC, num_views DESC").
     limit(limit)
   end
 
   def self.by_date(date)
-    where(["disqualified!=true AND created_at>=? AND created_at<?",date.in_time_zone,date.in_time_zone+1.day]).
+    where(["disqualified!=true AND entered_at>=? AND entered_at<?",date.in_time_zone,date.in_time_zone+1.day]).
     order("num_likes DESC, num_views DESC")
   end
 
   def self.winner_by_date(date)
-    where(["disqualified!=true AND created_at>=? AND created_at<? AND winner=true",date.in_time_zone,date.in_time_zone+1.day]).first
+    where(["disqualified!=true AND entered_at>=? AND entered_at<? AND winner=true",date.in_time_zone,date.in_time_zone+1.day]).first
   end
 
   def self.random(not_id=nil, like_count=0, view_count=0, today=false)
@@ -51,7 +51,7 @@ class Photo < ActiveRecord::Base
     sql[0] += " AND num_likes>=#{like_count.to_i}" if like_count && like_count.to_i>0
     sql[0] += " AND num_views>=#{view_count.to_i}" if view_count && view_count.to_i>0
     if today
-      sql[0] += " AND created_at>=?"
+      sql[0] += " AND entered_at>=?"
       sql << Time.now.beginning_of_day
     end
 
@@ -59,13 +59,13 @@ class Photo < ActiveRecord::Base
   end
 
   def created_date
-    created_at.strftime("%Y-%m-%d")
+    entered_at.strftime("%Y-%m-%d")
   end
 
   def position_today
     time = Time.now.in_time_zone
-    if num_likes > 0 && created_at>=time.beginning_of_day
-      if photos_today = Photo.where(["disqualified!=true AND created_at>=?",time.beginning_of_day]).order("num_likes DESC, num_views DESC").select(:id).limit(20)
+    if num_likes > 0 && entered_at>=time.beginning_of_day
+      if photos_today = Photo.where(["disqualified!=true AND entered_at>=?",time.beginning_of_day]).order("num_likes DESC, num_views DESC").select(:id).limit(20)
         photo_ids = photos_today.map(&:id)
         hash = Hash[photo_ids.map.with_index.to_a]
         hash.keys.include?(id) ? (hash[id]+1) : false
@@ -80,11 +80,15 @@ class Photo < ActiveRecord::Base
   def win!(override_prize=nil)
     prize = override_prize ? override_prize : php_to_satoshis(Prize.daily_prize_amount(created_date))
     
-    if user.has_won_recently?
+    if winner?
+      
+      errors.add(:base, "This photo has already won.")
+
+    elsif user.has_won_recently?
       
       errors.add(:base, "This user has won already within the last #{App.winner_lockout/86400} days and can't be awarded again.") 
 
-    elsif Photo.where("winner=true AND created_at>=? AND created_at<?", created_at.beginning_of_day, created_at+1.day).exists?
+    elsif Photo.where("winner=true AND entered_at>=? AND entered_at<?", entered_at.beginning_of_day, entered_at+1.day).exists?
 
       errors.add(:base, "A winner has already been selected for #{created_date}.")
 
@@ -135,7 +139,7 @@ class Photo < ActiveRecord::Base
   end
 
   def self.already_entered?(user_id, provider, photo_id)
-    where(["user_id=? AND provider=? AND original_id=? AND created_at>=?",user_id,provider,photo_id,Time.now.in_time_zone.beginning_of_day]).exists?
+    where(["user_id=? AND provider=? AND original_id=? AND entered_at>=?",user_id,provider,photo_id,Time.now.in_time_zone.beginning_of_day]).exists?
   end
 
   def liked_by?(user)
@@ -147,11 +151,11 @@ class Photo < ActiveRecord::Base
   end
 
   def next_photo
-    self.class.unscoped.where("disqualified!=true AND id>?", id).order("created_at ASC").first
+    self.class.unscoped.where("disqualified!=true AND id>?", id).order("entered_at ASC").first
   end
 
   def prev_photo
-    self.class.unscoped.where("disqualified!=true AND id<?", id).order("created_at ASC").first
+    self.class.unscoped.where("disqualified!=true AND id<?", id).order("entered_at ASC").first
   end
 
   def notify_admin

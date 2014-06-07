@@ -82,7 +82,7 @@ section {
     color: $primary-color;
   }
   p.intro-first {
-    margin-bottom:5px;
+    margin-bottom:10px;
     letter-spacing:-1px;
     font-size:rem-calc(23px);
     text-align:center;
@@ -91,7 +91,7 @@ section {
     text-align:center;
     clear:both;
     font-size:rem-calc(40px);
-    margin-top:0px;
+    margin-top:-20px;
     color: $primary-color;
   }
   p.intro-btc {
@@ -101,23 +101,24 @@ section {
     float:left;
     font-size:rem-calc(20px);
     color: $primary-color;
-    max-width:85px;
+    max-width:95px;
   }
   p.intro-amount {
     @extend .primary_fontstack;
     float:left;
-    color: lighten($tertiary-color,30%);
+    color: $success-color;
     font-weight:bold;
     font-size:rem-calc(132px);
-    line-height:0.8;
+    line-height:0.9;
     margin:0px 4px 0px -4px;
-    letter-spacing:-4px;
   }
   p.intro-pesos {
+    @extend .primary_fontstack;
     text-transform: uppercase;
-    font-size:rem-calc(34px);
-    color: lighten($tertiary-color,30%);
-    border-bottom:5px solid lighten($tertiary-color,30%);
+    letter-spacing: 1px;
+    font-size:rem-calc(40px);
+    color: $success-background-color;
+    border-bottom:5px solid lighten($success-background-color,10%);
     float:left;
     margin: 5px 0px 4px 0px;
     padding:4px 0px;
@@ -183,12 +184,12 @@ section {
       font-size: rem-calc(50px) !important;
     }
     .intro-snippet-group {
-      width:320px !important;
+      width:280px !important;
       .intro-amount {
         font-size: rem-calc(160px) !important;
       }
       .intro-pesos {
-        font-size: rem-calc(40px) !important;
+        font-size: rem-calc(48px) !important;
       }
       .intro-btc {
         font-size: rem-calc(22px) !important;

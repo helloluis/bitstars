@@ -7,15 +7,15 @@ class User < ActiveRecord::Base
 
   has_many :photos do 
     def today
-      where(["entered_at>=? AND disqualified=false", Time.now.in_time_zone.beginning_of_day]).order("created_at DESC")
+      where(["entered_at>=? AND disqualified=false", Time.now.in_time_zone.beginning_of_day]).order("entered_at DESC")
     end
 
     def winners
-      where(["winner=true AND disqualified=false"]).order("created_at DESC")
+      where(["winner=true AND disqualified=false"]).order("entered_at DESC")
     end
 
     def qualified
-      where(["disqualified=false"]).order("created_at DESC")
+      where(["disqualified=false"]).order("entered_at DESC")
     end
 
     def best
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
   end
 
   def has_won_recently?
-    photos.winners.any? && photos.winners.last.created_at >= App.winner_lockout.ago
+    photos.winners.any? && photos.winners.last.entered_at >= App.winner_lockout.ago
   end
 
   def is_new?

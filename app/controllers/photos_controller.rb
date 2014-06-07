@@ -18,12 +18,12 @@ class PhotosController < ApplicationController
     @random = true
     @photo = Photo.random
     @next_photo = "random"
-    @date = @photo.created_at if @photo
+    @date = @photo.entered_at if @photo
   end
 
   def show
     @photo.view!
-    @date = @photo.created_at
+    @date = @photo.entered_at
     @next_photo = @photo.next_photo
   end
 
@@ -48,9 +48,10 @@ class PhotosController < ApplicationController
                     standard:   p['standard'], 
                     low:        p['low'],
                     thumbnail:  p['thumbnail']
-                  },
-                  eligible: current_user.has_won_recently?
-                )
+                  })
+      
+      photo.update_attributes(entered_at: Time.now, eligible: current_user.has_won_recently?)
+
       if photo.valid?
         photos << photo
       else

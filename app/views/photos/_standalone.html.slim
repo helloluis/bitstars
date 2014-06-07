@@ -121,7 +121,7 @@ div class='col-md-4'
 
       div.clearfix
         p
-          small class='created_at' title=@photo.created_at.strftime("%d %B %Y, %H:%M%p") 
+          small class='created_at' title=@photo.entered_at.strftime("%d %B %Y, %H:%M%p") 
             = link_to "#{@date.strftime("%d %B %Y")} &rarr;".html_safe, photos_by_date_path(@date)
 
       div.clearfix

@@ -1,5 +1,6 @@
 //FONT SIZING
 $main-font-size: 16px;
+$screen-sm-max:768px;
 
 @function rem-calc($value) {
   @return #{$value/$main-font-size}rem;
@@ -11,14 +12,15 @@ $secondary-color: #90008c;
 $tertiary-color: #158cba;
 $highlight-color : lighten($secondary-color,30%);
 $link-color: #28356e;
-$screen-sm-max:768px;
+$success-color:#035832;
+$success-background-color:#00a45c;
 $headline-color: #28b62c;
 $emphasize-color: #00eb25;
 $emphasize-shadow-color: #23a127;
 $winner-color:#f30;
 //FONT SELECTIONS
 .primary_fontstack {
-  font-family:'Squada One', Verdana, Tahoma, sans-serif;
+  font-family:'Tungsten-Semibold', Verdana, Tahoma, sans-serif;
 }
 .secondary_fontstack {
   @extend .primary_fontstack;
