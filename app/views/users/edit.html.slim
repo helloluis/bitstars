@@ -41,84 +41,88 @@ div class='container standalone-container'
       | Edit Your Profile 
     p Fill in all the fields below in order to be eligible for contest winnings and tips 
 
-  = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+  div class='panel'
+
+    div class='panel-body'
     
-    div.form-group
-      div.col-sm-12
-        label.col-sm-offset-2.col-sm-8.control-label.control-label-left
-          = f.input_field :payout_to_charity, as: :boolean
-          | Donate all my tips and winnings to charity automatically
+      = simple_form_for @user, html: { class: 'form-horizontal' } do |f|
+        
+        div.form-group
+          div.col-sm-12
+            label.col-sm-offset-2.col-sm-8.control-label.control-label-left
+              = f.input_field :payout_to_charity, as: :boolean
+              | Donate all my tips and winnings to charity automatically
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Charity
-      div.col-sm-8
-        select id='charities' name='user[charity]' class='form-control charity-control'
-          option 
-            | Select a charity
-          - App.charities.each do |charity|
-            | <option value="#{charity.slug}" data-name="#{charity.name}" data-description="#{charity.description}" data-url="#{charity.url}" #{charity.slug==@user.charity ? "selected='selected'" : ''}>#{charity.name}</option>
-        div class='charity-information hidden'
-          p 
-            strong.charity-name
-            br
-            a href='' class='charity-link' target='_blank'
-            br
-            small.charity-description
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Charity
+          div.col-sm-8
+            select id='charities' name='user[charity]' class='form-control charity-control'
+              option 
+                | Select a charity
+              - App.charities.each do |charity|
+                | <option value="#{charity.slug}" data-name="#{charity.name}" data-description="#{charity.description}" data-url="#{charity.url}" #{charity.slug==@user.charity ? "selected='selected'" : ''}>#{charity.name}</option>
+            div class='charity-information hidden'
+              p 
+                strong.charity-name
+                br
+                a href='' class='charity-link' target='_blank'
+                br
+                small.charity-description
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Wallet Address
-      div.col-sm-8
-        = f.input_field :wallet_address, class: 'form-control'
-        p.help-block 
-          | Enter your Bitcoin wallet address so we can forward winnings and tips to it.<br />If you don't have one yet, you can create one for free at <a href="http://coinjar.com">CoinJar</a>, <a href="http://blockchain.info">Blockchain</a>, or <a href="http://bitgo.com">Bitgo</a>. (<a href="/rules#wallet">More information ...</a>)
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Wallet Address
+          div.col-sm-8
+            = f.input_field :wallet_address, class: 'form-control'
+            p.help-block 
+              | Enter your Bitcoin wallet address so we can forward winnings and tips to it.<br />If you don't have one yet, you can create one for free at <a href="http://coinjar.com">CoinJar</a>, <a href="http://blockchain.info">Blockchain</a>, or <a href="http://bitgo.com">Bitgo</a>. (<a href="/rules#wallet">More information ...</a>)
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label First Name
-      div.col-sm-8
-        = f.input_field :first_name, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label First Name
+          div.col-sm-8
+            = f.input_field :first_name, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Last Name
-      div.col-sm-8
-        = f.input_field :last_name, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Last Name
+          div.col-sm-8
+            = f.input_field :last_name, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Gender
-      div.col-sm-8
-        = f.input_field :gender, as: :radio_buttons, collection: [['Male','male'],['Female','female']], class: 'form-control', label_html: { class: 'radio inline control-label' }
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Gender
+          div.col-sm-8
+            = f.input_field :gender, as: :radio_buttons, collection: [['Male','male'],['Female','female']], class: 'form-control', label_html: { class: 'radio inline control-label' }
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Email
-      div.col-sm-8
-        = f.input_field :email, class: 'form-control', "data-validation".to_sym => 'email'
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Email
+          div.col-sm-8
+            = f.input_field :email, class: 'form-control', "data-validation".to_sym => 'email'
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Phone
-      div.col-sm-8
-        = f.input_field :phone, class: 'form-control'
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Phone
+          div.col-sm-8
+            = f.input_field :phone, class: 'form-control'
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Address
-      div.col-sm-8
-        = f.input_field :address, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min4"
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Address
+          div.col-sm-8
+            = f.input_field :address, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min4"
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label City
-      div.col-sm-8
-        = f.input_field :city, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label City
+          div.col-sm-8
+            = f.input_field :city, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min2"
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Country
-      div.col-sm-8
-        = f.input_field :country, class: 'form-control', include_blank: false, priority_countries: "Philippines"
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Country
+          div.col-sm-8
+            = f.input_field :country, class: 'form-control', include_blank: false, priority_countries: "Philippines"
 
-    div.form-group
-      label.col-sm-2.col-sm-offset-1.control-label Postal Code
-      div.col-sm-8
-        = f.input_field :postal_code, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min4"
-    
-    div.form-group
-      div class="col-sm-offset-3 col-sm-8"
-        button type='submit' class='btn btn-default' Update Profile
+        div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Postal Code
+          div.col-sm-8
+            = f.input_field :postal_code, class: 'form-control', "data-validation".to_sym => 'length', "data-validation-length".to_sym => "min4"
+        
+        div.form-group
+          div class="col-sm-offset-3 col-sm-8"
+            button type='submit' class='btn btn-default' Update Profile
 
   div style='margin-bottom:20px'
