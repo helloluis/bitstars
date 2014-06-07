@@ -1,7 +1,7 @@
 html, body {
   font-size:$main-font-size;
-  font-weight:200;
-  background: #e8e6d3 image-url('ticks_yellow.png');
+  font-weight:300;
+  background: #f8f8f8;
   @include fontstack('body');
   color:#666;
 
@@ -25,16 +25,19 @@ html, body {
 h1,
 .h1 {
   font-size: rem-calc(36px);
+  font-family:"Tungsten-Semibold";
 }
 
 h2,
 .h2 {
   font-size: rem-calc(30px);
+  font-family:"Tungsten-Semibold";
 }
 
 h3,
 .h3 {
   font-size: rem-calc(24px);
+  font-family:"Tungsten-Semibold";
 }
 
 h4,
@@ -77,27 +80,22 @@ a {
   border:0 none;
 }
 
+b,strong {
+  font-weight:400;
+}
+
 // HEADER
 #branding {
-  //padding:rem-calc(10px) 0;
-  background:image-url('bg_masthead.png') bottom center repeat-x;
+  border:0px;
+  background:image-url('bg_masthead.jpg') center center repeat-y;
   @include border-radius(0px);
-  border-width:0px 0px 4px 0px;
-  border-color:#246;
   color:#fff;
 
-  .tagline {
-    color:#caf9ff;
-    text-shadow:1px 1px 0px #000; 
-    margin-bottom:0px;
-    padding-bottom:0px;
-  }
-
   .navbar-brand {
-    margin: 0;
-    padding:0px 0px 0px 0px;
+    margin: 0 10px 0 0;
+    padding:5px 0px 0px 0px;
     height:auto;
-    width:50%;
+    width:120px;
     font-size: rem-calc(28px);
   }
   
@@ -108,16 +106,15 @@ a {
 
   .navbar-info {
     background-color:transparent;
-    margin-top:15px;
+    margin-top:12px;
     ul {
       list-style-type:none;
       li {
         float:left;
         margin-right:30px;
-        color:#ccf;
-        text-shadow:2px 2px 0px #004056;
         a {
           color:#fff;
+          font-size:rem-calc(16px);
         }
         .dropdown-menu {
           background:#002532;
@@ -136,20 +133,22 @@ a {
   h1.logo {
     float:left;
     margin:0px 10px 0px 0px;
-    width:200px;
-    height:53px;
+    width:120px;
+    height:35px;
     background:image-url('logo_on_dark.png');
     background-size:cover;
     text-indent:-4000px;
   }
 
   .tagline {
-    margin-top:10px;
+    color:rgba(255,255,255,0.7);
+    margin:13px 0px 0px 0px;
     float:left;
     display:block;
-    font-size: rem-calc(22px);
-    font-weight: bold;
-    margin-bottom:0px;
+    font-size: rem-calc(16px);
+    font-family: "Open Sans";
+    font-weight:300;
+    font-style:italic;
   }
 }
 
@@ -322,6 +321,10 @@ img.flag {
 
 .how_it_works_container {
   padding:30px 0px;
+}
+
+.btn {
+  font-family: 'Roboto Condensed';
 }
 
 .btn.btn-huge {

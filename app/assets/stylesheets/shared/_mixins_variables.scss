@@ -1,5 +1,5 @@
 //FONT SIZING
-$main-font-size: 18px;
+$main-font-size: 16px;
 
 @function rem-calc($value) {
   @return #{$value/$main-font-size}rem;
@@ -23,7 +23,8 @@ $winner-color:#f30;
   @extend .primary_fontstack;
 }
 .body_fontstack {
-  font-family: 'Roboto Condensed', Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-weight: 300;
 }
 
 @mixin fontstack($value, $weight:true) {
