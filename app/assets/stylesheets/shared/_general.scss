@@ -424,6 +424,9 @@ ul,ol {
 .jumbotron {
   border-color:#ccb;
   overflow:hidden;
+  h1 {
+    color:$primary-color;
+  }
   .btn-lg {
     font-size:rem-calc(28px);
   }
