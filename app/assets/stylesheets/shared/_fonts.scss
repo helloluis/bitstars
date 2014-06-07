@@ -6,9 +6,9 @@
 
 @font-face {
   font-family: 'Tungsten-Semibold';
-  src: asset-url('/fonts/Tungsten-Semibold.eot') format('eot'), 
-       asset-url('/fonts/Tungsten-Semibold.otf')  format('opentype'),
-       asset-url('/fonts/Tungsten-Semibold.woff') format('woff'), 
-       asset-url('/fonts/Tungsten-Semibold.ttf')  format('truetype'),
-       asset-url('/fonts/Tungsten-Semibold.svg#Tungsten-Semibold') format('svg');
+  src: font-url('Tungsten-Semibold.eot') format('eot'), 
+       font-url('Tungsten-Semibold.otf')  format('opentype'),
+       font-url('Tungsten-Semibold.woff') format('woff'), 
+       font-url('Tungsten-Semibold.ttf')  format('truetype'),
+       font-url('Tungsten-Semibold.svg#Tungsten-Semibold') format('svg');
 }

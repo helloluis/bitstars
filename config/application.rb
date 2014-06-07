@@ -22,5 +22,11 @@ module Bitstars
     config.sass.preferred_syntax = :scss
     config.time_zone = 'Singapore'    
 
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.precompile << Proc.new { |path|
+      if path =~ /\.(eot|svg|ttf|woff)\z/
+        true
+      end
+    }
   end
 end
