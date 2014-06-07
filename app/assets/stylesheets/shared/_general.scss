@@ -427,6 +427,9 @@ ul,ol {
   h1 {
     color:$primary-color;
   }
+  p small {
+    font-weight:300;
+  }
   .btn-lg {
     font-size:rem-calc(28px);
   }

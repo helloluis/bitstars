@@ -28,10 +28,18 @@
   }
 }
 
-.rules-nav ul {
-  list-style-type:none;
-  padding-left:0px;
-  margin-left:0px;
+.rules-nav {
+  ul {
+    list-style-type:none;
+    padding-left:0px;
+    margin-left:0px;
+    li a {
+      font-weight:400;
+    }
+  }
+  &.affix {
+    top:20px;
+  }
 }
 
 .jumbotron-selfies {

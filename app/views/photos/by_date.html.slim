@@ -23,7 +23,7 @@ div class='container standalone-image'
   div.row
     div.col-md-12
       p.text-center
-        a href="/select_your_entries" class='btn btn-primary' Submit Your Selfies!
+        a href="/select_your_entries" class='btn btn-success' Submit Your Selfies!
       - if @photos.any?
         = render :partial => "photos/list", locals: { photos: @photos }
       - else
