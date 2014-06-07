@@ -13,21 +13,21 @@ class Like < ActiveRecord::Base
   def self.like!(photo, user)
     self.create(photo: photo, user: user)
     photo.increment!(:num_likes)
-    user.increment!(:num_likes)
+    photo.user.increment!(:num_likes)
   end
 
   def self.unlike!(photo, user)
     if like_record = photo.likes.where("user_id=?",user.id).first
       like_record.delete
       photo.decrement!(:num_likes)
-      user.decrement!(:num_likes)
+      photo.user.decrement!(:num_likes)
     end
   end
 
   def self.ignore!(photo, user)
     self.where("photo_id=? AND user_id=?", photo.id, user.id).update_attributes(:disqualified => true)
     photo.decrement!(:num_likes)
-    user.decrement!(:num_likes)
+    photo.user.decrement!(:num_likes)
   end
 
   def self.ignore_all_of_user(user)
