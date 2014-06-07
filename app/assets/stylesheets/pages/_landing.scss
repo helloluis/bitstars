@@ -79,7 +79,7 @@ section {
     overflow:hidden;
   }
   p.intro-snippet {
-    color: #158cba;
+    color: $primary-color;
   }
   p.intro-first {
     margin-bottom:5px;
@@ -106,8 +106,7 @@ section {
   p.intro-amount {
     @extend .primary_fontstack;
     float:left;
-    color: $emphasize-color;
-    text-shadow: 0px 4px 0px $emphasize-shadow-color;
+    color: lighten($tertiary-color,30%);
     font-weight:bold;
     font-size:rem-calc(132px);
     line-height:0.8;
@@ -117,9 +116,8 @@ section {
   p.intro-pesos {
     text-transform: uppercase;
     font-size:rem-calc(34px);
-    color: $emphasize-color;
-    //text-shadow: 0px 2px 0px $emphasize-shadow-color;
-    border-bottom:5px solid $emphasize-color;
+    color: lighten($tertiary-color,30%);
+    border-bottom:5px solid lighten($tertiary-color,30%);
     float:left;
     margin: 5px 0px 4px 0px;
     padding:4px 0px;

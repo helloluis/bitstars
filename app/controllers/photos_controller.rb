@@ -38,26 +38,25 @@ class PhotosController < ApplicationController
     photos = []
     photo_errors = []
     params[:photos].values.each do |p|
-      photo = Photo.first_or_create(
+      photo = Photo.where(
                 user:         current_user,
                 provider:     params[:provider],
                 original_id:  p['id']
+                ).first_or_create(
+                  description: p['text'],
+                  images: { 
+                    standard:   p['standard'], 
+                    low:        p['low'],
+                    thumbnail:  p['thumbnail']
+                  },
+                  eligible: current_user.has_won_recently?
                 )
       if photo.valid?
-        photo.update_attributes(
-            description: p['text'],
-            images: { 
-              standard:   p['standard'], 
-              low:        p['low'],
-              thumbnail:  p['thumbnail']
-            },
-            eligible: current_user.has_won_recently?
-          )
         photos << photo
       else
-        logger.info photo.errors.inspect
         photo_errors << photo.errors
       end
+      # logger.info "!! #{photo_errors.inspect} !!"
     end
     respond_to do |format|
       format.json { render :json => { photos: photos, errors: photo_errors } }
