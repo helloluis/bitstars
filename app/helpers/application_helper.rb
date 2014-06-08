@@ -98,6 +98,12 @@ module ApplicationHelper
     end
   end
 
+  def wallet_info(user)
+    unless user.wallet_address.blank?
+      link_to user.wallet_address, "#!", class: 'show_qr_code'
+    end
+  end
+
   def two_days_ago
     2.days.ago.beginning_of_day
   end

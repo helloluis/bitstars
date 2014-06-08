@@ -24,7 +24,8 @@ header class='row user-header' style=(@best ? "background-image:url(#{@best.imag
 
       p 
         = link_to "Follow #{@user.username} on #{@user.provider} &raquo;".html_safe, @user.provider_link
-    div class='pull-right'
+    
+    div class='pull-right' style='margin-top:40px; color:#fff'
       - if user_is_admin? && @user.requesting_withdrawal? 
         div class='admin_tools requesting_withdrawal' title='admin_tools'
           - if @user.payout_to_charity?
@@ -38,9 +39,28 @@ header class='row user-header' style=(@best ? "background-image:url(#{@best.imag
               br
               = link_to "Send Payout (#{to_mbtc(@user.total_earnings)}) &rarr;".html_safe, payout_user_path(@user)
 
-
 div class='container'
   
+  div class='panel user-profile-panel'
+    div class='panel-body'
+      div class='pull-left'
+        - unless @user.description.blank?  
+          == simple_format(@user.description)
+        - else
+          = @user.location
+
+      - if @user.payout_to_charity?
+        div class='pull-right charity-info'
+          p
+            small Tips will be donated to:
+          == charity_info(@user.charity)
+
+      - else
+        div class='pull-right wallet-info'
+          p
+            small Wallet
+          == wallet_info(@user)
+  
   div class='clearfix'
-  div class='row'
+  div class='row user-photos'
     = render :partial => "photos/list", locals: { photos: @photos }
