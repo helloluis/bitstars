@@ -149,10 +149,10 @@ section {
 @media (max-width:480px) {
   .panel .panel-heading .intro {
     p.intro-first {
-      font-size:rem-calc(10px);
+      font-size:rem-calc(8px);
     }
     p.intro-everyday {
-      font-size: rem-calc(18px);
+      font-size: rem-calc(14px);
     }
     .intro-snippet-group {
       width:300px;
@@ -172,6 +172,9 @@ section {
   }
   .panel .user-well p {
     font-size: rem-calc(9px);
+  }
+  .sidebar .panel .btn.btn-huge.btn-success {
+    font-size:rem-calc(8px);
   }
 }
 

@@ -449,18 +449,16 @@ ul,ol {
       padding:10px 0px 0px 0px;
       margin:0px;
       width:100%;
+      height:60px;
       clear:both;
-      //text-align:center;
     }
     h1.logo {
-      width:150px;
-      height:40px;
-      //margin-left:70px;
       float:none!important;
     }
     .tagline {
-      margin:0px 0px 0px 5px;
-      font-size:rem-calc(10px);
+      margin:0px 0px 0px 5px !important;
+      padding-bottom:0px;
+      font-size:rem-calc(8px);
       display:block;
       float:none!important;
       width:100%;
@@ -481,6 +479,7 @@ ul,ol {
         font-size:rem-calc(8px);
         a {
           font-weight:normal;
+          font-size:rem-calc(7px);
         }
       }
     }
@@ -552,6 +551,9 @@ ul,ol {
     button {
       font-size:rem-calc(13px);
     }
+  }
+  .navbar-header {
+    height:60px;
   }
 }
 
