@@ -11,15 +11,19 @@ var Selector = {
     var counter = $(".selected_photos_count");
 
     $(".select_photo").not(".already_entered").click(function(){
-      var bttn = $(this);
-      if ($(".select_photo.selected").length<Selector.max_entries && !bttn.hasClass('selected')) {
+      var bttn = $(this),
+          num_selected = $(".select_photo.selected").length + $(".select_photo.already_entered").length;
+
+      if (num_selected<Selector.max_entries && !bttn.hasClass('selected')) {
         bttn.addClass("selected");
         bttn.siblings("input[type=radio]").attr('selected','selected');
       } else if (bttn.hasClass("selected")){
         bttn.removeClass("selected");
         bttn.siblings("input[type=radio]").removeAttr('selected');
       }
-      counter.text( $(".select_photo.selected").length );
+      
+      counter.text( $(".select_photo.selected").length + $(".select_photo.already_entered").length );
+
       if ($(".select_photo.selected").length>0) {
         $("#submit_btn").removeClass('btn-default').addClass('btn-success');
       } else {
