@@ -75,7 +75,7 @@ section {
   }
   .intro-snippet-group {
     margin: 0 auto;
-    width:260px;
+    width:235px;
     overflow:hidden;
   }
   p.intro-snippet {
@@ -99,9 +99,9 @@ section {
     padding:0px;
     margin:0px;
     float:left;
-    font-size:rem-calc(20px);
+    font-size:rem-calc(18px);
     color: $primary-color;
-    max-width:95px;
+    max-width:80px;
   }
   p.intro-amount {
     @extend .primary_fontstack;
@@ -192,8 +192,9 @@ section {
         font-size: rem-calc(48px) !important;
       }
       .intro-btc {
-        font-size: rem-calc(22px) !important;
-        max-width: 100px;
+        font-size: rem-calc(21px) !important;
+        margin-top:7px !important;
+        max-width: 100px !important;
       }
     }
   }
