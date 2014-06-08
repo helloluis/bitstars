@@ -3,6 +3,10 @@ module ApplicationHelper
     "BITST&#10029;RS - #{@page_title || App.tagline}"
   end
 
+  def reached_submission_limit?(user)
+     user.photos.today.length >= App.max_submissions_per_day
+  end
+
   def daily_prize(photo_count)
     prize = Prize.daily_prize_amount_from_count(photo_count)
     content_tag(:span, number_to_currency(prize,unit: "&#8369;".html_safe), title: "The more photos are submitted, the higher the daily prize!")
