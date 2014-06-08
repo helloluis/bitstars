@@ -5,7 +5,7 @@ module ApplicationHelper
 
   def daily_prize(photo_count)
     prize = Prize.daily_prize_amount_from_count(photo_count)
-    number_to_currency(prize,unit: "&#8369;".html_safe)
+    content_tag(:span, number_to_currency(prize,unit: "&#8369;".html_safe), title: "The more photos are submitted, the higher the daily prize!")
   end
 
   def page_open_graph_tags

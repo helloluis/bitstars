@@ -11,14 +11,17 @@ form action=batch_create_photos_path method='post' class='select_photos'
   
   = hidden_field_tag :authenticity_token, form_authenticity_token
   = hidden_field_tag :provider, current_user.provider
-
     
   header data-spy="affix" data-offset-top="100" class='select_photos_header'
     div class='container standalone-container'
       div class='jumbotron'
         div class='pull-left'
-          h1 
+          h2 
             = t(:select_your_photos)
+            | &nbsp;
+            small
+              | Today's Jackpot: 
+              = daily_prize(@photos_count)
           p 
             - if App.max_submissions_per_day>1
               = t(:select_selfies_to_submit)

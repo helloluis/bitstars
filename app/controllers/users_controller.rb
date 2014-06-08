@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def select_photos
+    @photos_count = Photo.today.count
     @retrieved_photos = current_user.retrieve_photos
   rescue Koala::Facebook::AuthenticationError => e 
     flash[:error] = "Please login to Facebook again."
