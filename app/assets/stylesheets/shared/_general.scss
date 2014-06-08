@@ -492,7 +492,7 @@ ul,ol {
   }
   footer {
     p {
-      font-size:rem-calc(8px);
+      font-size:rem-calc(7px);
     }
     .logo-sci {
       margin-bottom:10px;
@@ -536,6 +536,24 @@ ul,ol {
   }
 }
 @media (max-width:640px) {
+  #branding 
+  {
+    h1.logo {
+      position:absolute;
+      top:5px;
+      left:5px;
+    }  
+    .tagline { 
+      display:none; 
+    }
+    nav {
+      position:absolute;
+      top:45px;
+      left:5px;
+    }
+    height:85px;
+  }
+  
   h1 {
     font-size:rem-calc(22px);
   }
@@ -551,9 +569,6 @@ ul,ol {
     button {
       font-size:rem-calc(13px);
     }
-  }
-  .navbar-header {
-    height:60px;
   }
 }
 

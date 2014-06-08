@@ -526,6 +526,19 @@
       margin-bottom:10px;
     }
   }
+  .date-prev, .date-next {
+    h3 a {
+      font-size:rem-calc(8px);  
+    }
+  }
+  .date-current {
+    p {
+      font-size:rem-calc(8px);
+    }
+    h1 {
+      font-size:rem-calc(12px);
+    }
+  }
 }
 
 @media (max-width:720px) {
