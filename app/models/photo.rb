@@ -140,6 +140,7 @@ class Photo < ActiveRecord::Base
   end
 
   def self.already_entered?(user_id, provider, photo_id)
+    logger.info "ALREADY ENTERED? #{where(["user_id=? AND provider=? AND original_id=? AND entered_at>=?",user_id,provider,photo_id,Time.now.in_time_zone.beginning_of_day]).exists?}"
     where(["user_id=? AND provider=? AND original_id=? AND entered_at>=?",user_id,provider,photo_id,Time.now.in_time_zone.beginning_of_day]).exists?
   end
 

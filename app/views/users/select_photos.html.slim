@@ -11,7 +11,6 @@ form action=batch_create_photos_path method='post' class='select_photos'
   
   = hidden_field_tag :authenticity_token, form_authenticity_token
   = hidden_field_tag :provider, current_user.provider
-
     
   header data-spy="affix" data-offset-top="100" class='select_photos_header'
     div class='container standalone-container'
@@ -19,16 +18,25 @@ form action=batch_create_photos_path method='post' class='select_photos'
         div class='pull-left'
           h1 
             = t(:select_your_photos)
-          p 
-            - if App.max_submissions_per_day>1
-              = t(:select_selfies_to_submit)
-            - else
-              = t(:select_one_selfie_to_submit)
             | &nbsp;
-            span class='selected_photos_count' = current_user.photos.today.length
-            | /#{App.max_submissions_per_day} selected
-        div class='pull-right'
-          input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-lg'
+            small
+              | Current Jackpot: 
+              = daily_prize(@photos_count)
+          - if reached_submission_limit?(current_user)
+            p
+              | You've already submitted #{App.max_submissions_per_day} selfies today. Please wait till tomorrow to submit some more.
+          - else
+            p 
+              - if App.max_submissions_per_day>1
+                = t(:select_selfies_to_submit)
+              - else
+                = t(:select_one_selfie_to_submit)
+              | &nbsp;
+              span class='selected_photos_count' = current_user.photos.today.length
+              | /#{App.max_submissions_per_day} selected
+        - unless reached_submission_limit?(current_user)
+          div class='pull-right'
+            input id='submit_btn' type='submit' value=t(:use_these_photos) class='btn btn-default btn-lg'
 
   div class='container'  
     - if @retrieved_photos && @retrieved_photos.any?

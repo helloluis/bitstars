@@ -92,6 +92,11 @@ div class='container standalone-container'
             = f.input_field :gender, as: :radio_buttons, collection: [['Male','male'],['Female','female']], class: 'form-control', label_html: { class: 'radio inline control-label' }
 
         div.form-group
+          label.col-sm-2.col-sm-offset-1.control-label Summary
+          div.col-sm-8
+            = f.input_field :description, as: :text, class: 'form-control', label_html: { class: 'control-label' }
+
+        div.form-group
           label.col-sm-2.col-sm-offset-1.control-label Email
           div.col-sm-8
             = f.input_field :email, class: 'form-control', "data-validation".to_sym => 'email'

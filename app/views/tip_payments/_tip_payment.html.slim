@@ -1,7 +1,8 @@
 li class='tip clearfix'
-  div class='pull-right'
-    a href=photo_path(tip_payment.tip.photo)
-      div class='thumbnail' style="background-image:url(#{tip_payment.tip.photo.images[:thumbnail]})" 
+  - if tip_payment.tip.photo
+    div class='pull-right'
+      a href=photo_path(tip_payment.tip.photo)
+        div class='thumbnail' style="background-image:url(#{tip_payment.tip.photo.images[:thumbnail]})" 
   div class='pull-left'
     dl
       dt.from_user 

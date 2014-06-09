@@ -42,6 +42,12 @@
   }
 }
 
+@media (max-width:640px) {
+  .rules-nav.affix {
+    display:none;
+  }
+}
+
 .jumbotron-selfies {
   background:image-url('bg2.jpg');
   h1, p { 

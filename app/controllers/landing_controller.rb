@@ -1,7 +1,7 @@
 class LandingController < ApplicationController
 
   def index
-    @photos = Photo.today
+    @photos = Photo.today.limit(20)
     @time = Time.now.in_time_zone
     @today  = @time.beginning_of_day
     @yesterday = @time.yesterday.beginning_of_day

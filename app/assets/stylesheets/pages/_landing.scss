@@ -75,7 +75,7 @@ section {
   }
   .intro-snippet-group {
     margin: 0 auto;
-    width:260px;
+    width:235px;
     overflow:hidden;
   }
   p.intro-snippet {
@@ -99,9 +99,9 @@ section {
     padding:0px;
     margin:0px;
     float:left;
-    font-size:rem-calc(20px);
+    font-size:rem-calc(18px);
     color: $primary-color;
-    max-width:95px;
+    max-width:80px;
   }
   p.intro-amount {
     @extend .primary_fontstack;
@@ -110,7 +110,7 @@ section {
     font-weight:bold;
     font-size:rem-calc(132px);
     line-height:0.9;
-    margin:0px 4px 0px -4px;
+    margin:0px 4px 0px 0px;
   }
   p.intro-pesos {
     @extend .primary_fontstack;
@@ -149,10 +149,10 @@ section {
 @media (max-width:480px) {
   .panel .panel-heading .intro {
     p.intro-first {
-      font-size:rem-calc(10px);
+      font-size:rem-calc(8px);
     }
     p.intro-everyday {
-      font-size: rem-calc(18px);
+      font-size: rem-calc(14px);
     }
     .intro-snippet-group {
       width:300px;
@@ -173,6 +173,9 @@ section {
   .panel .user-well p {
     font-size: rem-calc(9px);
   }
+  .sidebar .panel .btn.btn-huge.btn-success {
+    font-size:rem-calc(8px);
+  }
 }
 
 @media (min-width:1200px) {
@@ -192,8 +195,9 @@ section {
         font-size: rem-calc(48px) !important;
       }
       .intro-btc {
-        font-size: rem-calc(22px) !important;
-        max-width: 100px;
+        font-size: rem-calc(21px) !important;
+        margin-top:7px !important;
+        max-width: 95px !important;
       }
     }
   }

@@ -1,10 +1,12 @@
 - content_for :page_scripts do
   javascript:
     $(function(){
-      $("#questions dt").each(function(){
-        var el = $(this);
-        $("<li><a href='#" + this.id + "'>" + el.find("h4").text() + "</a></li>").appendTo("#nav_questions");
-      });
+      if ($(window).width()>640) {
+        $("#questions dt").each(function(){
+          var el = $(this);
+          $("<li><a href='#" + this.id + "'>" + el.find("h4").text() + "</a></li>").appendTo("#nav_questions");
+        });
+      }
     });
 
 div class='container standalone-container'

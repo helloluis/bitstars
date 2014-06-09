@@ -31,7 +31,7 @@
         @include border-radius(12px);
       }
       a {
-        font-size:rem-calc(14px);
+        font-size:rem-calc(13px);
       }
     }
     .likes {
@@ -138,8 +138,8 @@
 .standalone-image {
   margin-top:20px;
   .thumbnail {
-    background:#fff image-url('loader_big.gif') 50% 50% no-repeat;
-    min-height:300px;
+    background:#fff image-url('loader_small.gif') 50% 50% no-repeat;
+    min-height:200px;
     margin:0 auto 20px auto;
     .img-responsive {
       width:100%;
@@ -524,6 +524,19 @@
     p {
       padding-bottom:5px;
       margin-bottom:10px;
+    }
+  }
+  .date-prev, .date-next {
+    h3 a {
+      font-size:rem-calc(8px);  
+    }
+  }
+  .date-current {
+    p {
+      font-size:rem-calc(8px);
+    }
+    h1 {
+      font-size:rem-calc(12px);
     }
   }
 }
